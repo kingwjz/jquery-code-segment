@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() { 
+$('.btn').click(function() { 
+$('.mask').css({'display': 'block'}); 
+center($('.mess')); 
+check($(this).parent(), $('.btn1'), $('.btn2')); 
+}); 
+// 居中 
+function center(obj) { 
+var screenWidth = $(window).width(), screenHeight = $(window).height();//当前浏览器窗口的 宽高 
+var scrolltop = $(document).scrollTop();//获取当前窗口距离页面顶部高度 
+var objLeft = (screenWidth - obj.width())/2 ; 
+var objTop = (screenHeight - obj.height())/2 + scrolltop; 
+obj.css({left: objLeft + 'px', top: objTop + 'px','display': 'block'}); 
+//浏览器窗口大小改变时 
+$(window).resize(function() { 
+screenWidth = $(window).width(); 
+screenHeight = $(window).height(); 
+scrolltop = $(document).scrollTop(); 
+objLeft = (screenWidth - obj.width())/2 ; 
+objTop = (screenHeight - obj.height())/2 + scrolltop; 
+obj.css({left: objLeft + 'px', top: objTop + 'px','display': 'block'}); 
+}); 
+//浏览器有滚动条时的操作、 
+$(window).scroll(function() { 
+screenWidth = $(window).width(); 
+screenHeight = $(widow).height(); 
+scrolltop = $(document).scrollTop(); 
+objLeft = (screenWidth - obj.width())/2 ; 
+objTop = (screenHeight - obj.height())/2 + scrolltop; 
+obj.css({left: objLeft + 'px', top: objTop + 'px','display': 'block'}); 
+}); 
+} 
+//确定取消的操作 
+function check(obj, obj1, obj2) { 
+obj1.click(function() { 
+obj.remove(); 
+closed($('.mask'), $('.mess')); 
+}); 
+obj2.click(function() { 
+closed($('.mask'), $('.mess')); 
+}) ; 
+} 
+// 隐藏 的操作 
+function closed(obj1, obj2) { 
+obj1.hide(); 
+obj2.hide(); 
+} 
+});
+</script>
+<style type="text/css">
+.mask { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; opacity: 0.5; filter: alpha(opacity=50); display: none; z-index: 99; } 
+.mess { position: absolute; display: none; width: 250px; height: 100px; border: 1px solid #ccc; background: #ececec; text-align: center; z-index: 101; } 
+</style>
+</head>
+<body>
+<h2>超实用的jQuery代码段 - jQuery页面加载后居中显示消息框的方法</h2>
+<input type="button" class="btn" value="单击弹出消息框"/>
+<div class="mask"></div> 
+<div class="mess"> 
+<p>确定要删除吗？</p> 
+<p><input type="button" value="确定" class="btn1"/> 
+<input type="button" value="取消" class="btn2"/></p> 
+</div>
+</body>
+</html>

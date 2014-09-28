@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用堆栈数组链接字符串</title>
+<script type="text/javascript">
+//不推荐使用如下的用“+”号连接的方式
+var string   = '张三丰';
+    string += '李四友';
+    string += '刘五七';
+    string += '张五哥';
+    string += '李世民'; 
+alert(string);  //显示连接后的字符串
+//在这个示例中，先构建了一个Array对象
+var string = Array();
+    string.push('张三丰');  //使用push方式添加数组元素
+    string.push('李四友');
+    string.push('刘五七');
+    string.push('张五哥');
+    string.push('李世民'); 
+alert(string.join(""));    //用join函数合并数组元素为字符串
+</script>
+</head>
+
+<body>
+</body>
+</html>

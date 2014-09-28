@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>冒泡排序算法实现</title>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btnsort").click(function(){
+		doSort();                                       //单击按钮时，调用doSort进行冒泡排序
+	});
+});
+
+function doSort() {
+	nanExists = false;                                 //是否具有无效数字的标记
+	inputString = $("input[name='numbers']").val();    //取要排序的内容
+	inputNumbers = inputString.split(",");             //以逗号为分隔符构建数组
+	for (var i = 0; i < inputNumbers.length; i++) {   //循环数组，
+	  inputNumbers[i] = parseInt(inputNumbers[i], 10); //判断是否存在非法数字
+	  if (isNaN(inputNumbers[i])) {                   //如果存在非法数字
+		nanExists = true;                              //设置nanExists为true
+		break;                                         //并且中断循环
+	  }
+   }
+    //调用bubbleSort方法，对数组进行冒泡排序
+	inputNumbers = bubbleSort(inputNumbers, 0, inputNumbers.length - 1);
+	if (nanExists)                                    //如果存在非法数字，则输出提示
+	  $("input[name='answers']").val("无效的输入，必须是以逗号分隔的数字才能进行排序");
+	else
+	  //如果不存在非法数字，则显示排序后的结果
+	  $("input[name='answers']").val(resultString(inputNumbers, 0));
+}
+
+function resultString(inputArray, num) {           //用来将数组转换为逗号分隔的字符串
+	if ((inputArray.length  - 1) >= num) 
+	return (inputArray[num] + "," + resultString(inputArray,(num + 1)));
+	else return "";
+}
+
+function bubbleSort(inputArray, start, rest) {      //冒泡排序算法的实现
+ for (var i = rest-1; i>=start; i--) {              //由2个循环组成，不断的循环未排序字符串
+   for (var j=start; j<=i; j++) {
+	  if (inputArray[j+1]<inputArray[j]) {
+		 var tempValue=inputArray[j];
+		 inputArray[j]=inputArray[j+1];             //交换数据的位置，以从小到大排列
+		 inputArray[j+1]=tempValue;
+	  }
+   }
+ }
+   return inputArray;                              //返回排序后的数组
+}
+</script>
+</head>
+
+<body>
+<form>
+<!--构建排序示例使用到的HTML表单-->
+<table border=1  class="gridtable" >
+<td>输入要排序的数字:  
+<input type=text name=numbers size=75 
+value="4,2,5,1,7,8,9,3,6,3,6,2,9,8,5,2,6,7,3,4,5,6,8,1,9,4,3,6,2,5,8,4"></td>
+<tr>
+<td>排序结果: <input type=text name=answers size=75></td>
+</tr>
+<tr>
+<td colspan=2 align=center>
+  <input type=button value="排序" id="btnsort"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

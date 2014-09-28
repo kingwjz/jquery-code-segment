@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在2个列表框之间进行拖动</title>
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+  <style>
+  #sortable1, #sortable2 { list-style-type: none; margin: 0; padding: 0 0 2.5em; float: left; margin-right: 10px; }
+  #sortable1 li, #sortable2 li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px; }
+  </style>
+  <script type="text/javascript">
+    $(function() {
+	 $( "#sortable1, #sortable2" ).sortable({  //开启拖动
+	  connectWith: ".connectedSortable"        //使用class类，作为connectWith的可拖动分组
+    	}).disableSelection();                    //禁用文本选择
+    });
+  </script>
+</head>
+<body>
+ 
+<ul id="sortable1" class="connectedSortable">
+  <li class="ui-state-default">项目 1</li>
+  <li class="ui-state-default">项目 2</li>
+  <li class="ui-state-default">项目 3</li>
+  <li class="ui-state-default">项目 4</li>
+  <li class="ui-state-default">项目 5</li>
+</ul>
+ 
+<ul id="sortable2" class="connectedSortable">
+  <li class="ui-state-highlight">项目 1</li>
+  <li class="ui-state-highlight">项目 2</li>
+  <li class="ui-state-highlight">项目 3</li>
+  <li class="ui-state-highlight">项目 4</li>
+  <li class="ui-state-highlight">项目 5</li>
+</ul>
+</body>
+</html>

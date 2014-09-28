@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+(function($){$.fn.hoverIntent=function(f,g){var cfg={sensitivity:7,interval:100,timeout:0};cfg=$.extend(cfg,g?{over:f,out:g}:f);var cX,cY,pX,pY;var track=function(ev){cX=ev.pageX;cY=ev.pageY;};var compare=function(ev,ob){ob.hoverIntent_t=clearTimeout(ob.hoverIntent_t);if((Math.abs(pX-cX)+Math.abs(pY-cY))<cfg.sensitivity){$(ob).unbind("mousemove",track);ob.hoverIntent_s=1;return cfg.over.apply(ob,[ev]);}else{pX=cX;pY=cY;ob.hoverIntent_t=setTimeout(function(){compare(ev,ob);},cfg.interval);}};var delay=function(ev,ob){ob.hoverIntent_t=clearTimeout(ob.hoverIntent_t);ob.hoverIntent_s=0;return cfg.out.apply(ob,[ev]);};var handleHover=function(e){var p=(e.type=="mouseover"?e.fromElement:e.toElement)||e.relatedTarget;while(p&&p!=this){try{p=p.parentNode;}catch(e){p=this;}}if(p==this){return false;}var ev=jQuery.extend({},e);var ob=this;if(ob.hoverIntent_t){ob.hoverIntent_t=clearTimeout(ob.hoverIntent_t);}if(e.type=="mouseover"){pX=ev.pageX;pY=ev.pageY;$(ob).bind("mousemove",track);if(ob.hoverIntent_s!=1){ob.hoverIntent_t=setTimeout(function(){compare(ev,ob);},cfg.interval);}}else{$(ob).unbind("mousemove",track);if(ob.hoverIntent_s==1){ob.hoverIntent_t=setTimeout(function(){delay(ev,ob);},cfg.timeout);}}};return this.mouseover(handleHover).mouseout(handleHover);};})(jQuery);
+//<![CDATA[
+$(document).ready(function() {
+  function addMega(){
+    $(this).addClass("hovering");
+    }
+  function removeMega(){
+    $(this).removeClass("hovering");
+    }
+var megaConfig = {
+     interval: 500,
+     sensitivity: 4,
+     over: addMega,
+     timeout: 500,
+     out: removeMega
+};
+$("li.mega").hoverIntent(megaConfig);
+});
+//]]>
+</script>
+<style type="text/css" media="screen">
+/*<![CDATA[*/
+body {
+font-family: "Lucida Grande", "Lucida Sans Unicode", "Verdana", sans-serif;
+font-size: 11px;
+background: #fff;
+color: #333;
+}
+h1, h2, h3, h4, h5, h6, p, ul, li {
+font-size: 1em;
+margin: 0;
+padding: 0;
+}
+div#banner {
+background: transparent url(/jscss/demoimg/201403/mega.gif) top left no-repeat;
+padding-top: 12px;
+padding-bottom: 36px;
+}
+div#banner h1, div#menu h2 {
+margin: 0;
+padding: 0;
+}
+div#banner h1 a {
+display: block;
+width: 270px;
+height: 120px;
+}
+div#banner h1 a span, div#banner .skip {
+position: absolute;
+top: -10000px;
+left: -10000px;
+}
+ul#menu {
+background: #940;
+color: #fff;
+margin: 0;
+padding: 0.3em 0em;
+}
+ul#menu li {
+display: inline;
+margin: 0.1em 1em;
+position: relative;
+}
+ul#menu h2, ul#menu h3 {
+font-size: 100%;
+font-weight: normal;
+display: inline;
+}
+ul#menu li a {
+color: #fff;
+text-decoration: none;
+padding: 0 0.4em;
+}
+ul#menu li a:hover {
+text-decoration: underline;
+}
+ul#menu li.mega a {
+background: transparent url(/jscss/demoimg/201403/arrow1.gif) center right no-repeat;
+padding: 0 1.2em;
+}
+ul#menu li.mega a:hover {
+text-decoration: underline;
+}
+ul#menu div {
+display: none;
+}
+ul#menu li.mega div {
+border: 1px solid #dda;
+width: 18em;
+position: absolute;
+top: 1.6em;
+left: 0em;
+padding: 1.3em;
+background: #ffc;
+color: #930;
+}
+ul#menu li.hovering div {
+display: block;
+}
+ul#menu li.mega div a {
+color: #300;
+padding: 0;
+background-image: none;
+text-decoration: underline;
+}
+ul#menu li div a.more {
+color: #390;
+font-weight: bold;
+}
+ul#menu div h3 {
+color: #f70;
+font-weight: bold;
+font-size: 1.1em;
+}
+ul#menu div p {
+margin: 0 0 0.8em 0;
+padding: 0;
+}
+/*]]>*/
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+<!--<h2 id="h2-caption">超实用的jQuery代码段 - jQuery延时显示子菜单的方法</h2>-->
+ <div id="banner">
+    <h1>
+      <a href="#"><span>Mega Shop</span></a>
+    </h1><a class="skip" href="#content">Skip navigation</a>
+    <ul id="menu">
+      <li>
+        <h2>
+          <a href="#">主页</a>
+        </h2>
+        <div>
+          Latest news, special deals, and more...
+        </div>
+      </li>
+      <li class="mega">
+        <h2>
+          <a href="#">关于他</a>
+        </h2>
+        <div>
+          <h3>
+            Menswear
+          </h3>
+          <p>
+            <a href="#">Shirts</a>, <a href="#">T-shirts</a>, <a href="#">Accessories</a>, <a href="#">More...</a>
+          </p>
+          <h3>
+            Gifts
+          </h3>
+          <p>
+            <a href="#">Sporting goods</a>, <a href="#">Gadgets</a>, <a href="#">More...</a>
+          </p>
+          <h3>
+            Clearance!
+          </h3>
+          <p>
+            40% off all photo accessories this weekend only. <a href="#">Don't miss out!</a>
+          </p><a href="#" class="more">More stuff for him...</a>
+        </div>
+      </li>
+      <li class="mega">
+        <h2>
+          <a href="#">我是谁</a>
+        </h2>
+        <div>
+          <h3>
+            Ladieswear
+          </h3>
+          <p>
+            <a href="#">Tops</a>, <a href="#">Pants</a>, <a href="#">Skirts</a>, <a href="#">T-shirts</a>, <a href="#">More...</a>
+          </p>
+          <h3>
+            Gifts
+          </h3>
+          <p>
+            <a href="#">Sporting goods</a>, <a href="#">Gadgets</a>, <a href="#">More...</a>
+          </p>
+          <h3>
+            Shop Now for Mother's Day!
+          </h3>
+          <p>
+            Earlybird Mother's Day specials. <a href="#">Shop early, save on shipping!</a>
+          </p><a href="#" class="more">More stuff for her...</a>
+        </div>
+      </li>
+      <li class="mega">
+        <a href="#">Stuff for kids</a>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </div>
+      </li>
+      <li class="mega">
+        <a href="#">Stuff for pets</a>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </div>
+      </li>
+    </ul>
+  </div>
+  <p>
+    <a id="id-content" name="id-content">content</a>
+  </p>
+<br/>
+<div id="div-log">
+	<p>日志记录：</p>
+</div>
+</body>
+</html>

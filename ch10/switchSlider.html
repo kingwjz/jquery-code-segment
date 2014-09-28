@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>实现开关效果的选择滑块</title>
+<!--指定设备的宽度-->
+<meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+</head> 
+<body> 
+<div data-role="page" id="pageone">
+  <div data-role="header" data-position="fixed">
+  <h1>打开或关闭蓝牙功能</h1>
+  </div>
+  <div data-role="content">
+    <form id="form1">
+      <div data-role="fieldcontain">
+        <label for="switch">打开/关闭蓝牙功能</label>
+        <select name="switch" id="switch" data-role="slider">
+          <option value="on">打开</option>
+          <option value="off" selected>关闭</option>
+        </select>
+      </div>
+      <div id="result">蓝牙已关闭</div>
+    </form>
+  </div>
+   <script type="text/javascript">  
+       //在页面初始加载时，为滑块关联change事件
+	   $("#pageone").bind("pageinit",function(){	
+	       $('#switch').unbind('change');                //取消绑定change事件		   	    
+	       $("#switch").bind('change',function(event){ //重新绑定change事件  		
+		      //获取滑块当前的值
+		      var onoff=$("#switch").children('option:selected').val();   
+			  if (onoff=="on"){                         //判断当前的值，然后显示打开关闭消息
+		       	$("#result").text("蓝牙已打开");
+				}
+				else
+				{
+		       	$("#result").text("蓝牙已关闭");					
+				}
+		   });
+	   });   
+   </script>      
+</div>
+</body>
+</html>

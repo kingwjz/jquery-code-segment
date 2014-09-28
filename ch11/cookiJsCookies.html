@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用Cookie.js管理Cookie</title>
+<head>
+   <title>cookie保存用户名密码</title>
+   <script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+   <!--插件必须放在jquery下面，以便引用cookie.js中的功能-->    
+   <script type="text/javascript" src="jquery/jquery.cookie.js"></script>
+   <script type="text/javascript">
+	$(document).ready(function () {
+		$("#button").click(function() {
+			if ($("#rember_me").attr("checked") == "checked") { //如果被指定记住我功能
+		    	var username = $("#username").val();            //获取用户名值
+			    var password = $("#password").val();            //获取密码值
+			    $.cookie("username", username, { expires: 7 }); //设置Cookie，指定过期日为7天
+			    $.cookie("password", password, { expires: 7 });
+			  }
+		});
+		//启动时获取Cookie中保存的用户名和密码信息
+		var username = $.cookie("username");                    //获取用户名值
+		var password = $.cookie("password");                    //获取密码值
+		if (username && password) {                             //如果存在用户名和密码值
+		alert("您已经登录");
+		} else {
+		alert("还没有登录，请输入用户名和密码");
+		}
+        });
+    </script>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>用户名：</td>
+        <td><input type="text" id="username" /></td>
+    </tr>
+    <tr>
+        <td>密码：</td>
+        <td><input type="password" id="password" /></td>
+    </tr>
+    <tr>
+        <td><input type="button" id="button" value="登陆" /></td>
+        <td><input type="checkbox" id="rember_me" />记住我</td>
+    </tr>
+</table>
+</body>
+</html>

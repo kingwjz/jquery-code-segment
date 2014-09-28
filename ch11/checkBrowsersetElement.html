@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>检测浏览器</title>
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<!--使用jQuery migrate插件使得jQuery 1.9.1支持$.browser-->
+<script type="text/javascript" src="jquery/jquery-migrate-1.2.1.js"></script>
+<script type="text/javascript">
+ $(document).ready(function(e) {
+ if($.browser.msie) {              //判断IE
+    $("#browsetype").append("这是IE "+$.browser.version); 
+ }else if($.browser.opera) {      //判断opera
+     $("#browsetype").append("这是opera "+$.browser.version); 
+ }else if($.browser.mozilla){     //判断firefox
+     $("#browsetype").append("这是mozilla "+$.browser.version); 
+ }else if($.browser.safa){       //判断safa
+     $("#browsetype").append("这是safa "+$.browser.version); 
+ }else{                           //判断Chrome或其他
+     $("#browsetype").append("这是谷歌或者其他浏览器")
+ };    
+});
+</script>
+</head>
+<body>
+<!--显示当前的浏览器类型-->
+<div id="browsetype">当前的浏览器类型：</div>
+</body>
+</html>

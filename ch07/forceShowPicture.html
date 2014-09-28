@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>强制显示图片</title>
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+		$("#flower").forceShow();
+	});
+     //编写一个jQuery插件方法
+	jQuery.fn.forceShow = function() {
+	  if (this.css('opacity') < 0.25) {                 //如果透明度小于0.25
+		this.css('opacity',1)                            //调整透明度为1
+	  }
+	  return this.show().css('visibility','visible')    //设置图像可见
+	}
+</script>
+<style type="text/css">
+   #flower{
+	   visibility:hidden;       /*使用CSS让图片隐藏*/
+   }
+</style>
+</head>
+
+<body>
+<!--放一张图片，这张图片被隐藏显示-->
+<img id="flower" src="images/sample5.jpg" />
+</body>
+</html>

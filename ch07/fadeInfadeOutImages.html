@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>淡入淡出图片效果</title>
+<style type="text/css">
+  #img{
+	  float:left;
+  }
+</style>
+<!--添加对jQuery库的引用-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script language="javascript" type="text/javascript">
+ //定义页面加载事件
+ $(document).ready(function(){
+  //当鼠标移过时
+  $("#img img").mouseover(function(){
+   //对于非当前的图片元素，动画使其透明度变为0.1
+   $("#img img").not(this).animate({opacity:0.1},400);
+  }).mouseout(function(){    //鼠标移出时的效果
+  //动画使其透明度变为100%
+   $("#img img").animate({opacity:1},400);
+  });
+ });
+</script>
+</head>
+
+<body>
+<!--添加图片，以实现淡入淡出的效果-->
+<div id="img">
+<img src="images/sample1.jpg" width="300">
+<img src="images/sample3.jpg" width="200">
+<img src="images/sample5.jpg" width="300">
+<img src="images/googlelogo.jpg" width="300">
+</div>
+</body>
+</html>

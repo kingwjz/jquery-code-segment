@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>缓存jQuery对象以提升性能</title>
+<script type="text/javascript" src="jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(e) {
+	$('#tagdemo input.off').bind('click', function(){});        //为按钮关联单击事件
+	$('#tagdemo input.off').css('border', '3px dashed yellow');   //更改按钮的边框
+	$('#tagdemo input.off').css('background-color', 'orange');   //更改按钮的背景色
+	$('#tagdemo input.off').fadeIn('slow');                    //淡出显示按钮
+	
+	
+	 
+	var offbutton=$('#tagdemo input.off');         //将jQuery对象缓存起来
+	offbutton.bind('click', function(){});        //为按钮关联单击事件
+	offbutton.css('border', '3px dashed yellow');   //更改按钮的边框
+	offbutton.css('background-color', 'orange');   //更改按钮的背景色
+	offbutton.fadeIn('slow');                    //淡出显示按钮	
+});
+</script>
+</head>
+
+<body>
+<div id="content">
+ <form method="post" action="/">
+  <h2>交通信号灯</h2>
+  <ul id="tagdemo">
+    <li><input type="radio" class="on" name="light" value="red" /> 红灯</li>
+    <li><input type="radio" class="off" name="light" value="yellow" /> 黄灯</li>
+    <li><input type="radio" class="off" name="light" value="green" /> 绿灯</li>
+  </ul>
+ <input class="button" id="lightbutton" type="submit" value="选中" />
+</form>
+</div>
+</body>
+</html>

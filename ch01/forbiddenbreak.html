@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+function strReplace(str){
+var t="",len=0;
+t=str.replace(/\r\n/g,"\\n").replace(/\n/g,"");
+document.form.output.value=t;
+}
+</script>
+<style>
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:16px "Trebuchet MS", sans-serif;
+}
+label {
+	font:12px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery强制阻止文本行换行</h2>
+	<hr><br>
+	<form id="form" name="form" method="post" action="#">
+		<label>文本输入:</label><br>
+		<p>
+			<textarea name="input" cols="30" rows="3" id="input"></textarea><br>
+		</p>
+		<label>文本输出:</label><br>
+		<p>
+			<textarea name="output" cols="30" rows="1" id="output" readonly="readonly"></textarea><br>
+		</p>
+		<p>
+			<label>
+				<input type="button" name="Submit" value="强制阻止文本换行" onclick="strReplace(input.value)">
+			</label>
+		</p>
+	</form>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!--使用名为viewport的meta值，其content指定自适应设备的宽度--> 
+<meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<title>软件下载窗口</title>
+</head>
+
+<body>
+<!--构建浏览器下载列表页-->
+<div data-role="page" id="pageone" data-theme="e">
+  <div data-role="content">
+    <h2>软件下载</h2>
+    <!--构建圆角显示的列表框-->
+    <ul data-role="listview" data-inset="true" data-filter="true">
+      <!--显示一个分隔条-->
+      <li data-role="divider">世面上主流的浏览器</li> 
+      <li>                                <!--列表框的列表项-->
+        <a href="#">
+        <img src="images/chrome.png">
+        <h2>谷哥浏览器</h2>
+        <p>谷哥Chrome浏览器是由Google公司推出的一款功能强大的，兼容性强的浏览器，Chrome是一款大众喜欢的浏览器</p>
+        </a>
+        <!--创建一个分隔显示的按钮，允许用户下载浏览器-->
+        <a href="#download" data-rel="dialog" data-transition="pop" data-icon="grid">单击这里下载</a>
+      </li> 
+      <li>                               <!--列表框的列表项-->
+        <a href="#">
+        <img src="images/firefox.png">
+        <h2>火狐浏览器</h2>
+        <p>来自Mozilla的浏览器，是一款开源的，非常标准化的浏览器，是广大网页设计者常用来测试的浏览器，轻量小巧是其特色。</p>
+        </a>
+        <!--创建一个分隔显示的按钮，允许用户下载浏览器-->        
+        <a href="#download" data-rel="dialog" data-transition="pop" data-icon="grid">单击这里下载</a>
+      </li>
+    </ul>
+  </div>
+</div> 
+
+<div data-role="page" id="download">
+  <div data-role="content">
+  <h3>请单击这里下载</h3>
+    <p>下载或者是取消下载软件</p>
+    <!--定义2个内联显示的按钮，data-rel指定无论其链接内容，都将会返回到前一页-->
+    <a href="#" data-role="button" data-rel="back" 
+    data-icon="check" data-inline="true" data-mini="true">下载</a>
+    <a href="#" data-role="button" data-rel="back" 
+    data-inline="true" data-mini="true">取消</a>
+  </div>
+</div> 
+</body>
+</html>

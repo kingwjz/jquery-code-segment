@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script>
+$(document).ready(function(){
+	$("button").click(function(){
+		$("div").animate({left:'350px'});
+		$("#div-log").html($("#div-log").html()+"<p>"+"animate()方法 ：实现Animate动画"+"</p>");
+	});
+});
+</script>
+<style>
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:16px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery实现Animate动画</h2>
+	<hr><br>
+	<button>开始动画</button>
+	<p>默认情况下，所有 HTML 元素的位置都是静态的，并且无法移动。如需对位置进行操作，记得首先把元素的 CSS position 属性设置为 relative、fixed 或 absolute。</p>
+	<div style="background:#98bf21;height:60px;width:100px;position:absolute;text-align:center;">
+		<b>我会动画功能的哦！</b><br>
+		<b>我会动画功能的哦！</b><br>
+		<b>我会动画功能的哦！</b><br>
+	</div>
+	<br><br><br><br><br><br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

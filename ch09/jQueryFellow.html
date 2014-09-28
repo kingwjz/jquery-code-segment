@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>同胞算法</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<style type="text/css">
+	body{
+		font-size:9pt;
+	}
+</style>
+</head>
+
+<body>
+    <div id="div1">               <!--根节点-->
+     <div id="div2">              <!--包含子节点的父节点-->
+        <p id="p1"></p>
+      </div>
+     <div id="div3" class="a">   <!--包含子节点的父节点-->
+        <p id="p2"></p>
+      </div>
+     <div id="div4">             <!--包含子节点的父节点-->
+        <p id="p3"></p>
+      </div>
+    </div>
+    <div id="result"></div>
+    <script type="text/javascript">
+		var ctl=$("#div2").siblings();  		  //div2的兄弟元素
+		//$("#div2").siblings("p");               //可以过滤选中div2中的p元素
+		$("#result").append("div2的兄弟元素：");
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});
+		$("#result").append("<br/>div2元素的下一个元素：");		
+		ctl=$('#div2').next();		             //取得div2的下一个同胞元素，仅返回一个元素
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});		
+		ctl=$('#div2').nextAll();	             //取得div2后面的所有的同胞元素
+		$("#result").append("<br/>div2后面的所有同级元素：");				
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});				
+		ctl=$('#div2').nextUntil('#div4');		 //div2和div4之间的同级元素
+		$("#result").append("<br/>div2和div4之间的同级元素：");				
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});			
+		
+		$("#result").append("<br/>div3元素的上一个同级元素：");		
+		ctl=$('#div3').prev();		             //取得div3的上一个同胞元素，仅返回一个元素
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});		
+		ctl=$('#div4').prevAll();	             //取得div4上面的所有同胞元素，返回多个元素
+		$("#result").append("<br/>div4之上的所有同级元素：");				
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});				
+		ctl=$('#div4').prevUntil('#div2');		 //div2和div4之间的同级元素
+		$("#result").append("<br/>div4和div2之间的同级元素：");				
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});									
+    </script>    
+</body>
+</html>

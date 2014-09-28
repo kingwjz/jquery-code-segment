@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>根据不同的分辨率显示页面</title>
+<script type="text/javascript">
+    //下面的常量定义了不同的分辨率所显示的页面
+	pageFor640 = "pageFor640.html"; 
+	pageFor800 = "pageFor800.html"; 
+	pageFor1024 = "pageFor1024.html"; 
+	pageForLarger = "pageForLarger.html"; 
+	showAlert = "yes"; 
+	sayOnAlert = "重定向最大宽度的页面....."; 
+	var Wide = screen.width;      //获取屏幕宽度	
+	if (Wide <= 640){            //如果是640x480分辨率
+	if (showAlert == "yes"){ 
+	alert(sayOnAlert); 
+	} 
+	window.location = pageFor640; //重定向到640宽的页面
+	} 	
+	else if (Wide <= 800){      //如果是800x600分辨率
+	if (showAlert == "yes"){ 
+	alert(sayOnAlert); 
+	} 
+	window.location = pageFor800;//重定向到800宽的页面
+	} 	
+	else if (Wide <= 1024){     //如果是1024x768分辨率
+	if (showAlert == "yes"){ 
+	alert(sayOnAlert); 
+	} 
+	window.location = pageFor1024;//重定向到1024宽的密度面 
+	} 	
+	else {                       //如果比1024还要宽
+	if (showAlert == "yes"){ 
+	alert(sayOnAlert); 
+	} //重定向到最大宽度的页面
+	window.location = pageForLarger; 
+	} 
+//--> 
+</script> 
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jquery 打印指定区域内容</title>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+function printHtml(html) {                 //定义一个函数用来打印HTML
+	var bodyHtml = document.body.innerHTML; //保存当前的body区的HTML
+	document.body.innerHTML = html;          //为body区赋选中的HTML
+	window.print();                         //调用打印功能
+	document.body.innerHTML = bodyHtml;      //恢复body区原来的HTML
+}
+function onprint() {                       //打印按钮所执行的代码
+	var html = $("#printArea").html();      //获取打印区域的HTML
+	printHtml(html);                         //打印HTML内容
+}
+</script>
+</head>
+<body>
+<div>
+    <!--定义所要打印的DIV区域-->
+    <div id="printArea" style="width: 500px; text-align: left;">
+       这个区域是定义的打印区域
+    </div>
+    <br />
+    <div>
+    <!--定义打印所要的按钮-->
+    <input type="button" id="btnPrint" onclick="onprint()" value="print" />
+    </div>
+</div>
+</body>
+</html>
+

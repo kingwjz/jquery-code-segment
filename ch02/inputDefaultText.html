@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+/*输入框内水印js脚本语言,完成功能:
+a.页面加载完毕输入框中显示提示文字,可在上边的输入框属性tips中自定义
+b.鼠标点击输入框,输入框获得焦点时,提示文字自动消失
+c.鼠标焦点离开输入框,提示文字根据情况显示网上好多实例代码是鼠标一离开就显示提示文字,输入框中用户的输入也会消失-----不合理，有的保存了用户输入,离开时还是会显示提示文字,再获得焦点是显示用户的输入,也不太符合习惯*/
+window.onload=function(){
+	var o=document.getElementById("input-defaultText");
+	o.setAttribute("valueCache",o.value);
+	o.onblur=function(){
+		if(o.value==""){
+			o.valueCache="";
+			o.value=o.tips;
+		}else
+			o.valueCache=o.value;
+	};
+	o.onfocus=function(){
+    	o.value=o.valueCache;
+    	var e=event.srcElement;//光标始终在文字最后
+    	var r=e.createTextRange();
+    	r.moveStart('character',e.value.length);
+    	r.collapse(true);
+    	r.select();
+    };
+    o.onblur();
+};
+</script>
+<style type="text/css">
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:16px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery为表单内控件设定缺省数值和文本</h2>
+	<hr><br>
+	<input id="input-defaultText" type="text" name="" style="color:#808080;" value=""/>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

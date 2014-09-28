@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="../css/demos.css">
+<script>    
+function getCursorPos(obj){
+	var rngSel=document.selection.createRange();//建立选择域
+	var rngTxt=obj.createTextRange();//建立文本域
+	var flag=rngSel.getBookmark();//用选择域建立书签
+	rngTxt.collapse();//瓦解文本域到开始位,以便使标志位移动
+	rngTxt.moveToBookmark(flag);//使文本域移动到书签位
+	rngTxt.moveStart('character',-obj.value.length);//获得文本域左侧文本
+	str=rngTxt.text.replace(/\r\n/g,'');//替换回车换行符
+	//return(str.length);//返回文本域文本长度
+	$("#div-log").html($("#div-log").html()+"<p>文本域中光标定位："+str.length+" characters"+"</p>");
+}
+</script>
+<!--
+<script language="javascript"> 
+function GetCursorPsn(txb) 
+{ 
+    var slct = document.selection; 
+    var rng = slct.createRange(); 
+    txb.select(); 
+    rng.setEndPoint("StartToStart", slct.createRange()); 
+    var psn = rng.text.length; 
+    rng.collapse(false); 
+    rng.select(); 
+    return psn; 
+} 
+</script>
+-->
+<title>获取文本域中光标的定位</title>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery实现获取文本域中光标的定位功能</h2>
+	<hr><br>
+	<!--<input type="text" value="获取文本域中光标的定位" onclick="javascript:alert(getCursorPos(this))"><br>-->
+	<input type="text" value="获取文本域中光标的定位" onclick="getCursorPos(this);"><br>
+	<textarea rows="8" cols="24" onclick="getCursorPos(this);">
+获取文本域中光标的定位
+获取文本域中光标的定位
+获取文本域中光标的定位
+获取文本域中光标的定位
+获取文本域中光标的定位
+获取文本域中光标的定位
+	</textarea>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

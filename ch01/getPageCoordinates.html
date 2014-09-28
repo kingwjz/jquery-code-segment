@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(document).mousemove(function(e){
+		getPageCoordinates(e);
+	});
+});
+function getPageCoordinates(e){
+	x=e.pageX;
+	y=e.pageY;
+	$("span").text("X:"+x+", Y:"+y);
+}
+</script>
+</script>
+</head>
+<body>
+	<h2>超实用的jQuery代码段 - jQuery获取鼠标在页面中的坐标</h2>
+	<p>鼠标当前页面区域中的坐标： <span></span>.</p>
+	<p>1</p>
+	<p>2</p>
+	<p>3</p>
+	<p>4</p>
+	<p>5</p>
+	<p>6</p>
+</body>
+</html>

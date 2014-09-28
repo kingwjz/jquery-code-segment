@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript"> 
+var supports = (function() {  
+    var div = document.createElement('div'),  
+        vendors = 'Webkit Moz O ms'.split(' '),  
+        len = vendors.length;  
+    return function(prop) {  
+        var dstyle = div.style;  
+        if (prop in dstyle) return true;  
+        prop = prop.replace(/^[a-z]/, function(val) {  
+            return val.toUpperCase();  
+        });  
+        while (len--) {  
+            if (vendors[len] + prop in dstyle) {  
+                return true;  
+            }  
+        }  
+        return false;  
+    };  
+})();
+if(supports('BoxAlign')){
+	document.documentElement.className+=' BoxAlign';alert("Support CSS3");
+} else {
+	alert("Not Support CSS3");
+}
+</script>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+<h2 id="h2-caption">超实用的jQuery代码段 - jQuery测试浏览器是否支持某些CSS3属性</h2>
+<br/>
+<div id="div-log">
+	<p>日志记录：</p>
+</div>
+</body>
+</html>

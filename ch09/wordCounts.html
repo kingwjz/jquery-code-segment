@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>字符串统计</title>
+<script src="jquery/jquery-1.9.1.js"></script> 
+<style type="text/css">
+   .countchars,#charlength,span{
+	   font-size:14px;
+   }
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+ $(".countchars").each(function(){       //循环选中的countchars类中的元素
+	var length = $(this).val().length;   //得到控年的值的长度，也就是字符长度
+	$(this).parent().find('#charlength').html('<b>'+length+'</b>'); //显示字符个数
+	$(this).keyup(function(){                                      //为其关联keyup事件
+		var new_length = $(this).val().length;                      //得到新长度
+		$(this).parent().find('#charlength').html('<b>'+new_length+'</b>'); //显示新的长度
+		if (new_length>= "140") {                                   //如果字符个数大于140
+		   $('#charlength').css('background', 'red');                //显示红色背景
+		}else
+		{
+		   $('#charlength').css('background','white');              //否则显示白色背景
+		}
+	 });
+   });
+ });
+</script>
+</head>
+</html>
+<br />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div id="gusbooks">
+  <span>请输入140字的内容</span>
+  <!--字符个数提示框-->
+  <span id="charlength"></span>
+  <br/>
+  <!--构建一个字符统计的文本框-->
+  <textarea name="txt" cols="60" rows="10" class="countchars"></textarea>
+</div>
+</body>
+</html>

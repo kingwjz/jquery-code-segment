@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>自适应图片背景</title>
+<!--添加对jQuery库的引用-->
+<script type="text/javascript" src="jquery/fullbg/jquery.min.js"></script>
+<!--添加对jquery.fullbg.min.js插件的引用-->
+<script type="text/javascript" src="jquery/fullbg/jquery.fullbg.min.js"></script>
+<style type="text/css">
+.fullBg {
+	position: fixed;        /*设置固定背景*/
+	top: 0;                 /*指定背景的起始位置*/
+	left: 0;
+	overflow: hidden;      /*背景的溢出方式为超出隐藏*/
+}
+</style>
+</head>
+<body>
+<!--放置一个用作背景图片的img元素-->
+<img src="images/sample1.jpg" alt="" id="background" />
+<script type="text/javascript">
+$(window).load(function() {
+	$("#background").fullBg();   //在窗体加载完成后，设置背景图片
+});
+</script>
+</body>
+</html>

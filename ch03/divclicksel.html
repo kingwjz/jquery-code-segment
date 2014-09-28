@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+$(function(){
+	$("#id-div").toggle(function(){
+		$(this).removeClass("css-select");
+		$(this).addClass("css-unselect");
+		$("#div-log").html($("#div-log").html()+"<p>"+"单击层被选择"+"</p>");
+	},function(){
+		$(this).removeClass("css-unselect");
+		$(this).addClass("css-select");
+		$("#div-log").html($("#div-log").html()+"<p>"+"再次单击层被反选"+"</p>");
+	});
+}); 
+</script>
+<style type="text/css">
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<style>
+div.css-select {
+	height:64px;
+	width:256px;
+	background:#F0F0F0;
+	border:1px solid gray;
+}
+div.css-unselect {
+	height:64px;
+	width:256px;
+	background:gray;
+	border:2px solid black;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery鼠标单击实现DIV的选取</h2>
+	<hr><br>
+	<div id="id-div" class="css-select">click div to select!<br>click div again to unselect!</div>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

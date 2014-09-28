@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用jQuery实现模拟抽奖程序</title>
+<style type="text/css">
+   #award{
+	   font-size:60px;
+	   margin:50px 200px;
+   }
+</style>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">   
+  //构造抽奖的姓名，以逗号为分隔
+  var alldata="王大富,张三甲,李仁杰,刘三张,张二李,李四丁,丁四吴,吴若刘,刘大金,王小富"      
+  var alldataarr=alldata.split(",")     //调用split，将字符串分隔为数组 
+  var num=alldataarr.length-1           //设置随机种子
+  var timer                             //保存setInterval的返回值
+  function getramdom(min,max){         //创建一个随机函数，用于产生数组长度的随机数
+     return parseInt(Math.random()*(max-min+1));   
+  }        
+  function change(){                   //构建一个定时执行的函数，用于获取随机数显示到div中  
+     $("#award").html(alldataarr[getramdom(0,num)]);   
+  }       
+  function  start(){                   //当单击开始按钮时，定时执行随机函数
+     clearInterval(timer);   
+     timer=setInterval('change()',200); //开始进行抽奖，200指定变更时间
+  }       
+  function ok(){                      //当用户单击停止按钮时，停止定时执行随机函数
+     clearInterval(timer);   
+  }   
+</script>
+</head>
+<body>
+简单的随机抽奖示例：<div id="award"></div>
+<button onclick="start()" accesskey="s">开始(<U>S</U>)</button>     
+<button onclick="ok()"  accesskey="o">停止(<U>O</U>)</button>  
+</body>
+</html>

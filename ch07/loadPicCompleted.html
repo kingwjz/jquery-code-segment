@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在页加载完成之前显示图片</title>
+<!--添加对jQuery库的引用-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<style type="text/css">
+body{
+	font-size:12px;
+}
+#loading{
+	position:fixed;       /*固定显示*/
+	_position:absolute;
+	top:50%;              /*上和左的位置均为页面的50%，表示居中*/
+	left:50%;
+	width:124px;          /*宽度和高度均为124px*/
+	height:124px;
+	overflow:hidden;      /*对于溢出内容进行隐藏*/
+	z-index:7;            /*为z轴指定一个较大的值，使其显示的顶端*/
+	/*背景图片*/
+	background-image: url(images/loaderc.gif);
+	/*背景不重复*/	
+	background-repeat: no-repeat;
+	margin-top: -62px;   /*外部边距设置*/
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: -62px;
+}  
+</style>
+</head>
+
+<body>
+<!--页面加载时预先显示的图片容器--->
+<div id="loading"></div>  
+<img src="images/googlelogo.jpg" width="486" height="134" alt="Google公司" longdesc="http://www.google.com" />
+<br/>
+<p>很多网站都有这样的一种特效，在页面加载时，先显示一幅图片，当页面加载完成后，图片隐藏，显示页面内容。比如一些网站在页面加载时，会显示一张宣传性的图片，以吸引用户的注意，当页面内容加载完成后，再隐藏这张图片，显示网页的内容。</p>
+<script type="text/javascript">  
+  //隐藏div元素的显示
+  $("#loading").fadeOut();
+</script>  
+</body>
+</html>

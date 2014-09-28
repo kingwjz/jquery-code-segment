@@ -1,0 +1,118 @@
+/* IE hack \*/
+* html .imgzoom-container { height: 1%; }
+/* Hack ends */
+
+.imgzoom-overlay {
+    background-color: #000;
+}
+
+.imgzoom-wrap {
+    background: #fff;
+    border: solid 1px #bbb;
+    padding: 0.8em;
+    color: #555;
+    font-size: 90%;
+    font-family: "Trebuchet MS", Verdana, Helvetica, Arial, sans-serif;
+    position: absolute;
+    box-shadow: 5px 5px 20px #000;
+    -moz-box-shadow: 5px 5px 20px #000;
+    -webkit-box-shadow: 5px 5px 20px #000;
+}
+
+.imgzoom-container {
+    position: relative;
+    margin-bottom: 0.4em;
+    overflow: hidden;
+}
+
+.imgzoom-prev, .imgzoom-next {
+    display: block;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #000;
+    width: 50%;
+    float: left;
+    line-height: 10em;
+    text-decoration: none;
+    background: url(imgzoom-blank.gif);
+    overflow: hidden;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+}
+
+.imgzoom-prev {
+    margin-left: 0;
+    left: 0;
+}
+
+.imgzoom-next {
+    left: 50%;
+    text-align: right;
+}
+
+.imgzoom-prev span, .imgzoom-next span {
+    display: none;
+    width: 4em;
+    height: 1.5em;
+    line-height: 1.5em;
+    vertical-align: middle;
+    margin-top: 2em;
+    padding: 1em;
+    position: absolute;
+    top: 2em;
+}
+
+.imgzoom-prev span {
+    border-radius:  0 0.5em 0.5em 0;
+    -moz-border-radius: 0 0.5em 0.5em 0;
+    -webkit-border-radius: 0 0.5em 0.5em 0;
+}
+    
+.imgzoom-next span {
+    right: 0;
+    border-radius: 0.5em 0 0 0.5em;
+    -moz-border-radius: 0.5em 0 0 0.5em;
+    -webkit-border-radius: 0.5em 0 0 0.5em;
+}
+
+.imgzoom-prev:hover, .imgzoom-next:hover {
+    visibility: inherit;
+}
+
+.imgzoom-prev:hover span, .imgzoom-next:hover span {
+    background-color: #fff;
+    display: block;
+}
+
+.imgzoom-wrap-first .imgzoom-prev {
+    display: none;
+}
+
+.imgzoom-wrap-last .imgzoom-next {
+    display: none;
+}
+
+.imgzoom-counter, .imgzoom-title, .imgzoom-close {
+    float: left;
+    width: 20%;
+    vertical-align: middle;
+}
+
+.imgzoom-title {
+    width: 60%;
+    color: #333;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 110%;
+}
+
+.imgzoom-close {
+    float: right;
+    font-weight: bold;
+    text-align: right;
+    text-transform: uppercase;
+    cursor: pointer;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>双滑块示例</title>
+<!--指定设备的宽度-->
+<meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+</head> 
+<body> 
+<div data-role="page" id="pageone">
+  <div data-role="header" data-position="fixed">
+  <h1>使用2个滑块构建范围滑块</h1>
+  </div>
+  <div data-role="content">
+    <form id="formprice">
+      <div data-role="rangeslider">
+        <label for="price-min">最低价格：</label>
+        <!--创建一个显示最低价格的滑块-->
+        <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
+        <label for="price-max">最高价格：</label>
+        <!--创建一个显示最高价格的滑块-->
+        <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
+      </div>
+        <input type="button" id="btnget" data-inline="true" value="获取当前选定的价格范围">
+        <p>在浏览商品时，范围滑块会很有用，它允许用户选择具体的价格范围。</p>
+      </form>
+  </div>  
+   <script type="text/javascript">  
+       //在页面初始加载时，为按钮关联事件处理代码，获取滑块范围 
+	   $("#pageone").bind("pageinit",function(){	
+	       $('#btnget').unbind('click');                //取消绑定按钮单击事件
+		   //重新绑定按钮单击事件  		    
+	       $("#btnget").bind('click',function(event){	
+		     //获取当前的价格范围信息
+			alert("您选择的价格范围是:  "+$("#price-min").val()+"元 到"+$("#price-max").val()+"之间");			
+		   });
+	   });   
+   </script>      
+</div>
+</body>
+</html>

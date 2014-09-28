@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>判断所有的图片加载完成</title>
+<style type="text/css">
+/*图库样式*/
+#gallery {
+	width:460px;
+	height: 270px;
+	margin: 0 auto;
+	padding: 10px;
+	background: #383131;
+}
+
+ul {
+	list-style-type: none;
+	position: absolute;
+	width: 460px;
+}
+
+#gallery ul li {
+	float: left;
+	margin: 10px;
+	background: white;
+	height: 100px;
+	width: 100px;
+}
+
+#gallery ul li:hover {
+	border: 3px solid white;
+	margin: 7px;
+	cursor: pointer;
+}
+
+#gallery ul li img{
+	height: 100px;
+	width: 100px;
+}
+</style>
+
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<!--
+<script type="text/javascript">
+  $(document).ready(function(){	
+	$('img').load(function(){
+		 alert('img loaded')   //该代码在每一张图片加载完成时都会执行一次
+	})
+  });
+</script>
+-->
+<script type="text/javascript">
+ $(document).ready(function(){	
+	var imgNum=$('img').length;                   //要加载的图片张数
+	$('img').load(function(){
+		if(!--imgNum)
+	     	{
+				alert('所有的图片已经加载完成')
+				} 						  //当计数器递减到0时，表示图片加载完
+	})
+  });
+
+</script>
+
+</head>
+
+<body>
+<!--实现简单的相册效果-->
+<div id="gallery" class="zoom">
+<ul>
+    <!--相册所需要的图片集-->
+    <li class="zoom"><img src="images/sample1.jpg"/></li>
+    <li class="zoom"><img src="images/sample2.jpg"/></li>
+    <li class="zoom"><img src="images/sample3.jpg"/></li>
+    <li class="zoom"><img src="images/sample5.jpg"/></li>
+</ul>		
+</div>
+</body>
+</html>

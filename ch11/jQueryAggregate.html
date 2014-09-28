@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery的聚合函数</title>
+<script type="text/javascript" src="jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+  var i= $("a").count();               //调用自定义的聚合函数
+  alert(i);                             //显示聚合函数
+});
+(function($) {                        //定义一个jQuery插件实例函数
+    $.fn.aggregate = function(seed, func) {
+        var _r = seed==null?"":seed;	//获取传入的种子值
+		//循环选中的元素，调用func参数执行代码
+        this.each(function(index, element) {
+            _r = func(_r, element);
+        });                  
+        return _r;
+    };    
+    $.fn.count = function() {        //定义count聚合函数
+	     //调用aggregate进行选中的元素个数统计
+         var mycount=this.aggregate(0, function(result, _) { // func
+                return  result + 1;
+            });
+        return mycount;			   //返回统计的个数
+    };
+})(jQuery);
+</script>
+</head>
+
+<body>
+<a href="#" id="a1"></a>
+<a href="#" id="a2"></a>
+</body>
+</html>

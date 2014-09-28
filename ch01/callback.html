@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+$(document).ready(function(){
+	$("button").click(function(){
+		$("p").hide(1000,function(){
+			alert("回掉函数过程： 激活一个消息提示框!");
+			$("#div-log").html($("#div-log").html()+"<p>"+"回掉函数过程 ：激活一个消息提示框"+"</p>");
+		});
+	});
+});
+</script>
+<style type="text/css">
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:16px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery Callback()函数</h2>
+	<hr><br>
+	<button type="button">隐藏功能</button>
+	<p>callback()函数在当前效果 100%完成之后执行。</p>
+	<p>如果希望在一个涉及动画的函数之后来执行语句，请使用callback()函数。</p>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

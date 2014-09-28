@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>设置调整大小的约束</title>
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+  <style>
+  #resizable { width: 200px; height: 150px; padding: 5px; }
+  #resizable h3 { text-align: center; margin: 0; }
+   .ui-resizable-helper { border: 2px dotted #00F; }  
+  </style>
+  <script type="text/javascript">
+	$(function() {
+	  $( "#resizable" ).resizable({
+		  //containment: "#container"    //或者通过容器来约束大小
+		  animate: true	,                //设置调整大小的动画
+		  helper: "ui-resizable-helper", //指定调整大小时的辅助显示样式	  
+		  maxHeight: 250,                //指定最大高度
+		  maxWidth: 350,                 //指定最大宽度
+		  minHeight: 150,                //指定最小高度
+		  minWidth: 200                  //指定最小宽度
+		});
+	  });
+  </script>
+</head>
+<body>
+ 
+<div id="resizable" class="ui-widget-content">
+  <h3 class="ui-widget-header">Resize larger / smaller</h3>
+</div>
+</body>
+</html>

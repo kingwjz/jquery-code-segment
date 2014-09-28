@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+    for (i = 0; i < 50; i++) {
+        var x = document.createElement('div');
+        x.innerHTML = "jQuery<br/>";
+        document.body.appendChild(x);
+    }
+    function $(x) {            
+        return document.getElementById(x);
+    };
+    $("wrap").onmousewheel = function scrollWheel(e) {
+        var sl;
+        e = e || window.event;
+        if (navigator.userAgent.toLowerCase().indexOf('msie') >= 0) {
+            event.returnValue = false;
+        } else {
+            e.preventDefault();
+        };
+        if (e.wheelDelta) {
+            sl = e.wheelDelta;
+        } else if (e.detail) {
+            sl = -e.detail;
+        };
+        if (sl < 0) {
+            var x = parseInt($("he").innerHTML);
+            x++;
+            $("he").innerHTML = x;
+        } else {
+            var x = parseInt($("he").innerHTML);
+            x--;
+            $("he").innerHTML = x;
+        };
+    };
+    if (navigator.userAgent.toLowerCase().indexOf('firefox') >= 0) {
+        //firefox支持onmousewheel
+        addEventListener('DOMMouseScroll',
+        function(e) {
+            var obj = e.target;
+            var onmousewheel;
+            while (obj) {
+                onmousewheel = obj.getAttribute('onmousewheel') || obj.onmousewheel;
+                if (onmousewheel) break;
+                if (obj.tagName == 'BODY') break;
+                obj = obj.parentNode;
+            };
+            if (onmousewheel) {
+                if (e.preventDefault) e.preventDefault();
+                e.returnValue = false; //禁止页面滚动
+                if (typeof obj.onmousewheel != 'function') {
+                    //将onmousewheel转换成function
+                    eval('window._tmpFun = function(event){' + onmousewheel + '}');
+                    obj.onmousewheel = window._tmpFun;
+                    window._tmpFun = null;
+                };
+                // 不直接执行是因为若onmousewheel(e)运行时间较长的话，会导致锁定滚动失效，使用setTimeout可避免
+                setTimeout(function() {
+                    obj.onmousewheel(e);
+                },
+                1);
+            };
+        },
+        false);
+    };
+}
+</script>
+</head>
+<body>
+	<h2>超实用的jQuery代码段 - jQuery实现强制禁止页面滚动的方法</h2>
+	<p>
+		<div id="wrap" style="position:absolute;left:100px;top:100px;background:#eee;width:300px;height:300px;">
+		<h1 id="he" style="text-align:center;width:100%;color:#f00;">0</h1>
+		鼠标移动这里，禁止转动滚轮！<br>鼠标移出这里，开启转动滚轮！<br>
+	</div>
+	</p>
+</body>
+</html>

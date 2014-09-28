@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>操纵DOM的限制</title>
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(e) {
+	 //在被选元素的开头插入内容
+	$('#header').prepend('<ul id="menu"></ul>'); 
+	//对DOM进行了100次操作
+	for (var i = 1; i <= 100; i++) { 
+	 $('#menu').append('<li>' + i + '</li>'); 
+	}    
+  });
+  
+  $(document).ready(function(e) {
+	var menu = '<ul id="menu">';        //构建DOM字符串
+	for (var i = 1; i <= 100; i++) {    //循环对字符串操作
+	menu += '<li>' + i + '</li>'; 
+	} 
+	menu += '</ul>';                    //在内存中构建了DOM结构
+	$('#header').prepend(menu);        //一次将其添加到DOM树中
+  });
+  
+  
+</script>
+</head>
+
+<body>
+<div id="head"></div>
+</body>
+</html>

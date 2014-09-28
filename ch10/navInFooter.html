@@ -1,0 +1,35 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <meta charset="utf-8">
+    <title>在页脚位置显示导航栏</title> 
+   <!--使用名为viewport的meta值，其content指定自适应设备的宽度--> 
+    <meta name="viewport"  content="width=device-width,  initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
+    </head>        
+<body> 
+<!--在页脚区域实现导航效果-->
+<div data-role="page" id="pageone">
+  <div data-role="header">
+    <h1>欢迎来到我的主页</h1>  
+  </div>
+  <div data-role="content">
+    <p>这是一个在页脚实现导航栏的示例</p>
+  </div>
+  <!--页脚区域-->
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">    <!---在页脚放置导航栏-->
+      <ul>
+        <li><a href="#" data-icon="plus">更多</a></li>
+        <li><a href="#" data-icon="minus">更少</a></li>
+        <li><a href="#" data-icon="delete">删除</a></li>
+        <li><a href="#" data-icon="check">喜爱</a></li>
+        <li><a href="#" data-icon="info">信息</a></li>
+      </ul>
+    </div>
+  </div>
+</div> 
+</body> 
+</html>

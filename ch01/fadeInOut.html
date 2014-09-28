@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#id-button-fadeout").click(function(){
+		$("#id-div-fade").fadeOut(3000);
+		$("#div-log").html($("#div-log").html()+"<p>"+"fadeOut()函数 ：使用淡出效果来隐藏被选元素"+"</p>");
+	});
+	$("#id-button-fadein").click(function(){
+		$("#id-div-fade").fadeIn("fast");
+		$("#div-log").html($("#div-log").html()+"<p>"+"fadeIn()函数 ：使用淡入效果来显示被选元素"+"</p>");
+	});
+	/*
+	$("#id-div-fade").fadeToggle(3000);
+	$("#id-div-fade").fadeToggle(3000);
+	$("#id-div-fade").fadeTo(5000,0.6);
+	$("#id-div-fade").fadeIn(fast);
+	*/
+});
+</script>
+<style>
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+.h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+.h3-text {
+	font:16px "Trebuchet MS", sans-serif;
+}
+p {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+</head>
+<body>
+	<h2 class="h2-caption">超实用的jQuery代码段 - jQuery实现页面淡入淡出操作</h2>
+	<hr><br>
+	<h3 class="h3-text">页面淡入淡出 --- fadeIn()函数与fadeOut()函数</h3>
+	<button id="id-button-fadeout">页面淡出效果</button>
+	<button id="id-button-fadein">页面淡入效果</button>
+	<div id="id-div-fade">
+		<p>这里js控制的两个数值:</p>
+		<p>1.第1个为淡入时间;</p>
+		<p>2.第2个为淡出时间;</p>
+	</div>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

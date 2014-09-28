@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>最优化的循环语句的写法</title>
+<script type="text/javascript">
+//慢，因为每次循环都要计算数组的长度
+for(var i = 0; i < my_array.length; i++){
+}
+//也很慢，因为每次循环都要调用函数
+for(var i = 0; i < myMethod(); i++){
+}
+//快，先将数组的长度缓存到变量中，不需要多次调用
+var length = my_array.length;
+for(var i = 0; i < length; i++){
+}
+//也很快，函数的结果被缓存到了变量中，会很快
+var length = myMethod();
+for(var i = 0; i < length; i++){
+}
+//如果非要把代码都写到一行上，这样写也很快，虽然使用了表达式，但这样写也值计算一次
+for(var i = 0, length = my_array.length; i < length; i++){
+}
+</script>
+</head>
+
+<body>
+</body>
+</html>

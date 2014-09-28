@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+  <style>
+  .draggable { width: 90px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+  #draggable, #draggable2 { margin-bottom:20px; }
+  #draggable { cursor: n-resize; }
+  #draggable2 { cursor: e-resize; }
+  #containment-wrapper { width: 95%; height:150px; border:2px solid #ccc; padding: 10px; }
+  h3 { clear: left; }
+  </style>
+  <script type="text/javascript">
+	 $(function() {
+	    $( "#draggable" ).draggable({ axis: "y" });  	//仅可以垂直拖动的盒子
+		$( "#draggable2" ).draggable({ axis: "x" });   //仅可以水平拖动的盒子
+		//只能在容器#containment-wrapper内部拖动的盒子
+		$( "#draggable3" ).draggable({ containment: "#containment-wrapper", scroll: false });
+		//在当前盒子的父控件中可以拖动的盒子
+		$( "#draggable5" ).draggable({ containment: "parent" });
+    });
+  </script>
+</head>
+<body>
+ 
+<h3>水平或垂直拖拽的示例</h3>
+ <div id="draggable" class="draggable ui-widget-content">
+  <p>只能垂直拖动的盒子</p>
+</div>
+ <div id="draggable2" class="draggable ui-widget-content">
+  <p>只能水平拖动的盒子</p>
+</div>
+ 
+<h3>只能在DOM容器中拖动的元素</h3>
+<div id="containment-wrapper">
+  <div id="draggable3" class="draggable ui-widget-content">
+    <p>仅在容器内部可拖拽的盒子</p>
+  </div>
+   <div class="draggable ui-widget-content">
+    <p id="draggable5" class="ui-widget-header">在我的父控件内可以拖拽的盒子</p>
+  </div>
+</div>
+ 
+ 
+</body>
+</html>

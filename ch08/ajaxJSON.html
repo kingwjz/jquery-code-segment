@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="jquery/jquery-1.9.1.js" type="text/javascript"></script>
+<title>AJAX JSON格式使用示例</title>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(':submit').on('click', function() {    //当按钮被单击时触发单击事件
+      var button = $(this).val();
+      $.ajax({                              //开始AJAX调用
+          url: '8_15.php',                  //JQuery加载服务器端的PHP文件
+          data: 'button=' + $(this).val(), //发送按钮的酒类值
+          dataType: 'json',                 //选择JSON数据类型
+          success: function(data)         //data变量包含了从服务器端返回的数据
+          {
+              $('#wines').html('');        //清除结果区域的div内容
+              
+              if (button == 'all') {      //当单击all按钮时，显示所有的酒类
+                  for (var i in data.red) {
+                      $('#wines').append('红酒: ' + data.red[i] + '<br/>');
+                  }
+                  for (var i in data.white) {
+                      $('#wines').append('白酒: ' + data.white[i] + '<br/>');
+                  }
+              }
+              else if (button == 'red') { //如果单击的是红酒按钮，则显示红酒
+                  for (var i in data) {
+                      $('#wines').append('红酒: ' + data[i] + '<br/>');
+                  }
+              }
+              else if (button == 'white') { //如果单击的是白酒按钮，则显示白酒
+                  for (var i in data) {
+                      $('#wines').append('白酒: ' + data[i] + '<br/>');
+                  }
+              }
+          }
+      });
+      return false;                    //使页面不会被刷新
+  });
+});
+</script>
+</head>
+
+<body>
+<body>
+  <form method="post" action="">
+      <button value="all" type="submit">获取所有的酒类信息!</button>
+      <button value="red" type="submit">获取红酒数据!</button>
+      <button value="white" type="submit">获取白酒数据!</button>
+  </form>  
+  <div id="wines">
+  <!-- 从服务器端返回的数据将显示在这个div中-->
+  </div>
+</body>
+</html>

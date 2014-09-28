@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>加载Google CDN库</title>
+<!--先使用google的CDN库-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+	//如果Google CDN无法使用时，则可以使用本地的jQuery库
+	if (typeof jQuery === "undefined") {
+		var script = document.createElement('script'); //创建script标签
+		var attr = document.createAttribute('type');   //创建标签的属性
+		attr.nodeValue = 'text/javascript';             //指定属性值
+		script.setAttributeNode(attr);
+		attr = document.createAttribute('src');        //指定值
+		attr.nodeValue = 'jquery/jquery-1.9.1.min.js';  //指定本地的jQuery库
+		script.setAttributeNode(attr);
+		//将其添加到head区
+		document.getElementsByTagName('head')[0].appendChild(script);
+	}
+</script>
+</head>
+
+<body>
+</body>
+</html>

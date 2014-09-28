@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--引用jQuery 1.7.2库-->
+<script type="text/javascript" src="jquery/jquery-1.7.2.min.js"></script>
+<!--创建jQuery 1.7.2的全局命名空间，即jq172表示jQuery全局变量-->
+<script> var jq172 = jQuery.noConflict(true); </script>
+<!--引用jQuery 1.9.1库-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
+<!--创建jQuery 1.9.1的全局命名空间，即jq191表示jQuery全局变量-->
+<script> var jq191 = jQuery.noConflict(true); </script>
+<script type="text/javascript">
+  jq172("document").ready(function(e) {  //使用jq172关联页加载事件
+    jq172("#jq172").click(function(){    //为页面上的jq172链接关联事件处理代码
+		alert(jq172.fn.jquery);            //显示jq172的版本 
+	});		
+    jq191("#jq191").click(function(){    //为页面上的jq191链接关联事件处理代码
+		alert(jq191.fn.jquery);		       //显示jq191的版本 
+	});	
+});
+</script>
+<title>解决jQuery版本冲突的办法</title>
+</head>
+<body>
+<!--当用户单击这2个链接时，显示各自不同的调用版本-->
+<a href="#" id="jq191">jQuery 1.91调用</a>
+<a href="#" id="jq172">jQuery 1.72调用</a>
+</body>
+</html>

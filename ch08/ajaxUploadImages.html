@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无刷新上传文件</title>
+<style type="text/css">
+.demo{width:620px; margin:30px auto}
+.demo p{line-height:32px}
+.btn{position: relative;overflow: hidden;margin-right: 4px;display:inline-block;*display:inline;padding:4px 10px 4px;font-size:14px;line-height:18px;*line-height:20px;color:#fff;text-align:center;vertical-align:middle;cursor:pointer;background-color:#5bb75b;border:1px solid #cccccc;border-color:#e6e6e6 #e6e6e6 #bfbfbf;border-bottom-color:#b3b3b3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
+.btn input {position: absolute;top: 0; right: 0;margin: 0;border: solid transparent;opacity: 0;filter:alpha(opacity=0); cursor: pointer;}
+.progress { position:relative; margin-left:100px; margin-top:-24px; width:200px;padding: 1px; border-radius:3px; display:none}
+.bar {background-color: green; display:block; width:0%; height:20px; border-radius: 3px; }
+.percent { position:absolute; height:20px; display:inline-block; top:3px; left:2%; color:#fff }
+.files{height:22px; line-height:22px; margin:10px 0}
+.delimg{margin-left:20px; color:#090; cursor:pointer}
+#main{width:910px; min-height:600px; margin:30px auto 0 auto; background:#fff; -moz-border-radius:12px;-khtml-border-radius: 12px;-webkit-border-radius: 12px; border-radius:12px;}
+h2.top_title{margin:4px 100px; padding-top:15px; padding-left:20px; padding-bottom:10px; border-bottom:1px solid #d3d3d3; font-size:18px; color:#a84c10; background:url(../images/arrL.gif) no-repeat 2px 14px}
+</style>
+<script type="text/javascript" src="jquery/jquery-1.7.2.min.js"></script>
+<!--添加对jQueryForm的引用-->
+<script type="text/javascript" src="jquery/jquery.form.js"></script>
+<script type="text/javascript">
+$(function () {
+	var bar = $('.bar');                  //获取上传进度条span
+	var percent = $('.percent');          //获取显示上传百分比的span
+	var showimg = $('#showimg');          //显示图片的div
+	var progress = $(".progress");        //显示进度的div
+	var files = $(".files");              //文件上传控件input元素
+	var btn = $(".btn span");             //按钮文本
+	//调用wrap方法，为id为demo的div外层添加form元素，指定enctype为文件类型，action指定为PHP文件
+	$(".demo").wrap("<form id='myupload' action='8_12.php' method='post' enctype='multipart/form-data'></form>");
+    $("#fileupload").change(function(){  //当文件上传文件改变时，触发事件
+		$("#myupload").ajaxSubmit({       //调用jquery.form插件的ajaxSubmit异步的提交表单
+			dataType:  'json',             //返回数据类型为json
+			beforeSend: function() {     //发送数据之前，执下的代码
+        		showimg.empty();          //清空图片预览区
+				progress.show();          //显示进度
+        		var percentVal = '0%';    //显示进度百分比
+        		bar.width(percentVal);    //设置进度的宽度，增涨进度
+        		percent.html(percentVal); //设置进度值
+				btn.html("上传中...");     //指定显示中
+    		},
+			//更新进度条事件处理代码
+    		uploadProgress: function(event, position, total, percentComplete) {
+        		var percentVal = percentComplete + '%';
+        		bar.width(percentVal)     //更新进度条的宽度
+        		percent.html(percentVal);
+    		},
+			success: function(data) {    //图片上传成功时
+			    //获取服务器端返回的文件数据
+				files.html("<b>"+data.name+"("+data.size+"k)</b> <span class='delimg' rel='"+data.pic+"'>删除</span>");
+				var img = "files/"+data.pic;            //得到文件路径
+				showimg.html("<img src='"+img+"'>");    //显示上传的图片预览
+				btn.html("添加附件");
+			},
+			error:function(xhr){            //图片上传失败时
+				btn.html("上传失败");     
+				bar.width('0')                //重置进度条
+				files.html(xhr.responseText); //显示错误文本
+			}
+		});
+	});	
+	$(".delimg").live('click',function(){  //为删除按钮关联事件处理代码，这里用了live
+		var pic = $(this).attr("rel");      //得到图片路径
+		 //向服务器发送删除请求
+		$.post("8_12.php?act=delimg",{imagename:pic},function(msg){
+			if(msg==1){
+				files.html("删除成功.");
+				showimg.empty();
+				progress.hide();            //重置进度条，并清空图片预览
+			}else{
+				alert(msg);
+			}
+		});
+	});
+});
+</script>
+</head>
+
+<body>
+<div id="main">
+   <!--网页标题-->
+  <h2 class="top_title"><a href="l">无刷新图片上传示例</a></h2>
+  <!--网页布局div-->
+  <div class="demo">
+	   <p>允许上传gif/jpg格式的图片，图片大小不能超过1M </p>
+   		<div class="btn">
+            <span>添加附件</span>
+            <!--上传用的file控件-->
+            <input id="fileupload" type="file" name="mypic">
+        </div>
+        <!--显示加载进度-->
+        <div class="progress">
+    		<span class="bar"></span><span class="percent">0%</span >
+		</div>
+        <!--显示已经上传的文件名-->
+        <div class="files"></div>
+        <!--显示已经上传的图片-->
+        <div id="showimg"></div>
+  </div>
+   <br><br> 
+</div>
+</body>
+</html>

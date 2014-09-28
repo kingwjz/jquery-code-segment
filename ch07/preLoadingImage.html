@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>预加载图片</title>
+<!--加载jQuery库-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+(function($) {
+  var cache = [];
+  //编写一个预加载图片的jQuery函数
+  $.preLoadImages = function() {
+	 //获取函数体参数个数
+    var args_len = arguments.length;
+	//反向循环参数个数，创建img元素
+    for (var i = args_len; i--;) {
+      var cacheImage = document.createElement('img');
+	  //指定img元素的src属性为数组元素的值
+      cacheImage.src = arguments[i];
+	  //加HTML元素加入到数组中
+      cache.push(cacheImage);
+    }
+  }
+})
+//预加载图片
+$.preLoadImages('images/sample1.jpg','images/sample2.jpg','images/sample3.jpg');
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

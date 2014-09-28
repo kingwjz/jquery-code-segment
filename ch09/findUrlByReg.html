@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>视别页面上的超级链接</title>
+<script src="jquery/jquery-1.9.1.js"></script> 
+<script type="text/javascript">
+  $(document).ready(function(){
+	  var pattern = /^\http/;                           //一个简单的http前缀正则表达式
+      $('a').each(function () {                       //循环链接
+	  var href = $(this).attr('href');                 //获取href
+	 if (href != undefined && href.match(pattern)) {    //匹配正则表达式
+         $("#result").append(href+"<br/>");             //在div中显示http链接
+	};	
+	var root = location.protocol + '//' + location.host; //本地地址
+	$('a').not(':contains(root)').click(function(){    //如果不批配本地地址，则加_blank
+		this.target = "_blank";                        
+	});			
+})
+  });
+</script>
+</head>
+
+<body>
+<!--示例链接-->
+<a href="www.21cn.com">21cn</a>
+<a href="/findUrlByReg.html">链接示例</a>
+<a href="http://www.google.com">谷歌</a>
+<a href="http://www.youku.com">优酷</a>
+<br/>
+<br/>
+<!--结果显示区域-->
+<div id="result"></div>
+</body>
+</html>

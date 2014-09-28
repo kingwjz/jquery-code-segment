@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无刷新表单提交实例</title>
+<style>
+body{text-align:center;}
+.clear {
+	clear:both
+}
+.block {
+	width:400px;
+	margin:0 auto;
+	text-align:left;
+}
+.element * {
+	padding:5px; 
+	margin:2px; 
+	font-family:arial;
+	font-size:12px;
+}
+.element label {
+	float:left; 
+	width:75px;
+	font-weight:700
+}
+.element input.text {
+	float:left; 
+	width:270px;
+	padding-left:20px;
+}
+.element .textarea {
+	height:120px; 
+	width:270px;
+	padding-left:20px;
+}
+.element .hightlight {
+	border:2px solid #9F1319;
+	background:url(iconCaution.gif) no-repeat 2px
+}
+.element #submit {
+	float:right;
+	margin-right:10px;
+}
+.loading {
+	float:right; 
+	background:url(ajax-loader.gif) no-repeat 1px; 
+	height:28px; 
+	width:28px; 
+	display:none;
+}
+.done {
+	background:url(iconIdea.gif) no-repeat 2px; 
+	padding-left:20px;
+	font-family:arial;
+	font-size:12px; 
+	width:70%; 
+	margin:20px auto; 
+	display:none
+}
+</style>
+
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {	
+	$('#submit').click(function () {		       //为提交按钮关联事件处理代码	
+		var name = $('input[name=name]');         //获取所有的表单上的数据
+		var email = $('input[name=email]');
+		var website = $('input[name=website]');
+		var comment = $('textarea[name=comment]');
+		if (name.val()=='') {             //简单的验证以确保输入了数据，否则应用CSS高亮显示
+			name.addClass('hightlight');
+			return false;
+		} else name.removeClass('hightlight');
+		
+		if (email.val()=='') {            //简单的验证以确保输入了数据，否则应用CSS高亮显示
+			email.addClass('hightlight');
+			return false;
+		} else email.removeClass('hightlight');
+		
+		if (comment.val()=='') {         //简单的验证以确保输入了数据，否则应用CSS高亮显示
+			comment.addClass('hightlight');
+			return false;
+		} else comment.removeClass('hightlight');		
+		//组织HTML查询字符串属性，以便于提交
+		var data = 'name=' + name.val() + '&email=' + email.val() + '&website=' + 
+		website.val() + '&comment='  + encodeURIComponent(comment.val());
+		$('.text').attr('disabled','true'); //禁止所有的表单输入		
+		$('.loading').show();               //显示加载进度
+		$.ajax({                            //开始AJAX提交
+			url: "8_11.php",	            //指定服务器端文件
+			type: "GET",                    //使用GET请求方式
+			data: data,		                //传送数据
+			cache: false,                  //不缓存此页
+			success: function (html) {	    //成功提交事件处理代码		
+			if (html==1) {			        //PHP页面返回1，表示成功	
+				$('.form').fadeOut('slow');	//隐藏表单								
+    			$('.done').fadeIn('slow');  //显示完成窗口
+				} else alert('对不起，出现了未预料的异常，请重试.');				
+			}		
+		});		
+		//取消提交按钮的默认行为
+		return false;
+	});	
+});	
+</script>
+<body>
+
+
+<div class="block">
+<h2 style="margin-left:100px">我的留言本-欢迎您的留言</h2>
+<div class="done">
+<b>谢谢!</b> 已经保存您的留言
+</div>
+	<div class="form">
+	<form method="post" action="process.php">
+	<div class="element">
+		<label>姓名</label>
+		<input type="text" name="name" class="text" />
+	</div>
+	<div class="element">
+		<label>Email</label>
+		<input type="text" name="email" class="text" />
+	</div>
+	<div class="element">
+		<label>网站</label>
+		<input type="text" name="website" class="text" />
+	</div>
+	<div class="element">
+		<label>留言</label>
+		<textarea name="comment" class="text textarea" /></textarea>
+	</div>
+	<div class="element">
+		<!--提交按钮-->
+		<input type="submit" id="submit"/>
+        <!--加载提示-->
+		<div class="loading"></div>
+	</div>
+	</form>
+	</div>
+</div>
+
+<div class="clear"></div>
+</body>
+</html>

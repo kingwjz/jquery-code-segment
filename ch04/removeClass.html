@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script> 
+$(document).ready(function(){
+	$("button").click(function(){
+		$('ul li').removeClass(function(){
+			return 'listitem_'+$(this).index();
+		});
+	});
+});
+</script>
+<style type="text/css">
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<style type="text/css">
+.listitem_1, .listitem_3 {
+	font-size:12px;
+	color:red;
+}
+.listitem_0, .listitem_4 {
+	font-size:16px;
+	color:blue;
+}
+.listitem_2, .listitem_5 {
+	font-size:24px;
+	color:green;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery如何正确地使用removeClass()函数</h2>
+	<hr><br>
+	<h3>How to use removeClass() method properly.</h3>
+	<ul>
+		<li class="listitem_0">Microsoft</li>
+		<li class="listitem_1">Google</li>
+		<li class="listitem_2">Intel</li>
+		<li class="listitem_3">Apple</li>
+		<li class="listitem_4">IBM</li>
+		<li class="listitem_5">AMD</li>
+	</ul>
+	<button>使用removeClass()函数删除列表项中的类</button>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

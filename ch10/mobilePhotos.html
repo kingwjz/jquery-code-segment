@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!--使用名为viewport的meta值，其content指定自适应设备的宽度--> 
+<meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<title>简单的列表相册</title>
+<style type="text/css">
+    img.fullscreen {
+        max-height: 100%;
+        max-width: 100%;
+    }       
+</style>
+</head>
+
+<body>
+<!--相册首页-->
+<div data-role="page" id="photos">
+  <div data-role="header" data-position="fixed">
+    <h1>手机相册</h1>
+  </div>
+  <!--内容区域-->
+  <div data-role="content">
+     <h2></h2>
+     <!--定义一个ul，指定其data-role为listview，data-filter为true表示显示搜索框-->
+    <ul data-role="listview" data-inset="true" data-filter="true">
+      <li>
+        <a href="#flower1">                                      <!--链接到明细的页面-->
+        <img src="images/sample1.jpg" width="100" height="72">   <!--显示缩略图-->
+        <h2>杜鹃花开</h2>
+        <p>这是一幅不错的国画，具有浓郁的中华文化的色彩，很多人比较喜欢</p>
+        </a>
+      </li>
+      <li>
+        <a href="#flower2">                                     <!--链接到明细的页面-->
+        <img src="images/sample5.jpg" width="100">              <!--显示缩略图-->
+        <h2>姹紫嫣红</h2>
+        <p>盛放的牡丹花儿，开起来也特别的艳丽。</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!--页脚区域-->
+  <div data-role="footer" data-position="fixed">
+    <h1>请单击照片放大显示</h1>
+  </div>  
+</div> 
+
+<!--显示放大图片的明细页面-->
+<div data-role="page" id="flower1">
+    <header data-role="header">
+        <h1>杜鹃花开</h1>
+        <!--在页面的标题栏显示返回链接，指定缩略图为grid，data-iconpos为不显示文本-->
+        <a href="#photos" data-icon="grid" data-iconpos="notext">返回</a>
+    </header>
+    <img src="images/sample1.jpg" class="fullscreen" alt="杜鹃花开" />
+</div>
+
+<div data-role="page" id="flower2">
+    <header data-role="header">
+        <h1>姹紫嫣红</h1>
+        <a href="#photos" data-icon="grid" data-iconpos="notext">返回</a>
+    </header>
+    <img src="images/sample5.jpg" class="fullscreen" alt="姹紫嫣红" />
+</div>
+
+</body>
+</html>

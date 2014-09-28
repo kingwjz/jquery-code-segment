@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>动态表单生成图片预览效果</title>
+<style>
+.left {
+	width:400px;
+	float:left;
+	font-size:13px;
+	color:#333;
+	margin-right:20px;
+}
+.right {
+	width:500px;
+	float:left;
+	margin-right:20px;
+}
+/* http://www.sharejs.com */
+#preview {
+	min-height:247px;
+	background-color:#FFC;
+	padding:10px;
+	font-size:12px;
+	color:#999;
+	border:1px solid #FF9;
+}
+#title {
+	margin-top:10px;
+	padding:5px;
+	font-size:13px;
+	color:#000;
+	border:1px solid #CCC;
+	font-family:Verdana, Geneva, sans-serif;
+}
+#photo {
+	margin-bottom:10px;
+}
+#image {
+	margin-top:5px;
+}
+#Displaytitle {
+	font-size:14px;
+	color:#333;
+	margin-top:5px;
+}
+</style>
+<!--加载jQuery库-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){          //页面就绪事件
+		$('#preview').hide();	             //隐藏预览窗口的显示
+		$("#photo").click(update);          //为下拉列表框关联click事件
+		$("#title").keypress(update);       //为按钮放开关联keypress事件
+	});	
+	function update(){				        //通用的回调方法
+		$('#preview').slideDown('slow');   //重新滑动显示预览区域
+		var title = $("#title").val();     //获取标题内容
+		var photo = $("#photo").val();     //获取照片路径
+		$('#Displaytitle').html(title);    //更新要显示的标题
+		//更新要显示的图片
+		$('#image').html('<img src="'+photo+'" width=460 />');
+	}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <h3>表单预览示例</h3>
+  <!--表单定义区域-->
+  <div class="left">
+    <form>          
+      请选择图片<br/>
+      <select name="pic" class="click" id="photo">
+        <option value="images/sample1.jpg">鸟鸣山更幽</option>
+        <option value="images/sample2.jpg">花开花又落</option>
+        <option value="images/sample3.jpg">春意又盎然</option>
+      </select>
+      <br/>
+      添加描述性的文本
+      <textarea id="title" class="click" name="title" cols="40" rows="4">
+       请在这里输入描述性文本
+       </textarea>
+    </form>
+  </div>
+  <!--图片预览区域-->
+  <div class="right">
+    <div id="preview"> 预览图片
+      <div id="image"></div>
+      <div id="Displaytitle"></div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+</body>
+</html>

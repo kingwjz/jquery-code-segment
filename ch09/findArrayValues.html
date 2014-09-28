@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>从数组中筛选元素</title>
+<style type="text/css">
+  #result{
+	  font-size:12pt;
+  }
+</style>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+ $(function(){
+  var alldata="王大富,张三甲,李仁杰,刘三张,张二李,李四丁,丁四吴,吴若刘,刘大金,王小富"      
+  var alldataarr=alldata.split(",")       //调用split，将字符串分隔为数组 
+  $("#result").html("员工姓名中包含\"李\"字的有：");
+  //grep接收要过滤的数组以及一个回调函数
+  $.grep(alldataarr,function(val,key){    //回调函数的val表示元素值，key表示元素下标 
+	if(val.indexOf("李")!==-1){
+		$("#result").append(val+",");
+	}
+  });		
+  $("#result").append("<br/>下标小于2的员工是：");	
+  var datareskey=$.grep(alldataarr,function(val,key){
+		return key>2;                    //条件是下标大于2
+  },true);	                              //因为使用了第3个参数true，表示反向结果，下标的值小于2  
+  $.each(datareskey,function(key,val){  //循环输出结果值
+		$("#result").append(val+",");	  
+  });
+ }); 
+</script>
+</head>
+
+<body>
+<div id="result"></div>
+</body>
+</html>

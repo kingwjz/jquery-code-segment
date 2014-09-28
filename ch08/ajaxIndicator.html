@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>显示加载指示器</title>
+<style>
+body { background:#fafafa; }
+.container {
+	width: 800px;
+	border: 1px solid #C4CDE0;
+	border-radius: 2px;
+	margin: 0 auto;
+	height: 400px;
+	background:#fff;
+	padding-left:10px;
+}
+.button { background:#090; color:#fff; font-size:16px; font-weight:bold; padding:3px 6px; text-decoration:none; cursor:pointer; } 
+</style>
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript"> 
+	function ajaxindicatorstart(text)            //开始AJAX加载指示器
+	{
+		//如果不存在加载div，则动态创建并且显示加载div
+		if($('body').find('#resultLoading').attr('id') != 'resultLoading'){
+		jQuery('body').append('<div id="resultLoading" style="display:none"><div><img src="images/loading.gif"><div>'+text+'</div></div><div class="bg"></div></div>');
+		}		
+		$('#resultLoading').css({               //为div应用遮罩样式
+			'width':'100%',
+			'height':'100%',
+			'position':'fixed',
+			'z-index':'10000000',
+			'top':'0',
+			'left':'0',
+			'right':'0',
+			'bottom':'0',
+			'margin':'auto'
+		});			
+		$('#resultLoading .bg').css({          //为div中的背景层应用遮罩样式
+			'background':'#000000',
+			'opacity':'0.7',
+			'width':'100%',
+			'height':'100%',
+			'position':'absolute',
+			'top':'0'
+		});		
+		$('#resultLoading>div:first').css({     //为div中文字层应用样式
+			'width': '250px',
+			'height':'75px',
+			'text-align': 'center',
+			'position': 'fixed',
+			'top':'0',
+			'left':'0',
+			'right':'0',
+			'bottom':'0',
+			'margin':'auto',
+			'font-size':'16px',
+			'z-index':'10',
+			'color':'#ffffff'			
+		});
+	    $('#resultLoading .bg').height('100%');//指定背景的高度
+        $('#resultLoading').fadeIn(300);       //淡入背景的显示
+	    $('body').css('cursor', 'wait');       //更改鼠标光标
+	}
+	function ajaxindicatorstop()               //定义加载器停止的函数
+	{
+	    $('#resultLoading .bg').height('100%');//背景高度
+        $('#resultLoading').fadeOut(300);      //淡出显示
+	    $('body').css('cursor', 'default');    //恢复鼠标光标
+	}	 
+	function callAjax()                       //异步调用AJAX
+	{
+		$.ajax({
+			type: "GET",
+			url: "8_14.php",                   //指定调用的服务器文件地址
+			cache: false,
+			success: function(res){
+					$('#ajaxcontent').html(res);
+			}
+		});
+	}	
+  $(document).ajaxStart(function () {      //关联ajaxStart事件   		
+	ajaxindicatorstart('正在加载，请稍候..');//显示AJAX进度指示器
+  }).ajaxStop(function () {
+	ajaxindicatorstop();                     //隐藏AJAX进度指示器
+  });
+</script>
+</head>
+<body><div class="container">
+<h1>在异步加载AJAX内容时，显示加载批器</h1>
+<!--异步加载时显示进度指示器-->
+<a href="javascript:;" class="button" onclick="callAjax();">异步调用AJAX</a>
+<!--从服务器端返回的XML内容-->
+<p id="ajaxcontent"></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+// FireFox浏览器兼容模式
+$j("embed").attr("wmode","opaque");
+$j(document).ready(function(){
+	// IE浏览器兼容模式
+	var embedTag;
+	$j("embed").each(function(i){
+		embedTag=$j(this).attr("outerHTML");
+		if((embedTag!=null)&&(embedTag.length>0)){
+			embedTag=embedTag.replace(/embed /gi, "embed wmode=\"opaque\" ");
+			$j(this).attr("outerHTML",embedTag);
+		}else{
+			$j(this).wrap("<div></div>");
+		}
+	});
+});
+</script>
+<style>
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:16px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery实现设置Flash对象的WMode窗口模式</h2>
+	<hr><br>
+	<embed src="*.swf" wmode="transparent" quality="high"></embed>
+	<br><br><br><br><br><br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

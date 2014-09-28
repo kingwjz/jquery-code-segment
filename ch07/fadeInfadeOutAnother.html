@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>淡出图片，淡入另一张图片</title>
+<!--加载jQuery加-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+ $(document).ready(function(){              //在页就绪事件中，关联事件处理代码
+		$("#gallery").hover(function(){	  //为div关联hover事件
+			$(this).find("#pic").fadeOut();  //淡出当前的图片
+		}, function() {	                   //鼠标移出时
+		   //判断是否需要切换显示的图片
+		   if($("#pic").attr("src")=="images/sample5.jpg"){
+     		    $("#pic").attr("src","images/sample2.jpg");	    
+		   }else
+		   {
+     		    $("#pic").attr("src","images/sample5.jpg");	    			   
+		   };
+			$(this).find("#pic").fadeIn();	  //淡入设置好的图片
+		});
+});
+</script>
+</head>
+
+<body>
+<!--进行淡入淡出的div元素-->
+<div id="gallery">
+    <!--淡入淡出的图片-->
+    <img id="pic" src="images/sample5.jpg" alt="花朵" />  
+</div>
+</body>
+</html>

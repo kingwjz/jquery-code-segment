@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用事件跟踪拖拽</title>
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+  <style>
+  #draggable { width: 16em; padding: 0 1em; }
+  #draggable ul li { margin: 1em 0; padding: 0.5em 0; } * html #draggable ul li { height: 1%; }
+  #draggable ul li span.ui-icon { float: left; }
+  #draggable ul li span.count { font-weight: bold; }
+  </style>
+  <script type="text/javascript">
+	  $(function() {
+		var $start_counter = $( "#event-start" ),//开始拖动时的计数器li
+		  $drag_counter = $( "#event-drag" ),    //拖动时的计数器li
+		  $stop_counter = $( "#event-stop" ),    //停止计数器li
+		  counts = [ 0, 0, 0 ];                  //定义起始的计数器数组	 
+		$( "#draggable" ).draggable({            //关联拖拽方法
+		  start: function() {                  //关联拖拽起始事件
+			counts[ 0 ]++;                       //计数器加1
+			//更新计数器的状态
+			updateCounterStatus( $start_counter, counts[ 0 ] );
+		  },
+		  drag: function() {                   //关联拖拽进行事件
+			counts[ 1 ]++;                      //添加计数器
+			//更新计数器的状态
+			updateCounterStatus( $drag_counter, counts[ 1 ] );
+		  },
+		  stop: function() {                  //关联拖拽停止事件
+			counts[ 2 ]++;                     //添加计数器
+			//更新计数器的状态
+			updateCounterStatus( $stop_counter, counts[ 2 ] );
+		  }
+		});
+	    //更新计数器的状态的公共函数
+		function updateCounterStatus( $event_counter, new_count ) {
+		  if ( !$event_counter.hasClass( "ui-state-hover" ) ) { //如果不具有ui-state-hover类
+			$event_counter.addClass( "ui-state-hover" )          //添加该CSS类
+			  .siblings().removeClass( "ui-state-hover" );       //移除相同层次的其他的元素的CSS类
+		  }
+		  $( "span.count", $event_counter ).text( new_count );  //更新计数器的值
+		}
+	  });
+  </script>
+</head>
+<body>
+ 
+<div id="draggable" class="ui-widget ui-widget-content">
+ 
+  <p>拖动以触发事件列表</p>
+ 
+  <ul class="ui-helper-reset">
+    <li id="event-start" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-play"></span>"start" 被调用 <span class="count">0</span>x</li>
+    <li id="event-drag" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-arrow-4"></span>"drag" 被调用 <span class="count">0</span>x</li>
+    <li id="event-stop" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-stop"></span>"stop" 被调用 <span class="count">0</span>x</li>
+  </ul>
+</div>
+</body>
+</html>

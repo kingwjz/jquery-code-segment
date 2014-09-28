@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>拖动时更改鼠标光标和位置</title>
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+  <style>
+  #draggable, #draggable2, #draggable3 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+  </style>
+  <script type="text/javascript">
+	  $(function() {
+		//将鼠标光标变化移动光标,指定鼠标位置位于左上角56像素位置
+		$( "#draggable" ).draggable({ cursor: "move", cursorAt: { top: 56, left: 56 } });
+		//将鼠标光标更改为十字型光标，指定鼠标位置在图片上左上角的5像素处
+		$( "#draggable2" ).draggable({ cursor: "crosshair", cursorAt: { top: -5, left: -5 } });
+		//鼠标光标不变，光标位置更改为底部
+		$( "#draggable3" ).draggable({ cursorAt: { bottom: 0 } });
+	  });
+  </script>
+</head>
+<body>
+ 
+<div id="draggable" class="ui-widget-content">
+  <p>我将永远粘在中间</p>
+</div>
+ 
+<div id="draggable2" class="ui-widget-content">
+  <p>我的光标在左上角-5像素的位置</p>
+</div>
+ 
+<div id="draggable3" class="ui-widget-content">
+  <p>我的鼠标光标仅与低部对齐</p>
+</div>
+</body>
+</html>

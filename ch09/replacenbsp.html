@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>替换&amp;bnsp;空字符的方法</title>
+<script src="jquery/jquery-1.9.1.js"></script> 
+<script language="javascript">
+	$(document).ready(function(){
+		var test=$("#txt").html();        //获取div中的HTML值
+		test=test.replace(/&nbsp;/ig, ""); //调用replace，替换&nbsp;为空白,/ig是全局标志
+		$("#txt").append("<br/>"+test);   //追加到div中
+	});
+</script>
+</head>
+<body>
+<div id="txt">这是&nbsp;一个&nbsp;小小的测试</div>
+</body>
+</html>

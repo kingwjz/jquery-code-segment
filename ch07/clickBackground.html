@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>单击更改网页背景</title>
+<style type="text/css">
+  #imagebk{
+	  width:500px;
+	  height:500px;
+	  background-color:#CFF;
+  }
+</style>
+<!--加载jQuery库-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+var image=new Array(4);               //定义保存4幅图片的数组
+var n=0;                               //计数器变量，用于切换图片计数
+image[0]="images/sample1.jpg";         //定义4幅图片的图片地址
+image[1]="images/sample2.jpg";
+image[2]="images/sample3.jpg";
+image[3]="images/sample5.jpg";
+$(document).ready(function(){	       //为页面关联页加载事件
+  $("#btnlink").click(function(){	   //为链接关联按钮单击事件
+	  $("#imagebk").fadeOut(1000,      //淡出当前图\片，淡出结束后，淡出下一幅图片
+		function(){$("#imagebk").css("background-image",
+		"url("+image[n]+")");$("#imagebk").fadeIn();
+    	if(n>3){ n=0; }else{  n=n+1; }  //调整计数器计数
+	  });
+   });
+ });
+</script>
+</head>
+
+<body>
+  <!--一个按钮，允许用户单击改变背景图-->
+  <a href="#" id="btnlink">单击这里改变背景</a>
+  <!--用来显示背景图的div-->
+  <div id="imagebk"></div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>向表格添加下一行</title>
+<style type="text/css">
+   td{
+	   font-size:12px;
+   }
+</style>
+<script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
+<!--jQuery 1.9.1取消了live，因此使用migrate插件使其可以使用live-->
+<script type="text/javascript" src="jquery/jquery-migrate-1.2.1.js"></script>
+<script type="text/javascript">
+var i=1;
+$(document).ready(function () { 
+	$(".j_del").live("click",function(){          //关联删除功能
+		$(this).parent().parent().eq(0).remove(); //删除按钮当前行
+	}); 
+	$(".j_add").live("click",function(){         //关联添加按钮功能
+	    //在当前行的下面添加一个新行
+		$(this).parent().parent().after("<tr><td>我是新添加的行 "+i+"</td><td><input class=\"j_add\" type=button value=\"添加下一行\" /><input class=\"j_del\" type=button value=\"删除当前行\" /></td></tr>"); 
+		i++;                                      //递增计数器
+	});			
+}); 
+</script>
+</head>
+<body>
+<div> 
+<table> 
+<tr>
+    <td>请单击右边 的按钮添加行</td>
+    <td>
+         <input type="button" class="j_add" value="添加下一行" />
+         <input type="button"  class="j_del"  value="删除当前行" />
+    </td>
+</tr> 
+</table> 
+</div> 
+</body>
+</html>

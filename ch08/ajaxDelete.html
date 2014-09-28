@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无刷新删除记录</title>
+<style>
+body{ font:Arial, Helvetica, sans-serif; font-size:13px;}
+.box {
+	padding:3px;
+	background-color:#FFC;
+	margin-bottom:3px;
+	border-bottom:2px solid #ccc;
+	width:450px;
+	height:90px;
+}
+.box:hover{background-color:#ccc;}
+
+#load {
+	position:absolute;
+	left:225px;
+	background-image:url(images/loading-bg.png);
+	background-position:center;
+	background-repeat:no-repeat;
+	width:159px;
+	color:#999;
+	font-size:18px;
+	font-family:Arial, Helvetica, sans-serif;
+	height:40px;
+	font-weight:300;
+	padding-top:14px;
+	top: 23px;
+}
+#container {
+	position:relative;
+}
+.avatar {
+	float:left;
+	margin-right:20px;
+}
+.text {
+	float:left;
+	width:300px;
+	font-size:13px;
+}
+.text span {
+	font-size:18px;
+	line-height:23px;
+	font-weight:700;
+}
+.delete {
+	margin-top:30px;
+	float:left;
+	margin-left:30px;
+}
+a.delete {
+	padding:3px;
+	text-align:center;
+	font-size:18px;
+	font-weight:700;
+	text-decoration:none;
+	color:#C00;
+}
+a.delete:hover {
+	background-color:#900;
+	color:#FFF;
+}
+.date {
+	padding-top:10px;
+	font-weight:700;
+	color:#333;
+	font-size:12px;
+}
+</style>
+
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#load').hide();                             //隐藏加载图片，只在需要时显示
+});
+$(function() {
+	$(".delete").click(function() {             //当删除按钮被单击时
+		$('#load').fadeIn();                      //淡出显示加载图片
+		var commentContainer = $(this).parent(); //得到当前链接所在的容器div
+		var id = $(this).attr("id");             //得到当前链接的id值
+		var string = 'id='+ id ;                  //构建参数字符串			
+		$.ajax({                                  //调用$.ajax发送异步Ajax请求
+		   type: "POST",                          //指定提交方式为POST
+		   url: "8_4_delete.php",                 //服务器端的URL
+		   data: string,                          //传递的参数字符串
+		   cache: false,                         //不缓存
+		   success: function(){                 //成功删除后，移除留言记录
+			commentContainer.slideUp('slow', function() {$(this).remove();});
+			$('#load').fadeOut();                //隐藏显示加载图标
+		  }		   
+		 });
+		 return false;
+		});
+});
+</script>
+
+
+</head>
+
+<body>
+<div id="container">
+  <h3>留言内容</h3>
+  <div id="load" align="center">
+         <!--删除时显示的异步加载进度条-->
+        <img src="images/loading.gif" width="28" height="28" align="absmiddle"/> Loading...</div>
+    单击 x 可以删除一条注释<br/>
+    <br/>
+  <div class="box">
+    <div class="text"><span>张三</span><br/>
+      很好用的留言本
+        <div class="date">2014-02-13</div>
+    </div>
+    <!--删除链接，每个链接的id值，指向数据库中当前的记录id-->
+    <a href="#" id="1" class="delete">x</a>
+    <div class="clear"></div>
+  </div>
+  <div class="box">
+    <div class="text"><span>李四</span><br/>
+      这是使用$.ajax实现的异步删除功能<a href="#" target="_blank"></a>
+      <div class="date">2014-04-18</div>
+    </div>
+    <a href="#" id="2" class="delete">x</a>
+    <div class="clear"></div>
+  </div>
+  <div class="box">
+    <div class="text"><span>赵六</span><br/>
+      这个功能真的很不错
+        <div class="date">2014-04-21</div>
+    </div>
+    <a href="#" id="3" class="delete">x</a>
+    <div class="clear"></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <meta charset="utf-8">
+    <title>可折叠的导航面板</title> 
+   <!--使用名为viewport的meta值，其content指定自适应设备的宽度--> 
+    <meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+    </head>        
+<body> 
+<div data-role="page" id="pageone">
+  <div data-role="header">
+    <h1>图书查阅系统</h1>
+  </div>
+  <!--创建一个可折叠的导航面板-->
+  <div data-role="content">
+    <div data-role="collapsible" data-theme="e">
+    <h4>文学历史</h4>
+    <ul data-role="listview">
+      <li><a href="#">明代</a></li>
+      <li><a href="#">宋代</a></li>
+    </ul>
+  </div>
+    <!--显示人文社科的可折叠面板-->
+    <div data-role="collapsible" data-theme="b" data-collapsed="false">
+    <h4>人文社科</h4>
+    <ul data-role="listview">
+       <li><a href="#">财务</a></li>
+       <li><a href="#">心理</a></li>
+    </ul>
+    </div>
+    <!--显示计算机应用的可折叠面板-->
+    <div data-role="collapsible" data-theme="e">
+    <h4>计算机应用</h4>
+    <ul data-role="listview">
+      <li><a href="#">软件开发</a></li>
+      <li><a href="#">数据库</a></li>
+      <li><a href="#">移动开发</a></li>
+    </ul>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <h1>请单击“+”按钮进行展开</h1>
+  </div>
+</div> 
+</body> 
+</html>

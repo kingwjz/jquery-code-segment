@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+<title>拖动的表格排序</title>
+<style type="text/css">
+#myTable tr {
+    font-size: 3em;
+    border: 1px solid red;
+}
+</style>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#myTable tbody').sortable({        //使表格行可以排序拖动
+        start: function (event, ui) {
+            //如果浏览器为firefox，则调整其位置，使其绝对定位显示，并设置margin-top为当前顶层
+            if (navigator.userAgent.toLowerCase().match(/firefox/) && ui.helper !== undefined) {
+                ui.helper.css('position', 'absolute').css('margin-top', $(window).scrollTop());
+                //当滚动条滚动时关联事件
+                $(window).bind('scroll.sortableplaylist', function () {
+                    ui.helper.css('position', 'absolute').css('margin-top', $(window).scrollTop());
+                });
+            }
+        },
+        beforeStop: function (event, ui) {
+            //取消对firefox滚动的调整，以便进行停止设整
+            if (navigator.userAgent.toLowerCase().match(/firefox/) && ui.offset !== undefined) {
+                $(window).unbind('scroll.sortableplaylist');
+                ui.helper.css('margin-top', 0);
+            }
+        },
+        helper: function (e, ui) {               //设置拖动时的辅助显示帮助
+            ui.children().each(function () {
+                $(this).width($(this).width()); //调整ui的宽度
+            });
+            return ui;                            //返回调整后的ui的宽度
+        },
+        scroll: true,                             //允许滚动显示
+        stop: function (event, ui) {
+            //在拖动排序停止时可以保存排序            
+        }
+    }).disableSelection();
+  });
+</script>
+</head>
+
+<body>
+   <table id="myTable">
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>这是可以被拖动的行1</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>这是可以被拖动的行2</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>这是可以被拖动的行3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>这是可以被拖动的行4</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>这是可以被拖动的行5</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>这是可以被拖动的行6</td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

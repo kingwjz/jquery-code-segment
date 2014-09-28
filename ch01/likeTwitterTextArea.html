@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.8.3.min.js"></script>
+<script src="js/js.charCount.com/charCount.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	// default usage
+	$("#id-textarea-default").charCount();
+	// custom usage
+	$("#id-textarea-custom").charCount({
+		allowed:150,
+		warning:120,
+		counterText:'剩余字数: '
+	});
+});
+</script>
+<style>
+body { margin:0; padding:20px 40px; background:#fff; font:80% Arial, Helvetica, sans-serif; color:#555; line-height:180%; }
+.clear { clear:both; }
+/* Character Count styles */
+form { width:500px; }
+label { display:block; font-size:14px; }
+textarea { width:490px; height:60px; padding:3px; color:#555; font:16px Arial, Helvetica, sans-serif; }
+form div { position:relative; margin:1em 0; }
+form .counter { position:absolute; right:0; top:0; font-size:20px; font-weight:bold; color:#ccc; }
+form .warning { color:#600; }
+form .exceeded { color:#e00; }
+</style>
+</head>
+<body>
+	<h2>超实用的jQuery代码段 - jQuery类Twitter文本字数限制效果</h2>
+	<form id="form" method="post" action="">
+		<h2>默认风格文本框</h2>
+		<div>
+			<label for="message">请输入用户信息</label>
+			<textarea id="id-textarea-default" name="id-textarea-default"></textarea>
+		</div>
+		<h2>自定义风格文本框</h2>
+		<div>
+			<label for="message">请输入用户信息 (Limited to 150, Warning at 120)</label>
+			<textarea id="id-textarea-custom" name="id-textarea-custom"></textarea>
+		</div>
+	</form>
+</body>
+</html>

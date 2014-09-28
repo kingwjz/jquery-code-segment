@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>设置Cookie在N分钟后过期</title>
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<!--插件必须放在jquery下面，以便引用cookie.js中的功能-->    
+<script type="text/javascript" src="jquery/jquery.cookie.js"></script>
+<script type="text/javascript">
+   //设置以分钟为单位的Cookie过期时间
+   function setCookieExpires(name,value,seconds){
+		var mydate =new Date()		
+		//设置当前的过期时间
+		mydate.setTime(mydate.getTime() + (seconds * 60 * 1000));
+		$.cookie(name, value, { expires: mydate });//设置Cookie过期时间以分钟为单位	   
+   }   
+   setCookieExpires("Demo","一个示例",20);          //调用示例
+</script>
+</head>
+
+<body>
+</body>
+</html>

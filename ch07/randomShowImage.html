@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>加载时随机显示图片</title>
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("img").hide();                       //隐藏所有图片的显示
+  var speed = 200;                       //显示的速度
+   $(window).load(function() {         //页加载事件
+      $("#content img").hide();          //隐藏图片的显示
+      timer= setInterval(function(){    //定义setInterval事件
+      $notLoaded = $("#content img").not(".loaded");              //获取不存在样式类loaded的图片
+      $notLoaded.eq(Math.floor(Math.random()*$notLoaded.length))  //随机的显示图片
+     .fadeIn()
+     .addClass("loaded");                                          //为已经显示的图片添加样式类loaded
+  if ($notLoaded.length == 0) {                                   //如果显示完成
+     clearInterval(timer);                                         //清除定时器事件
+  }
+}
+, speed);                                                          //指定触发的时长，以毫秒为单位
+});
+});
+</script>
+
+<style>
+ /*指定图片span容器的样式*/
+ #content span {
+    width: 200px;         /*宽度*/
+	height:200px;         /*高度*/
+	display:block;        /*块状显示*/
+	float: left;          /*向左浮动*/
+	overflow:hidden;      /*溢出隐藏*/
+ }
+</style>
+</head>
+<body>
+<!--图片显示的容器-->
+<div id="content">
+ <!--定义各种不同的要显示的图片-->
+ <span><img src="images/sample1.jpg" alt="喜鹊报喜" /></span>
+ <span><img src="images/sample2.jpg" alt="姹紫嫣红" /></span>
+ <span><img src="images/sample3.jpg" alt="水墨风情" /></span>
+ <span><img src="images/sample5.jpg" alt="含苞盛放" /></span>
+</div> 
+</body>
+</html>

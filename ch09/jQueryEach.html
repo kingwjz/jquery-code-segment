@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery遍历算法</title>
+ <style> 
+  div { color:blue; font-size:9pt} 
+  div#five { color:red; } 
+ </style> 
+<script src="jquery/jquery-1.9.1.js"></script> 
+</head> 
+<body> 
+  <div id="arr"></div> 
+  <div id="obj"></div> 
+<script type="text/javascript"> 
+    var arr = [ "张三", "李四", "王五", "赵六", "贺八" ];                        //定义一个数组 
+    var obj = { name:"张三", age:22, gender:"男", country:"中国", city:"上海" }; //定义一个对象 
+    $.each(arr, function() {                                //对数组进行循环
+      $("#arr").append("数组元素是" + this + "<br/>");      //this指向为数组的值, 如one, two 
+       return (this != "赵六");                            //如果this=赵六则退出遍历 
+   }); 
+    $.each(obj, function(i, val) {                         //循环对象，回调函数参数i指向键,val指定值 
+      $("#obj").append(i+ " – " + val+"<br/>"); 
+	 
+    }); 
+</script> 
+</body>
+</html>

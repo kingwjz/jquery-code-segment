@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>安全的显示图片</title>
+<!--加载jQuery脚本-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	  //当图片无法显示时，使用一个占位符图片进行替换
+	  $("img").error(function(){
+		  $(this).attr("src", "images/noexistspic.jpg");
+	  });
+	});
+</script>
+</head>
+
+<body>
+<!--使用HTML标记img显示一幅图片-->
+<img src="images/googlelogo_1.jpg" width="486" height="134" alt="Google公司" longdesc="http://www.google.com" />
+<br/>
+</body>
+</html>

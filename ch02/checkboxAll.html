@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+$(document).ready(function(){
+
+	// 全选
+	$("#allselect").click(function(){
+		$(":checkbox").each(function(){
+			$(this).prop("checked",true);
+			$(this).next().css({"background-color":"blue","color":"White" });
+		});
+	});
+	
+	//反选
+	$("#invert").click(function(){
+		$(":checkbox").each(function(){
+			if($(this).prop("checked")){
+				$(this).prop("checked",false);
+				$(this).next().css({"background-color": "White","color":"black" });
+			}else{
+				$(this).prop("checked",true);
+				$(this).next().css({"background-color": "blue","color":"White" });
+			}
+		});
+	});
+	
+	//取消
+	$("#cancel").click(function(){
+		$(":checkbox").each(function(){
+			$(this).prop("checked",false);
+			$(this).next().css({"background-color": "White","color":"black" });
+		});
+	});
+	
+	// 所有复选(:checkbox)框点击事件
+	$(":checkbox").click(function(){
+		if($(this).prop("checked")){
+			$(this).next().css({"background-color": "blue","color":"White" });
+		}else{
+			$(this).next().css({"background-color": "White","color":"black" });
+		}
+	});
+	
+	// 输出
+	$("#output").click(function(){
+		$(":checkbox").each(function(){
+			if($(this).prop("checked")){
+				alert($(this).val());
+			}
+		});
+	});
+
+});
+</script>
+<style type="text/css">
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:16px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<style type="text/css">
+*{margin:0;padding:0;list-style-type:none;}
+.mar20 {
+	margin:20px;
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery复选框 全选 反选 取消 选中输出等功能</h2>
+	<hr><br>
+	<div class="mar20">
+		<input name="newslist-1" id="newslist-1" type="checkbox" value="1"/><label for="newslist-1">超实用的jQuery代码段<a href="#">超实用的jQuery代码段</a></label>
+	</div>
+	<div class="mar20">
+		<input name="newslist-2" id="newslist-2" type="checkbox" value="2"/><label for="newslist-2">超实用的jQuery代码段<a href="#">超实用的jQuery代码段</a></label>
+	</div>
+	<div class="mar20">
+		<input name="newslist-3" id="newslist-3" type="checkbox" value="3"/><label for="newslist-3">超实用的jQuery代码段<a href="#">超实用的jQuery代码段</a></label>
+	</div>
+	<div class="mar20">
+		<input name="newslist-4" id="newslist-4" type="checkbox" value="4"/><label for="newslist-4">超实用的jQuery代码段<a href="#">超实用的jQuery代码段</a></label>
+	</div>
+	<div class="mar20">
+		<input name="newslist-5" id="newslist-5" type="checkbox" value="5"/><label for="newslist-5">超实用的jQuery代码段<a href="#">超实用的jQuery代码段</a></label>
+	</div>
+	<div class="mar20">
+		<input name="newslist-6" id="newslist-6" type="checkbox" value="6"/><label for="newslist-6">超实用的jQuery代码段<a href="#">超实用的jQuery代码段</a></label>
+	</div>
+	<div class="mar20">
+		<input name="allselect" id="allselect" type="button" value="全选" />
+		<input name="invert" id="invert" type="button" value="反选" />
+		<input name="cancel" id="cancel" type="button" value="取消" />
+		<input name="output" id="output" type="button" value="输出" />
+	</div>
+	<br><hr>
+	<div id="div-log">
+	</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用jQuery创建打字机效果</title>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    var $el = $('div'), 
+        text = $el.text(),            //获取文本内容
+        speed = 1000;                 //指定打字的速度
+    $el.empty();                      //清空原来的文本内容    
+    var wordArray = text.split(' '), //使用空格将文本内容分割为数组
+        i = 0;
+    INV = setInterval(function () { //循环执下输出
+        if (i >= wordArray.length - 1) {
+            clearInterval(INV);       //如果输出完成则清除计时器
+        }
+        $el.append(wordArray[i] + ' ');//添加单词到div中
+        i++;
+    }, speed);                         //speed指定加载速度
+});
+</script>
+</head>
+<body>
+<div>jQuery code snippet which outputs each word in a sentence 
+at a specified interval. You can change the speed at 
+which is outputs by the speed parameter in milliseconds.
+ You can view the demo or load the code in jsfiddle below.</div>
+</body>
+</html>

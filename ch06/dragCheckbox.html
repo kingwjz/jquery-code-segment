@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+<title>拖多复选框自动选择</title>
+<style type="text/css">
+    body{font-size:14px;}
+    td { padding: 0.2em 0.4em; }
+   .ui-selecting, .ui-selected { background: lightBlue }  
+   
+</style>
+<script type="text/javascript">
+	$(document).ready(function(){	 
+		$(".tablo").selectable({          //为表格设置拖动选择效果
+		filter: "tr",                     //过滤掉tr表格行
+		selected: function(evennt,ui) { //当选中一行时，将该行的复选框设置为true
+		$( ".ui-selected", this ).each(function(a,b) {
+				$('.checkbox',b).attr('checked',true);
+	    	});			
+		},
+	   stop: function(event, ui){       //当停止选择表格时，在结果区中添加选中的数据
+		var result = $( "#plate" ).empty().html('你选择了下面的复选框: '
+		     + $( this ).find( ".ui-selected" ).map(function(i) {
+		  return i;
+	 	 }).get().join(", "));          //循环添加选中的多行数据
+	   }			
+   	});
+  });
+</script>
+</head>
+
+<body>
+<table class="tablo">
+<tr class="ui-widget-content">
+<td><input type="checkbox" class="checkbox" /></td>
+<td>通过拖动的方式，可选择多个复选框1</td>
+</tr>
+<tr class="ui-widget-content">
+<td><input type="checkbox" class="checkbox" /></td>
+<td>通过拖动的方式，可选择多个复选框2</td>
+</tr>
+<tr class="ui-widget-content">
+<td><input type="checkbox" class="checkbox" /></td>
+<td>通过拖动的方式，可选择多个复选框3</td>
+</tr>
+<tr class="ui-widget-content">
+<td><input type="checkbox" class="checkbox" /></td>
+<td>通过拖动的方式，可选择多个复选框4</td>
+</tr>
+<tr class="ui-widget-content">
+<td><input type="checkbox" class="checkbox" /></td>
+<td>通过拖动的方式，可选择多个复选框5</td>
+</tr>
+<tr class="ui-widget-content">
+<td><input type="checkbox" class="checkbox" /></td>
+<td>通过拖动的方式，可选择多个复选框6</td>
+</tr>
+</table>
+<!--显示表格的结果数据-->
+<div id="plate">多选的结果：</div>
+</body>
+</html>

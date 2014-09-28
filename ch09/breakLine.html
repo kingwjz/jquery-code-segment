@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首个单词自动换行</title>
+<style type="text/css">
+   body{
+	   font-size:14px;
+	   font-family:Verdana, Geneva, sans-serif;
+   }
+   .firstWord {         
+	   display: block;   /*首字母block显示，将打断行*/
+	   font-weight:bold; /*加粗显示字体*/
+	   }
+    li{
+	   float: left;     /*向左浮动显示*/
+	   margin: 0 20px;
+	   }
+</style>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+	$('ul.nav > li > a').each(function() {    //循环li中的链接元素
+		var obj = $(this);                     //得到当前的链接元素
+		var text = obj.html();                  //获取链接元素中的HTML
+		var parts = text.split(' ');            //用空格将HTML分成多个元素的数组
+		//为第1个元素应用span标签与样式
+		var replace = '<span class="firstWord">'+parts[0]+'</span>';
+		parts.shift();                          //删除数组中的第1个元素
+		$.each(parts, function(key, value) { 
+			replace += ' '+value;                //合并除第1个之外的多个子元素
+		}); 
+		obj.html(replace);                      //重新设置元素内容的HTML
+	});
+  });
+</script>
+</head>
+
+<body>
+<ul class="nav"> 
+   <!--链接列表-->
+  <li><a href="#">电脑 关于电脑相关的细节</a></li>
+  <li><a href="#">显示器 几款主流显示器</a></li>
+  <li><a href="#">主板 最新主板细节</a></li>
+  <li><a href="#">网卡 网卡的最新技术参数</a></li>
+</ul>
+</body>
+</html>

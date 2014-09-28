@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!--使用名为viewport的meta值，其content指定自适应设备的宽度--> 
+<meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+<title>动态加载和切换页面</title>
+</head>
+
+<body>
+    <!--用户登录页面--> 
+   <div data-role="page" id="pagelogin"  data-title="登录">  
+	 <div data-role="header" data-position="fixed">
+		<h1 id="headertitle">登录窗口</h1>
+	</div>	
+	<div data-role="content">	 
+ 	  	<div id="login_form">        
+           <input id="txtusername" name="txtusername" value="" placeholder="用户名" type="text">        
+           <input id="txtpassword" name="txtpassword"  value="" placeholder="密码" type="password">
+           <a href="#" data-role="button" data-theme="c" id="btn_login">登录</a>                              	
+ 	  	</div>     		    	 
+	</div>
+	 <div data-role="footer" data-position="fixed" >
+		<h2>动态切换示例</h2>
+	</div>
+    <script type="text/javascript">
+	   //绑定页面显示之前
+	   $("#pagelogin").bind("pagebeforeshow",function(){
+		   $("#txtusername").val('');                //清空用户名文本框
+	       $("#txtpassword").val('');                //清空用户密码文本框
+		   
+	       $('#btn_login').unbind('click');          //取消绑定按钮单击事件
+		   //重新绑定按钮单击事件  		    
+	       $("#btn_login").bind('click',function(event){	
+		    var usernameStr=$("#txtusername").val(); //获取用户名字符串
+	        var passwordStr=$("#txtpassword").val(); //获取用户密码字符串	 
+			//如果用户名和密码验证通过         	 
+	        if (usernameStr=="admin"&&passwordStr=="123"){  
+					$.mobile.loadPage( "index.php", { //调用loadPage加载首页
+					  type: "post",                   //指定post提交方式
+					  data: $("#login_form").serialize()
+					});
+	          }else{
+				//加载id为pageloginfailed的页面，显示登录失败信息
+                $.mobile.changePage("#pageloginfailed",{transition: "none"});	          
+	          }
+	        });			   		   			  
+	   });
+	</script>
+  </div> 
+</body>
+</html>

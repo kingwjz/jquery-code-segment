@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>获取页面加载时间</title>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+  var beforeload = (new Date()).getTime();
+  function getPageLoadTime(){        
+        var afterload = (new Date()).getTime(); //计算页面已经加载完成后的当前时间
+		//计算加载前和加载后的时间差 
+		seconds = (afterload-beforeload) / 1000;  
+        //将结果放到div中
+        $('#load_time').text('页面的加载时间为:  ' + seconds + '秒');
+         }
+    window.onload = getPageLoadTime;           //为window.onload关联事件
+</script>
+</head>
+
+<body>
+  <!--调用iframe加载一个外部网站-->
+  <iframe src="http://www.adobe.com/" id="tag" name="tag" 
+          allowTransparency="true" width="800"    
+          height="200" scrolling="no" frameborder="0">
+  </iframe>
+  <!--显示结果加载时间-->
+  <div id="load_time"></div>
+</body>
+</html>

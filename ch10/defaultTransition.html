@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>全局默认转场参数</title>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+  <script>
+  jQuery(document).ready(function(){
+    $(".slide").bind("click",function(){
+      $.mobile.defaultPageTransition="slide";     //更改为滑动
+    });
+    $(".slideup").bind("click",function(){
+      $.mobile.defaultPageTransition="slideup";   //更改为上滑动
+    });
+    $(".slidedown").bind("click",function(){
+      $.mobile.defaultPageTransition="slidedown"; //更改为下滑动
+    });
+    $(".pop").bind("click",function(){
+      $.mobile.defaultPageTransition="pop";       //更改为弹出式
+    });
+    $(".fade").bind("click",function(){
+      $.mobile.defaultPageTransition="fade";      //更改为淡入
+    });
+    $(".flip").bind("click",function(){
+      $.mobile.defaultPageTransition="flip";      //更改为翻转
+    });
+  });
+  </script>
+</head>
+<body>
+<div data-role="page">
+  <div data-role="header" data-theme="b">
+    <h1>单击按钮更改全局默认的转场参数</h1>
+  </div>
+  <div data-role="content">
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+        <a href="#dialog" data-role="button" data-rel="page" class="slide">滑动</a>
+        <a href="#dialog" data-role="button" data-rel="page" class="slideup">上滑动</a>
+        <a href="#dialog" data-role="button" data-rel="page" class="slidedown">下滑动</a>
+      </div>
+      <div class="ui-block-b">
+          <a href="#dialog" data-role="button" data-rel="page" class="pop">弹出</a>
+        <a href="#dialog" data-role="button" data-rel="page" class="fade">淡入</a>
+        <a href="#dialog" data-role="button" data-rel="page" class="flip">翻转</a>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<div data-role="page" id="dialog"><!-- dialog-->
+  <div data-role="header" data-theme="e">
+    <h1>示例数据</h1>
+  </div><!-- /header -->
+  <div data-role="content" data-theme="e">
+    <p>通过在链接上使用<code>data-transition</code>标记，可以实现动画转场效果</p>
+    <p>由于转场使用了CSS变换, 因此在很多设备上需要硬件的支持</p>
+    <p>你是如何考虑的?</p>
+    <a href="#" data-role="button" data-theme="b" data-rel="back">返回</a>   
+  </div>
+</div>
+</body>
+</html>

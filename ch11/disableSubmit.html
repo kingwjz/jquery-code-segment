@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>禁止表单自动提交</title>
+<script type="text/javascript" src="jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("form").submit(function(e){
+    e.preventDefault();              //禁用表单的默认提交动作
+    alert("已经禁用表单的自动提交"); //弹出提示消息
+  });
+});
+</script>
+</head>
+<body>
+<!--定义一个表单-->
+<form name="input" action="" method="get">
+姓名:
+<input type="text" name="nickname" value="" size="20">
+<br />年龄:
+<input type="text" name="age" value="" size="20">
+<br />
+<!--这个按钮会引发表单的默认提交动作-->
+<input type="submit" value="提交表单">
+</form>
+</body>
+</html>
+

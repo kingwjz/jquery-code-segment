@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>显示Flickr中的照片</title>
+<style type="text/css">
+/* 控制图片显示的样式*/
+#images {
+	padding: 			0px;
+	margin: 			0px;
+	height: 			165px;
+	width: 				165px;
+	overflow:			hidden;
+}
+#images ul {
+	list-style:			none;
+	float: 				left;
+	padding: 			0px;
+	margin: 			0px;
+}
+#images ul li {
+	display: 			inline;
+}
+#images ul li img {
+	border: 			none;
+	padding: 			0 5px 5px 0;
+	width: 				50px;
+	height: 			50px;
+	opacity: 			0.6;
+	-moz-opacity: 		0.6;	
+}
+#images ul li img:hover {
+	opacity: 			1;
+	-moz-opacity: 		1;
+}
+</style>
+<!--加载jQuery库-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+  //在页加载就绪事件中，获取并显示图片
+  $(document).ready(function(){					
+	//使用jQuery的getJSON函数，调用Flickr中的最近的20张照片	   
+	$.getJSON("http://api.flickr.com/services/feeds/groups_pool.gne?id=998875@N22&lang=en-us&format=json&jsoncallback=?", displayImages);
+	 //在获取到JSON内容后，解析并显示图片
+	function displayImages(data) {																																   		//随机的选择开始位置，随机数在0－11之间，因为正显示9张图片
+		var iStart = Math.floor(Math.random()*(11));	
+		// 计算器置为0
+		var iCount = 0;												
+		var htmlString = "<ul>";					                              //将图片写到一个ul中  		
+		$.each(data.items, function(i,item){			                          //循环遍历返回的JSON数据图片											
+			if (iCount > iStart && iCount < (iStart + 10)) {				      //随机的显示9张图片								
+				var sourceSquare = (item.media.m).replace("_m.jpg", "_s.jpg");	  //仅显示小缩略图				
+				//将显示的图片拼合成HTML进行显示
+				htmlString += '<li><a href="' + item.link + '" target="_blank">';
+				htmlString += '<img src="' + sourceSquare + '" alt="' + item.title + '" title="' + item.title + '"/>';
+				htmlString += '</a></li>';
+			}
+			//增加计数器的值
+			iCount++;
+		});				
+	//将图片放到DIV中去
+	$('#images').html(htmlString + "</ul>");
+	}
+});
+</script>
+</head>
+<body>
+<!--显示Flickr的缩略图片-->
+<div id="images"></div>
+</body>
+</html>

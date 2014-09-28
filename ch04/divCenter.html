@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script> 
+$(document).ready(function(){
+	$('#centerDiv').center();
+	$(window).bind('resize',function(){
+		$('#centerDiv').center({transition:500});
+	});
+});
+(function($){
+	$.fn.extend({
+		center:function(options){
+			var options=$.extend({ // Default values
+				inside:window, // element, center into window
+				transition:0, // millisecond, transition time
+				minX:0, // pixel, minimum left element value
+				minY:0, // pixel, minimum top element value
+				withScrolling:true, // booleen, take care of the scrollbar (scrollTop)
+				vertical:true, // booleen, center vertical
+				horizontal:true // booleen, center horizontal
+			}, options);
+			return this.each(function(){
+				var props={position:'absolute'};
+				if(options.vertical){
+					var top=($(options.inside).height()-$(this).outerHeight())/2;
+					if(options.withScrolling) top+=$(options.inside).scrollTop()||0;
+					top=(top>options.minY?top:options.minY);
+					$.extend(props,{top:top+'px'});
+				}
+				if(options.horizontal){
+					var left=($(options.inside).width()-$(this).outerWidth())/2;
+					if (options.withScrolling) left+=$(options.inside).scrollLeft()||0;
+					left=(left>options.minX?left:options.minX);
+					$.extend(props,{left:left+'px'});
+				}
+				if(options.transition>0) $(this).animate(props,options.transition);
+				else $(this).css(props);
+				return $(this);
+			});
+		}
+	});
+})(jQuery);
+</script>
+<style type="text/css">
+#centerDiv {
+	width:150px;
+	height:150px;
+	font-size:12px;
+	color:blue;
+	background-color:#808080;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+<h2 id="h2-caption">超实用的jQuery代码段 - jQuery如何设定div始终居中显示</h2>
+<div id="centerDiv">设定div始终居中显示</div>
+</body>
+</html>

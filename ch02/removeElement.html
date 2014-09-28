@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("button#button-delete-1").click(function(){
+		var $li=$("ul li:eq(0)").remove();	//删除<ul>节点中第1个元素节点 
+		$("ul").append($li);				//把刚删除的元素节点重新添加到<ul>元素中去 
+	});
+	$("button#button-delete-2").click(function(){
+		$("ul li").remove("li[title=IBM]");	//将<ul>元素下title属性等于"IBM"的<li>元素删除 
+	});
+	$("button#button-delete-3").click(function(){
+		$("ul").empty();			//清空<ul>节点下全部<li>元素的内容 
+	});
+});
+</script>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+<h2>超实用的jQuery代码段 - jQuery删除节点元素的方法</h2>
+<p>您好！您最喜欢的IT公司是：</p>
+<ul>
+	<li title="Google">Google</li>
+	<li title="Apple">Apple</li>
+	<li title="Microsoft">Microsoft</li>
+	<li title="Intel">Intel</li>
+	<li title="IBM">IBM</li>
+	<li title="Facebook">Facebook</li>
+</ul>
+<button id="button-delete-1">删除节点元素 - remove方法 - 删除ul中第1个li元素节点并重新添加到ul元素中去 </button><br>
+<button id="button-delete-2">删除节点元素 - remove方法 - 将li元素title属性等于"IBM"的元素删除 </button><br>
+<button id="button-delete-3">删除节点元素 - empty方法 - 清空ul节点下第1个li元素的内容 </button><br>
+</body>
+</html>

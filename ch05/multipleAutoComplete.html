@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/js/jquery-1.9.1.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+$(function(){
+	var availableTags=[
+		"ActionScript语言",
+		"AppleScript语言",
+		"Asp语言",
+		"BASIC语言",
+		"C语言",
+		"C++语言",
+		"Clojure语言",
+		"COBOL语言",
+		"ColdFusion语言",
+		"Erlang语言",
+		"Fortran语言",
+		"Groovy语言",
+		"Haskell语言",
+		"Java语言",
+		"JavaScript语言",
+		"Lisp语言",
+		"Perl语言",
+		"PHP语言",
+		"Python语言",
+		"Ruby语言",
+		"Scala语言",
+		"Scheme语言"
+	];
+	function split(val){
+		return val.split(/,\s*/);
+	}
+	function extractLast(term){
+		return split(term).pop();
+	}
+
+	$("#tags")
+		// don't navigate away from the field on tab when selecting an item
+	.bind("keydown",function(event){
+		if(event.keyCode===$.ui.keyCode.TAB&&$(this).data("ui-autocomplete").menu.active){
+			event.preventDefault();
+		}
+	})
+	.autocomplete({
+		minLength:0,
+		source:function(request,response){
+			// delegate back to autocomplete, but extract the last term
+			response($.ui.autocomplete.filter(availableTags,extractLast(request.term)));
+		},
+		focus:function(){
+			// prevent value inserted on focus
+			return false;
+		},
+		select:function(event,ui){
+			var terms=split(this.value);
+			// remove the current input
+			terms.pop();
+			// add the selected item
+			terms.push(ui.item.value);
+			// add placeholder to get the comma-and-space at the end
+			terms.push("");
+			this.value=terms.join(", ");
+			return false;
+		}
+	});
+});
+</script>
+<style>
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+<h2 id="h2-caption">超实用的jQuery代码段 - jQuery实现多维数据用户输入自动完成</h2>
+<!-- Autocomplete -->
+<h2 class="demoHeaders">实现多维数据用户输入自动完成</h2>
+
+<div class="ui-widget">
+	<label for="tags">编程语言标签: </label>
+	<input id="tags" size="50">
+</div>
+
+<br/>
+<div id="div-log">
+	<p>日志记录：</p>
+</div>
+</body>
+</html>

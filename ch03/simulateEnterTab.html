@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<!-- tab 事件改为回车事件 -->   
+<script type="text/javascript" for="document" event="onkeydown">
+if(event.keyCode==13&&event.srcElement.type!='button'&&event.srcElement.type!='reset'&&event.srcElement.type!='textarea'&&event.srcElement.type!='')
+event.keyCode=9;
+</script>
+<script type="text/javascript">
+$(function(){
+	//加载页面时光标自动聚焦到 第一个文本框 
+	window.onload=function(){
+		document.getElementById("one").focus();
+	}   ;
+	//触发提交按钮后检验，默认失败，使光标聚焦在第一个文本框  
+	function gogo(){
+		alert("hello");
+		document.getElementById("one").focus();
+	}
+});
+</script>
+<style type="text/css">
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery通过回车事件模拟TAB事件</h2>
+	<hr><br>
+	<form action="" method="post">
+		<input id="one" type="text" onfocus="true" />
+		<input type="text" />
+		<input type="button" onclick="gogo();" value="提交" />
+	</form>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

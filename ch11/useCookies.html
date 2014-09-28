@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理Cookie</title>
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $("#btnsetcookie").click(function(){
+		setCookie("Demo","我的示例Cookie数据",2);		 //设置cookie
+	});
+    $("#btngetcookie").click(function(){
+		alert(getCookie("Demo"));                       //获取cookie
+	});	
+    $("#btndelcookie").click(function(){
+		deleteCookie("Demo");                           //删除cookie
+	});		
+});
+//获取cookie，参数name指定要获取的cookie的名称
+function getCookie( name ) {	
+	var start = document.cookie.indexOf( name + "=" );    //得到cookie字符串中的名称
+	var len = start + name.length + 1;                     //得到从起始位置到结束cookie位置的长度
+	 //如果起始没有值且name不存在于cookie字符串中，则返回null
+	if ( ( !start ) && ( name != document.cookie.substring( 0, name.length ) ) ) {
+		return null;
+	}
+	if ( start == -1 ) return null;                    //如果起始位置为-1也为null
+	var end = document.cookie.indexOf( ';', len );      //获取cookie尾部位置
+	if ( end == -1 ) end = document.cookie.length;       //计算cookie尾部长度
+	return unescape( document.cookie.substring( len, end ) );//获取cookie值
+}
+//设置cookie，name为名称，value为值，expires为过期日，path为路径，domain为域名，secure为加密
+function setCookie( name, value, expires, path, domain, secure ) {
+	var today = new Date();
+	today.setTime( today.getTime() );
+	if ( expires ) {
+		expires = expires * 1000 * 60 * 60 * 24;         //计算cookie的过期毫秒数
+	}
+	//计算cookie的过期日期
+	var expires_date = new Date( today.getTime() + (expires) );
+	//构造并保存cookie字符串
+	document.cookie = name+'='+escape( value ) +
+		( ( expires ) ? ';expires='+expires_date.toGMTString() : '' ) + //expires.toGMTString()
+		( ( path ) ? ';path=' + path : '' ) + 
+		( ( domain ) ? ';domain=' + domain : '' ) +
+		( ( secure ) ? ';secure' : '' );
+}
+//删除cookie，必须先获取指定名称的cookie，然后让cookie过期
+function deleteCookie( name, path, domain ) {
+	if ( getCookie( name ) ) document.cookie = name + '=' +
+			( ( path ) ? ';path=' + path : '') +
+			( ( domain ) ? ';domain=' + domain : '' ) +
+			';expires=Thu, 01-Jan-1970 00:00:01 GMT';
+}
+</script>
+</head>
+
+<body>
+<a href="#" id="btnsetcookie">设置cookie</a><br/>
+<a href="#" id="btngetcookie">获取cookie</a><br/>
+<a href="#" id="btndelcookie">删除cookie</a><br/>
+
+</body>
+</html>

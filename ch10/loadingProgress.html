@@ -1,0 +1,69 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>在页面切换时，显示加载信息</title>
+<!--指定设备的宽度-->
+<meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+</head> 
+<body> 
+
+<div data-role="page" id="pageone">
+	<div data-role="header">       
+		<h1>第 1 页</h1>
+	</div>
+	<div data-role="content">	
+        <!--放一个按钮，当这个按钮被单击时，显示进度并加载第2页-->
+        <a href="#" data-role="button" data-inline="true" id="btnloading">单击这里加载第2页</a>
+	</div>                        
+	<div data-role="footer" data-position="fixed">
+		<h4>页面脚注</h4>   
+	</div>
+    
+   <script type="text/javascript">         
+		function showLoading() {         //显示加载进度的函数  
+			$.mobile.loading('show', {     //使用loading函数的参数控制显示
+				text: '正在加载第2页...',  //显示的文本  
+				textVisible: true,        //是否显示文本
+				theme: 'a',                //显示的主题
+				textonly: false,          //是否仅显示文本
+				html: ""                   //HTML内容
+			});  
+		}  			
+		function hideLoading()  
+		{     
+		   $.mobile.loading('hide');     //隐藏进度框的显示
+		}         
+	   //绑定页面显示之前的事件
+	   $("#pageone").bind("pagebeforeshow",function(){	   
+	       $('#btnloading').unbind('click');   //取消绑定按钮单击事件
+		   //重新绑定按钮单击事件  		    
+	       $("#btnloading").bind('click',function(event){	
+   		       showLoading();                  //显示加载进度框
+			   //模拟过了5000毫秒之后切关闭加载框并切换到page2页面
+		  	   var tstloading = setTimeout(function(){
+			        hideLoading();
+	              $.mobile.changePage("#page2",{transition: "slide"});   			        
+			    },5000);
+		   });
+	   });
+	</script>    
+</div>
+
+<div data-role="page" id="page2"> <!--定义第2个页面，id值为page2-->
+	<div data-role="header">
+		<h1>第 2 页</h1>          
+	</div>
+	<div data-role="content">  	  <!--定义第2个页面的内容-->
+		这是第2页，单击下面的链接回到导航页<br/>	
+        <a href="#pageone">转到导航页面</a><!--返回到导航页面-->          	           
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h4>页面脚注</h4>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery遍历对象的属性</title>
+<script type="text/javascript" src="jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript"> 
+	var object =        //定义一个对象
+	{
+	   姓名:"丁哥",
+	   性别:"男",
+	   级别:'XXL级'
+	}; 
+    $.each(object, function(name, value)  //使用$.each遍历对象
+    {
+        console.log(name+':'+value);        //其中name表示键，value表示值
+    });
+</script>
+</head>
+
+<body>
+</body>
+</html>

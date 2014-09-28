@@ -1,0 +1,66 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>主题化的表单效果</title>
+<!--指定设备的宽度-->
+<meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+</head> 
+<body> 
+<div data-role="page" id="pageone">
+   <!--页眉使用e主题-->
+  <div data-role="header" data-position="fixed" data-theme="e">
+  <h1>创建表单的主题</h1>
+  </div>
+  <!--内容默认使用e主题-->
+  <div data-role="content" data-theme="e">
+  <form id="form1">
+  <div data-role="fieldcontain">
+    <label for="name">请输入您的姓名：</label>
+    <!--输入框使用a主题-->
+    <input type="text" name="text" id="name" placeholder="您的姓名..." data-theme="a">
+    <br><br>  
+    <label for="search">请输入您要搜索的内容？</label>
+    <!--搜索框使用d主题-->    
+    <input type="search" name="search" id="search" placeholder="需要搜索的内容..." data-theme="d">
+    <br><br>
+    <!--日期选择框使用c主题-->    
+    <label for="date">请选择您的出生日期：</label>
+    <input type="date" name="date" id="date" date-theme="c">
+    <br><br>
+    <!--下拉列表框使用b主题-->     
+    <label for="colors">选择喜欢的网站：</label>
+    <select id="colors" name="colors" data-theme="b">
+      <option value="ifeng">凤凰</option>
+      <option value="douban">豆瓣</option>
+      <option value="sina">新浪</option>
+    </select>
+    <br><br>
+    <!--滑块使用a主题-->      
+    <label for="switch">是否打开蓝牙：</label>
+    <select name="switch" id="switch" data-role="slider" data-theme="a">
+      <option value="on">开</option>
+      <option value="off">关</option>
+    </select>
+    <br><br>
+    <!--复选按钮分别使用a、b、c主题-->     
+   <div data-role="controlgroup">
+   <legend>请选择喜爱的电影：</legend>
+   <label for="mov1">美国队长2</label>
+   <input type="checkbox" name="mov1" id="mov1" data-theme="a">
+   <label for="mov2">救火英雄</label>
+   <input type="checkbox" name="mov2" id="mov2" data-theme="b">
+   <label for="mov3">催眠大师</label>
+   <input type="checkbox" name="mov3" id="mov3" data-theme="c">
+   </div>
+  </div>
+  <!--按钮使用a主题-->
+  <input type="button" data-inline="true" value="提交表单" data-theme="a">
+  </form>
+  </div>
+</div>
+</body>
+</html>

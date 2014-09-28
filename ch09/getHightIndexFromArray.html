@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>计算数组中特定索引位置的最大值</title>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+ $(document).ready(function(){	 
+	function getHighestVal(data, index)              //定义一个获取索相最大值的函数
+	{
+		var max=-1;                                   //保存返回值的全局变量
+		$.each(data, function (i,v)                  //循环传入的数组
+		{
+			thisVal = v[index];                       //得到特定索引的值 
+			max = (max < thisVal) ? thisVal : max;    //比较并将最大值赋给max
+		});
+		return max;                                   //将max作为最大值返回给调用端
+	}
+	var highest = getHighestVal(data, '桔子');        //调用函数，得到桔子的最大个数
+	$("#result").append("桔子的最大个数是："+highest); //输出结果值 
+ });
+ var data = Array();                                   //构建一个数组
+//为数组元素赋JSON对象值
+data[0] = {"苹果":1, "桃子":2, "桔子":3};
+data[1] = {"苹果":3, "桃子":3, "桔子":5};
+data[2] = {"苹果":4, "桃子":1, "桔子":6}; 
+ </script>
+</head>
+<body>
+<!--显示结果的DIV元素-->
+<div id="result"></div>
+</body>
+</html>

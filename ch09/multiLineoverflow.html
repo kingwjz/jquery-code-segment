@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>避免多行文本溢出算法</title>
+<style type="text/css">
+  #txt{
+	  width:300px;
+	  height:100px;
+      border:1px solid red;
+  }
+</style>
+<script src="jquery/jquery-1.9.1.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#txt").ellipsis(50);
+});
+/* 文本溢出显示省略号 */
+/* 用法：$(".box").ellipsis(50) */
+/*box为需要实现的Class*/
+(function($) {
+    jQuery.fn.ellipsis = function(maxwidth) {                        
+        this.each(function() {                         //循环选中的控件                   
+            if ($(this).text().length > maxwidth) {     //如果控件的text的长度大于maxwidth
+			    //则截取maxwidth的长度
+                $(this).text($(this).text().substring(0, maxwidth));
+                $(this).html($(this).html() + '...');  //在当前文本后面添加省略号
+            }
+        });
+    }
+})(jQuery)
+</script>
+</head>
+<body>
+<div id="txt">很多网站都有文章列表，列表中显示了文章的部分内容，更多的内容显示省略号，单击"显示更多"链接会将其余的内容显示出来，这样即可以让用户看到部分内容，又节省了空间，CSS具有text-overflow:ellipsis属性，可以实现当单行文本溢出显示区域时，显示省略号，但是这个属性不支持多行文本，下面的示例演示了如何创建支持多行文本的溢出显示效果。</div>
+</body>
+</html>

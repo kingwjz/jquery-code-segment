@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script> 
+$(document).ready(function(){
+});
+//此种方式降低了js和CSS的耦合性
+function changeFontSize(fontStyle){
+	//获取节点对象
+	var divNode=document.getElementsByTagName("div")[0];
+	//设置该节点的Name属性以及属性值
+	divNode.className=fontSize;
+}
+function changeFontSize2(fontSize){ 
+//获取节点对象
+var divNode = document.getElementsByTagName("div")[0];
+divNode.style.fontSize=fontSize;
+}
+</script>
+<style type="text/css">
+div{ 
+border:1px red solid; 
+width:455px; 
+font-size:16px; 
+} 
+.max{ 
+font-size:20px; 
+} 
+.moren{ 
+font-size:16px; 
+} 
+.min{ 
+font-size:12px; 
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+<h2 id="h2-caption">超实用的jQuery代码段 - jQuery动态调整字体大小的方法</h2>
+<a href="javascript:void(0)" onclick="changeFontSize2('20px')" class="max">大号</a>
+<a href="javascript:void(0)" onclick="changeFontSize2('16px')" class="moren">中号</a>
+<a href="javascript:void(0)" onclick="changeFontSize2('12px')" class="min">小号</a>
+<div>
+这里呢就是显示的文字，通过点击上面的超链接改变此字体大小<br/> 
+这里呢就是显示的文字，通过点击上面的超链接改变此字体大小<br/> 
+这里呢就是显示的文字，通过点击上面的超链接改变此字体大小<br/> 
+这里呢就是显示的文字，通过点击上面的超链接改变此字体大小<br/> 
+这里呢就是显示的文字，通过点击上面的超链接改变此字体大小<br/> 
+这里呢就是显示的文字，通过点击上面的超链接改变此字体大小<br/> 
+这里呢就是显示的文字，通过点击上面的超链接改变此字体大小<br/> 
+这里呢就是显示的文字，通过点击上面的超链接改变此字体大小<br/> 
+这里呢就是显示的文字，通过点击上面的超链接改变此字体大小<br/> 
+这里呢就是显示的文字，通过点击上面的超链接改变此字体大小<br/> 
+这里呢就是显示的文字，通过点击上面的超链接改变此字体大小<br/> 
+</div>
+<br/>
+<div id="div-log">
+	<p>日志记录：</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>创建全局性的页面监听器</title>
+<script src="jquery/jquery-1.9.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function(){
+		$("body").ajaxStart(function(){                     //在AJAX请求发起前执行事件
+		   $('#ajax_status_div').html("已经发送了AJAX请求"); //更新文本消息
+		   $('.activity_indicator').show();                  //显示AJAX的活动图像
+		});
+		//全局性的AJAX成功完成时执行的事件
+		$("body").ajaxSuccess(function(event,xmlHttp,options){
+			var status = xmlHttp.statusText;                 //获取状态文本消息
+			var url = options.url;                           //得到url
+			var data = options.data;                         //得到异步数据
+			$('.activity_indicator').hide();                 //隐藏AJAX活动图像
+			$('#ajax_status_div').html("URL : "+url+"  <br/>  Status : "+status);//更新文本消息
+		});    
+	});
+</script>
+</head>
+
+<body>
+</body>
+</html>

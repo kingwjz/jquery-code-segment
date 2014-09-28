@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+function ValidateSpecialCharacter(){
+	var code;
+	if(document.all) { //判断是否是IE浏览器
+		code = window.event.keyCode;
+	}else{
+		code = arguments.callee.caller.arguments[0].which;
+	}
+	var character = String.fromCharCode(code);
+	var txt=new RegExp("[ ,\\`,\\~,\\!,\\@,\#,\\$,\\%,\\^,\\+,\\*,\\&,\\\\,\\/,\\?,\\|,\\:,\\.,\\<,\\>,\\{,\\},\\(,\\),\\'',\\;,\\=,\"]");
+	//特殊字符正则表达式 
+	if(txt.test(character)){
+		if(document.all){
+			window.event.returnValue = false;
+		}else{
+			arguments.callee.caller.arguments[0].preventDefault();
+		}
+	}
+}
+// 验证中文字符和特殊字符
+function chineseVaildate(value){
+	if(value == null || value=="")
+	return true;
+	if((/[\u4E00-\u9FA5]+/.test(value))){
+		return false;
+	}
+	return true;
+}
+function validate(obj){
+	if(!chineseVaildate(obj.value)){
+		alert("有特殊字符和中文字符");
+	}
+}
+</script>
+<style type="text/css">
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:16px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery限制输入框仅接受特殊字符的输入</h2>
+	<hr><br>
+	<p>
+		不允许输入特殊字符和空格: <input id="code" onkeypress="return ValidateSpecialCharacter();" onblur="validate(this)"/><br/><br/>
+		不允许输入空格：<input id="dd" onkeyup="value=value.replace(/\s/g,'')"/>
+	</p>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

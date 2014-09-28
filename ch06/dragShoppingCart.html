@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>可拖放的购物车示例</title>
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+  <style>
+  h1 { padding: .2em; margin: 0; }
+  #products { float:left; width: 500px; margin-right: 2em; }
+  #cart { width: 200px; float: left; margin-top: 1em; }
+  #cart ol { margin: 0; padding: 1em 0 1em 3em; }
+  </style>
+  <script type="text/javascript">
+	  $(function() {
+		$( "#catalog" ).accordion();          //让div可以折叠显示
+		$( "#catalog li" ).draggable({        //让每一个li元素可以拖拽
+		  appendTo: "body",                   //在拖动过程中将元素添加到body中 
+		  helper: "clone"                     //使用复制的方式进行拖动
+		});
+		$( "#cart ol" ).droppable({           //将产品放置到购物车中 
+		  activeClass: "ui-state-default",     //激活时的样式
+		  hoverClass: "ui-state-hover",        //经过时的样式
+		  accept: ":not(.ui-sortable-helper)", //可接受的元素
+		  drop: function( event, ui ) {      //放置到目标位置时事件
+			$( this ).find( ".placeholder" ).remove();//移除添加到购物车容器
+			//将拖拽的li添加到目标位置
+			$( "<li></li>" ).text( ui.draggable.text() ).appendTo( this );
+		  }
+		}).sortable({                        //对容器进行排序
+		  items: "li:not(.placeholder)",      //获取所有的li元素列表
+		  sort: function() {                //对列表进行排序
+			$( this ).removeClass( "ui-state-default" );
+		  }
+		});
+	  });
+  </script>
+</head>
+<body>
+ 
+<div id="products">
+  <h1 class="ui-widget-header">产品列表</h1>
+  <div id="catalog">
+    <h2><a href="#">T恤</a></h2>
+    <div>
+      <ul>
+        <li>男士T恤</li>
+        <li>女士T恤</li>
+        <li>中性T恤</li>
+      </ul>
+    </div>
+    <h2><a href="#">包包</a></h2>
+    <div>
+      <ul>
+        <li>蓝色包包</li>
+        <li>黑色包包</li>
+        <li>绿色包包</li>
+      </ul>
+    </div>
+    <h2><a href="#">小配件</a></h2>
+    <div>
+      <ul>
+        <li>iPhone</li>
+        <li>iPod</li>
+        <li>iPad</li>
+      </ul>
+    </div>
+  </div>
+</div>
+ 
+<div id="cart">
+  <h1 class="ui-widget-header">购物车</h1>
+  <div class="ui-widget-content">
+    <ol>
+      <li class="placeholder">添加物料到购物车</li>
+    </ol>
+  </div>
+</div>
+</body>
+</html>

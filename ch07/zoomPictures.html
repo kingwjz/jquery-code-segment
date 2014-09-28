@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>放大照片预览</title>
+<link rel="stylesheet" href="jquery/zoomz/zoomooz.css" type="text/css" media="screen" />
+<style type="text/css">
+/*图库样式*/
+#gallery {
+	width:460px;
+	height: 270px;
+	margin: 0 auto;
+	padding: 10px;
+	background: #383131;
+}
+
+ul {
+	list-style-type: none;
+	position: absolute;
+	width: 460px;
+}
+
+#gallery ul li {
+	float: left;
+	margin: 10px;
+	background: white;
+	height: 100px;
+	width: 100px;
+}
+
+#gallery ul li:hover {
+	border: 3px solid white;
+	margin: 7px;
+	cursor: pointer;
+}
+
+#gallery ul li img{
+	height: 100px;
+	width: 100px;
+}
+</style>
+<!--添加对jQuery库的引用-->
+<script src="jquery/jquery-1.9.1.js" type="text/javascript"></script> 
+<!--使用zoomooz所需要库文件，以便实现单击图片放大效果-->
+<script type="text/javascript" src="jquery/zoomz/sylvester.js"></script>
+<script type="text/javascript" src="jquery/zoomz/purecssmatrix.js"></script>
+<script type="text/javascript" src="jquery/zoomz/jquery.animtrans.js"></script>
+<script type="text/javascript" src="jquery/zoomz/jquery.zoomooz.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".zoom").click(function(evt) {  //为相册关联单击事件
+			evt.stopPropagation();          //停止事件传递
+			$(this).zoomTo();              //调用zoomTo方法，放大图片
+		});
+		$(window).click(function(evt) {   //为window关联单击事件
+			evt.stopPropagation();          //停止事件的传递
+			$("body").zoomTo();             //单击body时，恢复放大的图片
+		});
+		$("body").zoomTo();                 //初始放大body区域
+	});
+</script>
+
+</head>
+
+<body>
+<!--实现简单的相册效果-->
+<div id="gallery" class="zoom">
+<ul>
+    <!--相册所需要的图片集-->
+    <li class="zoom"><img src="images/sample1.jpg"/></li>
+    <li class="zoom"><img src="images/sample2.jpg"/></li>
+    <li class="zoom"><img src="images/sample3.jpg"/></li>
+    <li class="zoom"><img src="images/sample5.jpg"/></li>
+</ul>		
+</div>
+</body>
+</html>

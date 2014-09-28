@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用正则表达式限制用户的输入</title>
+<style type="text/css">
+   #txt{
+        padding:5px; 
+		height:30px; 
+		width:300px; 
+		border: solid 1px #C60	   
+   }
+</style>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+$(function(){
+	var $input =$("#txt"),$button=$("#btnok");  //获取按钮和文本框实例以进行缓存
+	$button.click(function(){                  //按钮单击时检测输入内容
+		if(/[\s><,._\。\[\]\{\}\?\/\+\=\|\'\\\":;\~\!\@\#\*\$\%\^\&`\uff00-\uffff)(]+/.test( $input.val())) {  
+		    $input.select();                     //如果验证失败则选中文本
+			alert("输入字符只能是中文英文-");	 //提示错误消息
+		}else{
+			  alert("输入正确！");		         //如果验证通过则显示正确消息
+		}
+	});
+});
+</script>
+</head>
+<body>
+<!--允许用户输入文本的文本框-->
+<input type="text" value="" id="txt">
+<input type="button" value="确定" id="btnok">
+</body>
+</html>

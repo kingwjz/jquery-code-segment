@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script> 
+$(document).ready(function(){
+	$(".nav a").each(function(){
+		$(this).click(function(){
+			$(".nav .hover").removeClass("hover");
+			$(this).addClass("hover");
+			return false;//防止页面跳转 
+		});
+	});
+});
+</script>
+<style type="text/css">
+.hover {
+	font-size:32px;
+	color:red;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+<h2 id="h2-caption">超实用的jQuery代码段 - jQuery基于url地址为导航链接添加class样式</h2>
+<div class="nav">
+	<ul>
+		<li><a href="#.html" class="hover">Homepage</a></li>
+		<li><a href="#.html">Micorsoft</a></li>
+		<li><a href="#.html">Google</a></li>
+		<li><a href="#.html">Intel</a></li>
+		<li><a href="#.html">IBM</a></li>
+		<li><a href="#.html">HP</a></li>
+	</ul>  
+</div>
+<br/>
+<div id="div-log">
+	<p>日志记录：</p>
+</div>
+</body>
+</html>

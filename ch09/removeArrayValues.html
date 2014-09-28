@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>从数组中删除元素</title>
+<style type="text/css">
+  #result{
+	  font-size:9pt;
+  }
+</style>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+ $(function(){
+  var alldata="王大富,张三甲,李仁杰,刘三张,张二李,李四丁,丁四吴,吴若刘,刘大金,王小富"      
+  var alldataarr=alldata.split(",")       //调用split，将字符串分隔为数组 
+  var idx=[];
+  //grep接收要过滤的数组以及一个回调函数
+  $.grep(alldataarr,function(val,key){    //回调函数的val表示元素值，key表示元素下标 
+	if(val.indexOf("李")!==-1){
+       idx.push(val);
+	}
+  });		
+  $.each(idx,function(key,val){
+       alldataarr.splice($.inArray(val,alldataarr),1); //依次移除姓李的员工记录  
+  });  
+  alldataarr.splice($.inArray('张三甲',alldataarr),1); //删除张三甲   
+  $.each(alldataarr,function(key,val){  //循环输出结果值
+		$("#result").append(val+",");	  
+  });
+ }); 
+</script>
+</head>
+
+<body>
+<div id="result"></div>
+</body>
+</html>

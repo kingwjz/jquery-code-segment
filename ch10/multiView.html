@@ -1,0 +1,65 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>多页面的jQuery Mobile效果示例</title>
+<!--指定设备的宽度-->
+<meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" rel="stylesheet" type="text/css"/>
+<script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+</head> 
+<body> 
+<div data-role="page" id="navpage"><!--定义导航页-->
+	<div data-role="header">       
+		<h1>第 1 页</h1>
+	</div>
+	<div data-role="content">	   <!--导航列表，每一个链接指向一个page id-->
+		<ul data-role="listview">
+			<li><a href="#page2">第 2 页</a></li>
+            <li><a href="#page3">第 3 页</a></li>
+			<li><a href="#page4">第 4 页</a></li>
+		</ul>		
+	</div>                         <!--页脚，data-position指示在页面的底部-->
+	<div data-role="footer" data-position="fixed">
+		<h4>页面脚注</h4>   
+	</div>
+</div>
+<div data-role="page" id="page2"> <!--定义第2个页面，id值为page2-->
+	<div data-role="header">
+		<h1>第 2 页</h1>          
+	</div>
+	<div data-role="content">  	  <!--定义第2个页面的内容-->
+		这是第2页，单击下面的链接回到导航页<br/>	
+        <a href="#navpage">转到导航页面</a><!--返回到导航页面-->          	           
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h4>页面脚注</h4>
+	</div>
+</div>
+<div data-role="page" id="page3"> <!--定义第3个页面的内容-->
+	<div data-role="header">
+		<h1>第 3 页</h1>         
+	</div>
+	<div data-role="content">	
+		这是第3页，单击下面的链接回到导航页<br/>
+        <a href="#navpage">转到导航页面</a><!--返回到导航页面-->          	            
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h4>页面脚注</h4>
+	</div>
+</div>
+<div data-role="page" id="page4"> <!--定义第4个页面的内容-->
+	<div data-role="header">
+		<h1>第 4 页</h1>
+	</div>
+	<div data-role="content">	
+		这是第4页，单击下面的链接回到导航页<br/>
+        <a href="#navpage">转到导航页面</a><!--返回到导航页面-->          	
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h4>页面脚注</h4>
+	</div>
+</div>
+</body>
+</html>

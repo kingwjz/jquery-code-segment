@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>动态获取时间戳</title>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+	  var mydate=new Date();                      //构建日期类型
+	  mydate.getDate();                             //获取当前日期时间
+      var today=$.Date.timestamp(                 //计算时间戳
+	  {year:mydate.getFullYear(),                  //得到当前年
+	  month:mydate.getMonth()+1,                   //得到当前月
+	  date: mydate.getDay(),                       //得到当前天
+	  hour:mydate.getHours(),                      //得到当前时
+	  minute:mydate.getMinutes(),                  //得到当前分
+	  second: mydate.getSeconds()});               //得到当前秒
+	  $("#result").append("当前时间戳"+today+"<br/>"); //显示当前日期时间戳  	  
+   });  
+  $.extend({                                  //构建jQuery实例插件函数
+    Date:{                                    //扩展Date对象
+        timestamp: function( options ) {     //添加一个timestamp对象
+            options = options||{};            //参数选项
+			//从options中获取年、月、日、时、分、秒，然后构建新的日期类型，调用Date.parse转成时间戳
+            var date =[ options.year || '3000', options.month || '01', options.date || '01'],
+                time=[ options.hour || '0', options.minute || '0', options.second || '0' ],
+                value=Date.parse( new Date( [date.join('-'),time.join(':')].join(' ')));
+            if( !isNaN( value ) ) return value;
+            return null;
+        }
+     }
+});    
+</script>
+</head>
+
+<body>
+<div id="result"></div>
+</body>
+</html>

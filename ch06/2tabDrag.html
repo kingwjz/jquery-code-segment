@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在2个Tab页之间进行拖放</title>
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+  <style>
+  #sortable1 li, #sortable2 li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px; }
+  </style>
+  <script type="text/javascript">
+	  $(function() {
+		$( "#sortable1, #sortable2" ).sortable().disableSelection(); //使列表元素可拖动
+		 var $tabs = $( "#tabs" ).tabs();                            //使之显示Tab标签页
+		 var $tab_items = $( "ul:first li", $tabs ).droppable({      //使Tab的标题元素可以放置
+		  accept: ".connectedSortable li",                             //接收来自其他Tab页中的li元素
+		  hoverClass: "ui-state-hover",                               //变更样式
+		  drop: function( event, ui ) {                             //触发放置时的事件，即在目标Tag上放置事件
+			var $item = $( this );                                  //获取当前的item
+			var $list = $( $item.find( "a" ).attr( "href" ) )       //获取当前item中的a元素的herf属性
+			  .find( ".connectedSortable" );
+	 			ui.draggable.hide( "slow", function() {              //隐藏原始元素的显示
+				//激活当前tab的显示
+			  $tabs.tabs( "option", "active", $tab_items.index( $item ) );
+			  $( this ).appendTo( $list ).show( "slow" );          //将当前拖拽的元素添加到目标的链接残有中
+			});
+		  }
+		});
+	  });
+  </script>
+</head>
+<body>
+ <div id="tabs">
+  <ul>
+    <!--tab标签页-->
+    <li><a href="#tabs-1">我的同学列表</a></li>
+    <li><a href="#tabs-2">我的好友列表</a></li>
+  </ul>
+    <!--tab1内容页-->
+  <div id="tabs-1">
+    <ul id="sortable1" class="connectedSortable ui-helper-reset">
+      <li class="ui-state-default">张小三</li>
+      <li class="ui-state-default">李小四</li>
+      <li class="ui-state-default">王小五</li>
+      <li class="ui-state-default">赵小六</li>
+      <li class="ui-state-default">阮小七</li>
+    </ul>
+  </div>
+    <!--tab2内容页-->  
+  <div id="tabs-2">
+    <ul id="sortable2" class="connectedSortable ui-helper-reset">
+      <li class="ui-state-highlight">李阿福</li>
+      <li class="ui-state-highlight">张阿军</li>
+      <li class="ui-state-highlight">丁阿勇</li>
+      <li class="ui-state-highlight">蔡阿平</li>
+      <li class="ui-state-highlight">六阿三</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

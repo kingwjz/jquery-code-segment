@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+/*鼠标右键插件*/ 
+(function($){
+	$.fn.extend({
+		//定义鼠标右键方法，接收一个函数参数
+		"rightClick":function(fn){
+			//调用这个方法后将禁止系统的右键菜单
+			$(document).bind('contextmenu',function(e){
+				return false;
+			});
+			//为这个对象绑定鼠标按下事件
+			$(this).mousedown(function(e){
+				//如果按下的是右键，则执行函数
+				if(e.which==3){
+					fn();
+				}
+			});
+		}
+	});
+})(jQuery);
+$(document).ready(function(e){
+	$("body").rightClick(function(){$("#div-log").html($("#div-log").html()+"<p>"+"鼠标右键单击"+"</p>");});
+});
+</script>
+<style type="text/css">
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery绑定鼠标右键单击事件</h2>
+	<hr><br>
+	<p>单击鼠标右键进行测试</p>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>调整表格宽度的示例效果</title>
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+<style type="text/css">
+td, th {
+    border: 1px solid #ccc;
+}
+table, td, th {
+    /*table-layout:fixed;*/
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+table { margin: 1em 0; }
+</style>
+<script type="text/javascript">
+	$(function () {
+		$('table th').resizable({  //为表格表头添加可拖动的效果
+			handles: 'e',           //指定拖动锚点为e
+			minWidth: 18           //指定最小宽度为18px
+		});
+	});
+</script>
+</head>
+<body>
+<!--将要调整单元格宽度的表格-->
+<table style="width: 80%">
+    <tr>
+        <th>姓 名</th>
+        <th>性 别</th>
+        <th>年 龄</th>
+    </tr>
+    <tr>
+        <td>张三丰</td>
+        <td>男</td>
+        <td>200</td>
+    </tr>
+</table>
+</body>
+</html>

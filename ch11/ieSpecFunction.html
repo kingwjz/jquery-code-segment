@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>为IE添加特定的功能</title>
+<script type="text/javascript" src="jquery/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+   <!-- 使用Javascript脚本 -->
+ var IE7 = window.navigator.userAgent.match(/msie 7.0/gi);       //如果是IE7
+ if(IE7 != null){
+	window.onload = function(){document.body.className="IE7";};//在页面加载时添加样式类
+ }  
+   <!--使用jQuery库 -->
+   $(document).ready(function(){
+       var browser = $.browser.msie;                             //判断是否为IE
+       var version = $.browser.version;                           //获取IE版本
+       if(browser != null && version == "7.0"){                 //如果为IE7
+       	$("body").addClass("IE7");                               //添加样式类
+       }
+   });
+</script>
+
+<!--使用条件注释 -->
+<!--[if IE 7]>
+<script type='text/javascript'>
+     window.onload = function(){document.body.className="IE7";};
+</script>
+<![endif]-->
+</head>
+
+<body>
+</body>
+</html>

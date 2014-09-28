@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>表单序列化</title>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){                //在页就绪事件中，为表单提交关联处理代码
+	$('form').submit(function() {              //关联submit事件处理器
+	  $("#result").html(($(this).serialize()));//序列化表单数据
+	  return false;                             //禁止表单提交的默认行为
+	});
+  });
+</script>
+</head>
+
+<body>
+<!--构建一个表单，表单提交方法为post-->
+<form method="post">
+   <!--构建2个文本域和一个隐藏域-->
+  <div><input type="text" name="a" value="1" id="a" /></div>
+  <div><input type="text" name="b" value="2" id="b" /></div>
+  <div><input type="hidden" name="c" value="3" id="c" /></div>
+  <!--多行文本域-->
+  <div><textarea name="d" rows="8" cols="40">4</textarea></div>
+  <!--下拉选择域-->
+  <div><select name="e">
+    <option value="5" selected="selected">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+  </select></div>
+  <div>
+     <!--复选框选项-->
+     <input type="checkbox" name="f" value="8" id="f" /><span>单击复选框进行选择</span>
+  </div>
+  <div>
+    <input type="submit" name="g" value="提交" id="g" />
+  </div>
+</form>
+<!----显示序列化表单后的结果-->
+<div id="result"></div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用拖拽事件编程</title>
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+<style>
+  #draggable { width: 150px; height: 150px; background-color:#990}
+</style>
+<script type="text/javascript">
+  $(document).ready(function(e){
+	  //使用draggable初始化拖拽功能
+      $("#draggable").draggable({cursor:"move",cursorAt:{top:56,left:56}});   	  
+	  $("#btnenable").click(function(e){
+		 $("#draggable").draggable("enable");   //对禁用的拖拽功能进行启用  
+	  });
+	  $("#btndisable").click(function(e){
+		 $("#draggable").draggable("disable");  //对启用的拖拽进行禁用 
+	  });	 
+	  $("#btndestroy").click(function(e){
+		 $("#draggable").draggable("destroy");  //删除拖拽的功能 
+	  });	   
+  });
+</script>
+</head>
+<body>
+<!--拖拽的功能按钮-->
+<button id="btnenable">允许拖拽</button>
+<button id="btndisable">禁止拖拽</button>
+<button id="btndestroy">删除拖拽功能</button>
+<!--可拖拽的div元素-->
+<div id="draggable" class="ui-widget-content">
+  <p>点击这里进行拖动</p>
+</div>
+</body>
+</html>

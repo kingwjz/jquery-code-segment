@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+<style>
+  #draggable, #draggable2 { width: 120px; height: 120px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+</style>
+ <script type="text/javascript">
+	$(function() {
+	$( "#draggable" ).draggable({ distance: 20 });  //指定仅当距度为20像素以后才开始进行拖动
+	$( "#draggable2" ).draggable({ delay: 1000 });  //仅当延时1000毫秒以后才开始进行拖动
+	$( ".ui-draggable" ).disableSelection();        //在拖动时使其文字不能被选择
+   });
+ </script>
+</head>
+<body>
+ 
+<div id="draggable" class="ui-widget-content">
+  <p>仅当拖动距离超过20个像素时，才开始进行拖动</p>
+</div>
+ <div id="draggable2" class="ui-widget-content">
+  <p>不管距离大小，只要拖动时间大于1000毫秒时才开始进行拖动</p>
+</div>
+</body>
+</html>

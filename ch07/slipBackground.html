@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>滑动的背景图</title>
+<style type="text/css">
+ #flower { 
+			height:500px;
+			/*指定div的背景图片，水平方向滚动0px，宽度为100%*/
+			background:url('images/sample1.jpg') repeat-x scroll 0 0 transparent; width:100%; }
+</style>
+<!--加载jQuery库-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">	
+  var scrollSpeed = 70;       //指定滑动速度，也就是定时器的间隔时间，毫秒为单位
+  var step = 1;               //指定步进值，值越大滑动幅度越大
+  var current = 0;            //保存当前位置的中转变量
+  var imageWidth = 2247;      //图片滚动的最大宽度
+  var headerWidth = 800;      //边框宽度
+  //图片宽度和边框宽度的差，就是重新开始滑动的宽度
+  var restartPosition = -(imageWidth - headerWidth);  
+  function scrollBg(){               //滚动背景函数
+    current -= step;                   //调整步进值
+    if (current == restartPosition){  //恢复初始值
+      current = 0;
+    }
+    //设置背景的位置
+    $('#flower').css("background-position",current+"px 0");
+  }
+  //在页面加载后，使用setInterval反复调用scrollBg来滚动图片
+  var init = setInterval("scrollBg()", scrollSpeed);
+</script>
+</head>
+<body>
+  <!--用来滑动背景的div元素-->
+ <div id="flower"></div>
+</body>
+</html>

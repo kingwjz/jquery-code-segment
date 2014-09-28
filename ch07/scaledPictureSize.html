@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>按比例缩放图片</title>
+<!--加载jQuery库-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+    //要绑定load事件，以便在所有内容加载完成，包含图片加载完成后应用新大小
+	//否则在页就绪事件中再应用样式，就不会有效果
+	$(window).bind("load", function() {
+		//循环页面上的所有的图片，应用样式设置CSS
+		$('#imglist img').each(function() {
+			var maxWidth = 200;                   //设置固定的图片宽度
+			var maxHeight = 200;                  //设置固定的图片高度
+			var ratio = 0;                        //宽度或高度的调整比率
+			var width = $(this).width();         //得到当前图片的宽度
+			var height = $(this).height();       //得到当前图片的高度
+		    //如果当前的宽度大于所要求的最大宽度，则需要进行宽度的调整
+			if(width > maxWidth){
+				ratio = maxWidth / width;          
+				$(this).css("width", maxWidth);         //调置CSS调整最大宽度
+				$(this).css("height", height * ratio);  //设置CSS调整按调整宽度的比率来调整高度
+				height = height * ratio;                 //设置当前的height变量为调整后的高度
+			}
+		    //如果当前的高度大于所要求的最大高度，则需要进行高度的调整
+			if(height > maxHeight){
+				ratio = maxHeight / height;
+				$(this).css("height", maxHeight);       //调整CSS为最大高度
+				$(this).css("width", width * ratio);    //按比例调整最大宽度
+				width = width * ratio;                   //设置当前的width变量为调整后的宽度
+			}
+		});	
+	});
+</script>
+</head>
+
+<body>
+<!--HTML上的图片列表-->
+<div id="imglist">
+  <img src="images/sample1.jpg" />
+  <img src="images/sample2.jpg" />
+  <img src="images/sample3.jpg" />
+  <img src="images/sample5.jpg" />  
+</div>
+</body>
+</html>

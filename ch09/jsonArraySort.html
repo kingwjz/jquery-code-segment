@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用jQuery对Json排序</title>
+ <head>
+    <title>jQuery数组和字符串--对象数组排序</title>
+ <link rel="stylesheet" type="text/css" href="style.css"/>
+ <script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+ <script type="text/javascript">
+	$(function(){
+		//构造一个JSON数组，用于包含员工信息
+		var peoples =[{'card_id':'P0001','p_name':'张三','p_age':18},
+			{'card_id':'P0003','p_name':'赵六','p_age':23},
+			{'card_id':'P0002','p_name':'李四','p_age':42},
+			{'card_id':'P0004','p_name':'王五','p_age':35}];
+		$.each(peoples, function(index, value)              //遍历JSON数组
+			{
+				$('#ia').append('<tr><td>' + value.card_id +  //将数组中的JSON对象显示到表格中
+					'</td><td>' + value.p_name +
+					'</td><td>' + value.p_age + '</td></tr>');
+			});
+		var card_id_peoples = peoples.sort(function(a, b) { //按card_id字段进行排序
+				if(a.card_id < b.card_id) return -1;
+				if(a.card_id > b.card_id) return 1;
+				return 0; } ); 
+		$.each(card_id_peoples, function(index, value){     //显示到HTML表格中
+				$('#ib').append('<tr><td>' + value.card_id +
+					'</td><td>' + value.p_name +
+					'</td><td>' + value.p_age + '</td></tr>')
+			});
+		var p_age_peoples = peoples.sort(function(a, b){   //按年龄进行排序
+				return (a.p_age - b.p_age);
+			});
+		$.each(p_age_peoples,function(index, value){        //显示到HTML的表格中
+				$('#ic').append('<tr><td>' + value.card_id +
+					'</td><td>' + value.p_name +
+					'</td><td>' + value.p_age + '</td></tr>')
+			});});
+  </script>
+ </head>
+<body>
+ <div id="tbllayout">
+  <!--未经排序的HTML表格-->
+  <table class="gridtable" id='ia' border="1">
+  <tr>
+	<th>员工工号</th><th>员工姓名</th><th>员工年龄</th>
+  </tr>
+ </table>
+ <!--按员工工号排序的HTML表格-->
+ <table class="gridtable" id='ib' border="1">
+  <tr>
+    <th>员工工号[排序]</th><th>员工姓名</th><th>员工年龄</th>
+  </tr>    
+ </table>
+ <!--按员工年龄排序的HTML表格--> 
+ <table class="gridtable" id='ic' border="1">
+   <tr>
+    <th>员工工号</th><th>员工姓名</th><th>员工年龄[排序]</th>
+   </tr>        
+ </table>
+ </div>
+</body>
+</html>

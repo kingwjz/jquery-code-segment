@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery版本检查方法</title>
+<script type="text/javascript" src="jquery/jquery-1.9.1.js">  </script>
+</head>
+<body>
+<script type="text/javascript">
+jQuery(function(){ 
+	if (jQuery.fn.jquery>"1.9.0"){   //使用jQuery.fn.jquery可以获取jQuery版本
+		alert("jQuery版本过高");     //如果版本大于1.9.0，则显示提示消息
+	}
+	else{
+		alert(jQuery.fn.jquery);     //否则仅显示其版本
+	}	   
+});
+</script>
+</body>
+</html>

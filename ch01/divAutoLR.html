@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<style type="text/css">
+<!--
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:16px "Trebuchet MS", sans-serif;
+}
+label {
+	font:12px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+-->
+</style>
+<style type="text/css">
+#left{
+	background:#999999;
+	float:left;
+	width:100px;
+}
+#right{
+	background:#0066FF;
+	color:#fff;
+	width:300px;
+	float:left;
+}
+.clear{
+	clear:both;
+}
+</style>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery实现左右div自适应相同高度</h2>
+	<hr><br>
+	<div id="left">
+		<div style="padding:10px">
+			<p>左侧页面</p>
+		</div>
+	</div>
+	<div id="right">
+		<div style="padding:10px">
+			<p>右侧页面</p>
+			<p>右侧页面</p>
+			<p>右侧页面</p>
+			<p>右侧页面</p>
+			<p>右侧页面</p>
+			<p>右侧页面</p>
+		</div>
+	</div>
+<script type="text/javascript">
+function $(id){
+	return document.getElementById(id);
+}
+function autoHeight(){
+	if($("left").offsetHeight>=$("right").offsetHeight){
+		$("right").style.height=$("left").offsetHeight + "px";
+	}else{
+		$("left").style.height=$("right").offsetHeight + "px";
+	}
+}
+window.onload = function(){
+	autoHeight();
+};
+</script>
+	<div style="clear:both">
+	</div>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>可拖动的表格行</title>
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var c = {};                           //保存对对已经拖动的tr的引用
+		$("#inventor tr").draggable({          //对表格进行拖动
+				helper: "clone",               //拖动时复制
+				start: function(event, ui) { //在开始拖动时，保存拖动的行
+					c.tr = this;
+					c.helper = ui.helper;
+				}
+		});
+		$("#invention tr").droppable({       //放置拖动元素插件
+			drop: function(event, ui) {     //放置拖动时，触发该事件
+				//获取拖动的元素文本
+				var inventor = ui.draggable.text();
+				//向文本框中写入文本
+				$(this).find("input").val(inventor);
+				//移除表格行和helper
+				$(c.tr).remove();
+				$(c.helper).remove();
+			}
+		});
+	});
+</script>
+</head>
+
+<body>
+<p>请将表格中的发明家拖动到其相应的发明处</p>
+<div id="inventor">
+<table>
+    <tbody>
+        <tr id="1"><td>亚历山大·格雷厄姆·贝尔</td></tr>
+        <tr id="2"><td>托马斯·爱迪生</td></tr>
+        <tr id="3"><td>尼古拉斯·特斯拉</td></tr>
+    </tbody>
+</table>
+</div>
+<form>
+  <div id="invention">
+        <table>
+        <tbody>
+        <tr><td><input name="answer1" />特斯拉线圈</td><td>解释</td></tr>
+        <tr><td><input name="answer2" />电话</td><td>解释</td></tr>
+        <tr><td><input name="answer3" />留声机</td><td>解释</td></tr>
+        <tr><td><input name="answer4" />灯泡</td><td>解释</td></tr>
+        </tbody>
+        </table>
+    </div>
+</form>
+</body>
+</html>

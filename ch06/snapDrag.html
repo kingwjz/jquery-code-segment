@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>具有捕捉效果的拖动示例</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+  .draggable { width: 90px; height: 80px; padding: 5px; float: left; margin: 0 10px 10px 0; font-size: .9em; }
+  .ui-widget-header p, .ui-widget-content p { margin: 0; }
+  #snaptarget { height: 140px; }
+  </style>
+  <script type="text/javascript">
+	  $(function() {
+		$( "#draggable" ).draggable({ snap: true });                //在拖拽时，捕捉所有的元素  
+		$( "#draggable2" ).draggable({ snap: ".ui-widget-header" });//仅捕到特定容器边缘
+		//捕捉特定容器边缘，snapMode指定为outer表示捕捉到外部边缘
+		$( "#draggable3" ).draggable({ snap: ".ui-widget-header", snapMode: "outer" });
+		$( "#draggable4" ).draggable({ grid: [ 20, 20 ] });         //以20x20单元格进行捕捉
+		$( "#draggable5" ).draggable({ grid: [ 80, 80 ] });         //以80x80单元格进行捕捉
+	  });
+  </script>
+</head>
+<body>
+ 
+<div id="snaptarget" class="ui-widget-header">
+  <p>我是捕的目标</p>
+</div>
+ 
+<br style="clear:both">
+ 
+<div id="draggable" class="draggable ui-widget-content">
+  <p>默认情况下(snap: true),捕捉到所有其他可拖拽元素</p>
+</div>
+ 
+<div id="draggable2" class="draggable ui-widget-content">
+  <p>仅捕捉到大盒子</p>
+</div>
+ 
+<div id="draggable3" class="draggable ui-widget-content">
+  <p>仅捕到大盒子的外部边缘</p>
+</div>
+ 
+<div id="draggable4" class="draggable ui-widget-content">
+  <p>仅捕到 20 x 20 网格</p>
+</div>
+ 
+<div id="draggable5" class="draggable ui-widget-content">
+  <p>捕到 80 x 80 网格</p>
+</div>
+ 
+</body>
+</html>

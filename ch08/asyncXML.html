@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>加载并显示XML文件</title>
+<style type="text/css">
+  body{
+	  font-size:9pt;
+  }
+</style>
+<script src="jquery/jquery-1.9.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+ $(document).ready(function(){
+	 $("#btn1").click(function(){     //当单击按钮时，加载XML文件
+		$.ajax({                        //调用$.ajax读取XML文件
+		url:'asyncXML.xml',                  //指定读取的Url
+		type: 'GET',                    //指定请求方式
+		dataType: 'xml',                //这里指定数据类型为xml
+		timeout: 1000,                  //指定超时交付晨
+		error: function(xml){         //异步请求错误时，显示错误消息
+			  alert('错误的加载xml文档'+xml);
+		},
+		success: function(xml){       //异步请求成功时
+		       //使用jQuery的XML语法查找并读取XML内容
+			   $(xml).find("student").each(function(i){
+				 var id=$(this).children("id"); //取对象
+				 var id_value=$(this).children("id").text(); //取文本
+				 var name=$(this).children("name").text(); 
+                 var email=$(this).attr("email");
+				 $('<li></li>')        //将XML内容写入到网页上
+					.html(id_value+' '+name+' '+email)
+					.appendTo('ol');
+			  });
+		}
+		});
+ });
+ });
+</script>
+</head>
+
+<body>
+<button id="btn1">显示XML内容</button>
+<!--显示XML内容的div元素-->
+<div id="xmlcontent">
+<ol>
+</ol>
+</div>
+</body>
+</html>

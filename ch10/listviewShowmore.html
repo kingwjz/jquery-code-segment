@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>实现列表框的加载更多效果</title>
+<!--指定设备的宽度-->
+<meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+</head> 
+<body> 
+<!--构建一个页面来显示listview的初始数据-->
+<div data-role="page" id="pageone">
+	<div data-role="header" data-position="fixed">       
+		<h1>显示更多列表框数据</h1>
+	</div>
+	<div data-role="content">
+      <ul data-role="listview" id="contentList">
+      <li><a href="#">初始数据1</a></li>
+      <li><a href="#">初始数据2</a></li>
+      <li><a href="#">初始数据3</a></li>
+      <li><a href="#">初始数据4</a></li>
+      </ul>
+      <p>&nbsp;</p>
+      <div id="morediv">
+      <!--创建一个显示更多的按钮-->
+       <button id="btnmore" data-icon="refresh">显示更多</button>
+      </div>
+   </div>                       
+	<div data-role="footer" data-position="fixed">
+		<h4>显示更多列表框数据</h4>   
+	</div>   
+   <script type="text/javascript">
+       var j=5;
+	   //绑定页面显示之前的事件
+	   $("#pageone").bind("pagebeforeshow",function(){	   
+	       $('#btnmore').unbind('click');                //取消绑定按钮单击事件
+		   //重新绑定按钮单击事件  		    
+	       $("#btnmore").bind('click',function(event){	
+				 for(i=j;i<=j+5-1;i++){                 //循环向listview中添加新的元素
+  			        var content = "<li><a href=\"#\">加载数据"+i+"</a></li>";					 
+					//调用append方法，向listview中添加新元素，并命名用refresh刷新控件
+				    $("#contentList").append(content);            
+				 }
+				 j+=5;                                   //增加计数器变量
+				 $("#contentList").listview('refresh'); //刷新listview的显示
+		   });
+	   });   
+   </script>       
+</div>
+</body>
+</html>

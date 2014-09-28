@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+window.onload=function(){
+	for(var i=0;i<$("input").length;i++){
+		$("input")[i].onfocus=function(){
+			this.className="css-text-high";
+		};
+		$("input")[i].onblur=function(){
+			this.className="css-text";
+		};
+	}
+};
+</script>
+<style type="text/css">
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:16px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+form {
+	font:16px "Trebuchet MS", sans-serif;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<style>
+form .css-text,form .css-text-high{width:160px;height:20px;padding-left:4px;line-height:20px;}
+form .css-text-high{background-position:0 -31px;font-weight:bold;color:#0000FF;}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery输入框获取焦点时关联文本高亮提示</h2>
+	<hr><br>
+	<form>
+		<p><label>文本框:&nbsp;&nbsp;</label><input class="css-text" type="text"/></p>
+		<p><label>文本框:&nbsp;&nbsp;</label><input class="css-text" type="text"/></p>
+	</form>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

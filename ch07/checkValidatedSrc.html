@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>检测图片Url示例</title>
+<script src="jquery/jquery-1.9.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+//在页加载就绪事件中，为链接关联事件处理代码
+$(document).ready(function(){
+$("#btntesting").click(function(){	
+	var answer=imageTest($("#googleimg").attr("src"));  //检测选中的img的src
+	(answer==true)?alert("成功"):alert("失败");         //显示检测结果消息
+	});
+});
+
+function imageTest(url) {
+    var imageTarget = $('#urlImageTester');            //获取隐藏的img元素
+	imageTarget.attr('src', url);                      //设置img元素的src属性
+    var props = ['naturalHeight', 'fileCreatedDate'];  //定义属性数组
+	var tests = [];                                    //定义测试结果数组
+	var answer;                                        //定义返回结果变量
+    for (i in props) {                                //遍历数组元素
+	    tests.push(imageTarget.attr(props[i]));        //向test数组中插入特定数组元素的值
+	 }
+    if($.browser.msie){(    //如果是IE，如果第2个元素为未定义，则返回false,否则为true
+	        tests[1] == 'undefined') ? answer = false : answer = true;
+	}else{                  //如果为其他浏览器，如果第1个元素值为0,则返回false，否则为true
+		(tests[0] == 0) ? answer = false : answer = true;
+	}
+    return answer;                                    //返回检测结果
+}
+</script>
+<style type="text/css">
+  #urlImageTester{
+	  display:none;   /*定义一隐藏的img元素*/
+  }
+</style>
+</head>
+
+<body>
+  <!--定义一个用来进行测试的隐藏的img元素-->
+  <img id="urlImageTester" />
+  <!--定义一个用来测试的图片-->
+  <img id="googleimg"  src="http://www.baidu.com/img/baidu_jgylogo3.gif?v=97734195.gif" />
+  <br/>
+  <!---定义一个用来检测图片的链接-->
+  <a href="#" id="btntesting">检测图片链接</a>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>组合选择框选择效果</title>
+<!--指定设备的宽度-->
+<meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+</head> 
+<body> 
+<div data-role="page" id="pageone">
+  <div data-role="header">
+  <h1>请选择日期和时间</h1>
+  </div>
+
+  <div data-role="content">
+    <form id="myform">
+      <div data-role="fieldcontain">
+        <fieldset data-role="controlgroup">
+          <legend>安排会议：</legend>
+            <label for="day">选择日期：</label>
+            <select name="day" id="day">        <!--动态添加日期-->
+            </select>
+            <!--定义一个选择时间的菜单-->
+            <label for="time">选择时间：</label>
+            <select name="time" id="time">
+              <option value="08">08:00</option>
+              <option value="09">09:00</option>
+              <option value="10">10:00</option>
+              <option value="11">11:00</option>
+              <option value="12">12:00</option>
+              <option value="13">13:00</option>
+              <option value="14">14:00</option>
+              <option value="15">15:00</option>
+              <option value="16">16:00</option>
+            </select>
+        </fieldset>
+      </div>
+      <!--定义一个显示选择项的按钮-->
+      <input type="button" data-inline="true" id="btnsend" value="显示您的选择">
+    </form>
+  </div>  
+   <script type="text/javascript">  
+       //在页面初始加载时，对选择框进行初始设置 
+	   $("#pageone").bind("pagebeforeshow",function(){	
+		  var selOpt = $("#day option");     //获取option列表
+		  selOpt.remove();	                  //移除现有的option数据
+	      var mydate=new Date();             //构建一个新的日期
+          var myselect = $("#day");          //得到日期选择列表对象
+          var mytime = $("#time");  		  //获取时间选择列表对象  		  	  
+		  var content="";
+		  for(var i=0;i<=10;i++){			  //循环在日期选择列表中加入10个日期
+			  content=mydate.toLocaleDateString();
+			  myselect.append("<option value='"+content+"'>"+content+"</option>");	
+              mydate.setDate(mydate.getDate()+1);              		  			
+		  }
+		  myselect[0].selectedIndex = 0;     //提定日期选择列表的选择项为0
+		  mytime[0].selectedIndex=0;
+		  myselect.selectmenu('refresh');	 //刷新日期选择列表	 		  
+	       $('#btnsend').unbind('click');   //取消绑定按钮单击事件
+		   //重新绑定按钮单击事件  		    
+	       $("#btnsend").bind('click',function(event){	
+		     //获取当前选择的文本
+			alert("日期 :  "+myselect.children('option:selected').text() +
+			 "   时间 : "+mytime.children('option:selected').text());			
+		   });				   		   		     		  
+	   });   
+   </script>    
+</div>
+</body>
+</html>

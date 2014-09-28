@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>拖放到目的地示例</title>
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+  <style>
+  #draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+  </style>
+  <script type="text/javascript">
+	  $(function() {
+		$( "#draggable" ).draggable();    //对可拖拽的元素开启拖放功能
+		$( "#droppable" ).droppable({     //启用拖放功能的支持
+		  drop: function( event, ui ) {  //当拖放到目的地时，触发drop事件
+			$( this )                     //为元素添加新样式
+			  .addClass( "ui-state-highlight" )
+			  .find( "p" )                //设置元素内部的p的html代码
+				.html( "已经拖放到了目的地!" );
+		  }
+		});
+	  });
+  </script>
+</head>
+<body>
+ <!--可拖放的元素-->
+<div id="draggable" class="ui-widget-content">
+  <p>拖这里到目的地</p>
+</div>
+ <!--拖放需要放置的目标元素-->
+<div id="droppable" class="ui-widget-header">
+  <p>请放在这里</p>
+</div>
+</body>
+</html>

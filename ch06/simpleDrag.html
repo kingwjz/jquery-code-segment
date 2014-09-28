@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>基本的拖拽示例</title>
+  <style type="text/css">
+/*模块拖拽*/
+  .drag{position:absolute;width:100px;height:100px;border:1px solid #ddd;background:#FBF2BD;text-align:center;padding:5px;top:100px;left:20px;cursor:move;}
+</style>
+<script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+// 模块拖拽
+$(function(){
+var _move=false;                      //目标对象是否处于移动状态的标记
+var _x,_y;                             //鼠标离控件左上角的相对x,y的位置
+    $(".drag").click(function(){
+        }).mousedown(function(e){    //当按下鼠标左键时
+        _move=true;                    //将移动标记设置为true，表示开始移动
+        _x=e.pageX-parseInt($(".drag").css("left")); //得到左上角的x的位置
+        _y=e.pageY-parseInt($(".drag").css("top"));  //得到左上角的y的值置
+        $(".drag").fadeTo(20, 0.5);                  //点击后开始拖动并透明显示
+    });
+    $(document).mousemove(function(e){
+        if(_move){                         //如果开始移动了鼠标并且_move标记设置为true
+            var x=e.pageX-_x;              //移动时根据鼠标位置计算控件左上角的绝对位置
+            var y=e.pageY-_y; 
+            $(".drag").css({top:y,left:x});//使作CSS设置控件的新位置
+        }
+    }).mouseup(function(){
+    _move=false;
+    $(".drag").fadeTo("fast", 1);          //松开鼠标后停止移动并恢复成不透明
+  });
+});
+</script>
+</head>
+<body>
+  <!--可以被拖动的div元素-->
+  <div class="drag">请单击这里进行拖拽</div>
+</body>
+</html>

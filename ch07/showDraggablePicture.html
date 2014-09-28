@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>可移动的网页图片</title>
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+   //在页就绪事件中，为拖动标题栏关联相关的事件
+    $(document).ready(function(){
+     var mover = false;             //控制是否移动的全局变量
+	var currx = 0;                   //保存当前x位置的变量
+	var curry = 0;                   //保存当前y位置的变量
+	//为图片标题栏关联mousedown事件
+	$(".imgtext .title").mousedown(function(eventObject){
+  		mover = true;               //移动开始，设置移动标志
+  		currx = eventObject.pageX;   //保存当前的x位置
+  		curry = eventObject.pageY;   //保存当前的y位置
+	});
+    //为window关联mousemove事件，以跟踪并改变包含图片的div的位置
+	$(window).bind('mousemove', function(eventObject) {
+		if(!mover)                   //如果未处于移动状态，则返回
+			return;		
+		var obj = $(".imgtext");     //更改包含图片的div的位置
+		mouseX = eventObject.pageX;   //获取当前鼠标所在的x位置
+		mouseY = eventObject.pageY;   //获取当前鼠标所在的y位置
+		x = obj.position().left;      //得到当前图片div所在的x位置
+		y = obj.position().top;       //得到当前图片div所在的y位置
+		obj.css({                     //改变当前图片div的位置
+			left: x + (mouseX-currx),
+			top: y + (mouseY-curry),
+		});
+		currx = eventObject.pageX;    //保存当前x的位置
+  		curry = eventObject.pageY;    //保存当前y的位置
+	});
+    //为图片标题栏关联mouseup事件
+	$(".imgtext .title").mouseup(function() {
+		mover = false;               //更改mover标记为false		
+	});
+});
+</script>
+
+<style type="text/css">
+   .imgtext{
+	   width:500px;
+	   height:400px;
+       position:absolute;
+	   a:hover{cursor:pointer} 	   
+   }  
+   .title{
+	   background-color:#FFC;
+	   font-size:16px;
+	   height:30px;
+   }
+   .
+</style>
+</head>
+
+<body>
+   <div class="imgtext">
+       <a href="#"><div class="title">单击这里可以拖动图片哦</div></a>
+       <img src="images/sample5.jpg" />
+   </div>
+</body>
+</html>

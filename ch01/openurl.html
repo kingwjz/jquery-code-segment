@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script>
+$(document).ready(function(){
+	$('.jqopenurl').attr({target:"_blank"});
+	$('a[rel=ext]').click(function(){
+		$(this).attr('target','_blank');
+	});
+});
+function open_url(){
+	window.open("http://www.microsoft.com/");
+	window.open("http://www.google.cn/");
+}
+</script>
+<style>
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:16px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+.jqopenurl{
+	color:red;
+}
+</style>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery在新窗口打开链接</h2>
+	<hr><br>
+	<p><a href="http://www.microsoft.com/" class="jqopenurl" title="title">Link to Microsoft</a></p>
+	<p><a href="http://www.google.cn/" rel="ext" title="title">Link to Google</a></p>
+	<form>
+		<input type="button" value="同时打开  Microsoft+Google 主页" onclick="open_url()"/>
+	</form>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

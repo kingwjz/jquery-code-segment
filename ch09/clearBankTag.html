@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用jQuery删除空白标签和具有非中断空格的标签</title>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+	$('p,div').each(function() {  //循环选中的p和div元素
+		var $p = $(this),      
+			txt = $p.html();        //得到其html内容
+		if (txt=='&nbsp;') {       //如果html内容是&nbsp
+			$p.remove();            //则移除该元素
+		}
+	});	
+	$('p,div')
+	   .filter(function() {        //过滤p和div元素中text为''的元素
+		   return $.trim($(this).text()) === ''
+	   })
+	   .remove()                     //移除这些元素
+   });
+</script>
+</head>
+
+<body>
+<p>
+   <!--定义一些为空的标签-->
+  <span>&nbsp;</span>  
+  <span></span>
+   <p></p>
+   <p>&nbsp;</p>
+   <div>&nbsp;</div>
+  <span>正工的文本</span>
+</p>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--注意这里的顺序，将对$的重写放在了第1个，这样jQuery库的$会覆盖第1个-->
+<script type="text/javascript" src="11_2_1.js"></script>
+<script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
+<title>解决jQuery冲突</title>
+</head>
+
+<body>
+<div id="result">这是一个div</div>
+<script type="text/javascript">
+   jQuery.noConflict();         //解决命名冲突的方法
+   $("#result");                //调用的是自定义的$
+    $j=jQuery;                  //重命名jQuery库
+   alert($j("#result").text());//调用jQuery库的方法
+</script>
+</body>
+</html>

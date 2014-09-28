@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>加载服务器端内容并传递参数</title>
+<style type="text/css">
+   #logscontent{
+	   font-size:12px;
+   }
+</style>
+
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	  $("#btn1").click(function(){                          //按钮事件处理代码
+	     $name = $("#parameters  option:selected").val();     //获取select中当前选中的参数值
+	    //使用load方法，加载服务器端的PHP网页，并传递客户端选择的参数
+		$('#logscontent').empty().load("http://localhost/Chp08/loadWithParameters_server.php",{ name : $name });		   
+	  })
+	})
+</script>
+</head>
+<body>
+<h2>加载服务器端的参数描述</h2>
+<label for="parameters"></label>
+<select name="parameters" size="5" id="parameters">
+  <option value="1" selected="selected">url</option>
+  <option value="2">data</option>
+  <option value="3">callback</option>
+</select>
+<br/>
+<button id="btn1" type="button">获取参数描述</button>
+<!--用来放置服务器端文件的div元素-->
+<div id="logscontent"></div>
+</body>
+</html>

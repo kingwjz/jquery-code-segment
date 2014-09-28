@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>显示Google PicasaWeb相片</title>
+<style type="text/css">
+/* 控制图片显示的样式*/
+#images {
+	padding: 			0px;
+	margin: 			0px;
+	font-size:9pt;
+}
+</style>
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">	
+	$(document).ready(function(){
+		//所要访问的种子的URL信息
+		var json_Album_URI = "https://picasaweb.google.com/data/feed/base/"
+			+ "user/"       +   "fivemu"                  //用户名
+			+ "?alt="       +   "json"                    //返回格式
+			+ "&kind="      +   "album"                   //相册
+			+ "&hl="        +   "en_US"                   //语言
+			+ "&fields="    +   "entry(media:group,id)"   
+			+ "&thumbsize=" +   104
+			+ "&max-results="+   2                       //最大返回结果
+ 
+	$.getJSON(json_Album_URI,                            //调用getJSON发送请求，获取JSON
+	function(data){
+		$.each(data.feed.entry, function(i,item){
+			//得到相册的URL
+			$.each(item.media$group.media$thumbnail, function(i,item){
+				var album_thumb_URL = item.url;
+				$('#images').append("相册缩略图: <img src=" + album_thumb_URL + '></img><br />');
+			});
+			//获取相册的标题
+			var album_Title = item.media$group.media$title.$t;
+			$('#images').append("相册标题: " + album_Title + '<br />');
+			//获取相册的描述
+			var album_Description = item.media$group.media$description.$t;
+			$('#images').append("相册描述: " + album_Description + '<br />');
+			//相册编号
+			var album_ID = item.id.$t;
+			//从相册的URL中获取到相册的数字编号
+			album_ID = album_ID.split('/')[9].split('?')[0];
+			$('#images').append("相册编号: " + album_ID + '<br /><br />');
+			//根据指定的相册ID向服务器发送请求，获取相册下面的所有图片
+			var json_Photo_URI = "https://picasaweb.google.com/data/feed/base/"
+				+ "user/"       +   "fivemu"
+				+ "/albumid/"   +   album_ID
+				+ "?alt="       +   "json"
+				+ "&kind="      +   "photo"
+				+ "&hl="        +   "en_US"
+				+ "&fields="    +   "entry(media:group)"
+				+ "&thumbsize=" +   104;
+			$.ajax({                                 //发送异步Ajax请求
+				type: 'GET',
+				url: json_Photo_URI,                 //请求的地址
+				success : function(data){          //请求成功时，执行的回调函数
+					$.each(data.feed.entry, function(i,item){
+						var photo_URL;
+						$('#images').append("下面是相册图片: <br />");
+						$.each(item.media$group.media$content, function(i,item){
+							photo_URL = item.url;                                        //图片完整Url
+						});						
+						$.each(item.media$group.media$thumbnail, function(i,item){
+							var photo_Thumb_URL = item.url;                            //缩略图Url
+							$('#images').append("<a href="+photo_URL+"><img src=" + photo_Thumb_URL + '></img></a><br />');
+						});						
+						var photo_Title = item.media$group.media$title.$t;              //图片标题
+						$('#images').append("图片标题: " + photo_Title + '<br />');					
+						var photo_Description = item.media$group.media$description.$t; //图片描述
+						$('#images').append("图片描述: " + photo_Description + '<br /><br />');
+					});
+				 },
+				dataType: 'json',                //数据类型
+				async: false				     //是否异步调用，false表示同步
+			});                            
+		});
+	});
+});
+</script>	
+</head>
+<body>
+    <!--显示图片的div容器-->
+    <div id="images"></div>    
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>实现不断闪烁的文字效果</title>
+<script type="text/javascript" src="jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+    function blink(selector){
+        $(selector).fadeOut('slow', function(){ //缓慢的淡出显示
+            $(this).fadeIn('slow', function(){ //缓慢的淡入显示
+                blink(this);                     //递归调用自身
+            });
+        });
+    }     
+    $(document).ready(function(){              //在页面就绪时
+        blink('#title');                         //调用递归的文字闪烁方法
+    }); 
+</script>
+</head>
+<body>
+<h2 id="title">我是闪烁的文字</h2>
+</body>
+</html>

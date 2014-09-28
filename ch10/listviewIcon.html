@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!--使用名为viewport的meta值，其content指定自适应设备的宽度--> 
+<meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<title>使用缩略图效果的图标</title>
+</head>
+
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+		<h1>选择感兴趣的栏目进行查看</h1>
+	</div>
+	<div data-role="content">
+    <!--在内容区中添加一个列表项-->
+	<ul data-role="listview" data-inset="true">
+        <!--使用class为ui-li-icon为图片应用缩略图效果-->
+		<li><img src="images/firefox.png" class="ui-li-icon">火狐浏览器，非常好用的小巧的浏览器</li>
+        <!--更改列表项默认的图标为加号-->
+		<li data-icon="plus">
+          <a href="http://www.google.com">
+          <!--为图标应用class类ui-li-icon设置缩略图样式-->
+            <img src="images/chrome.png" class="ui-li-icon">谷哥浏览器，不用多说了，搜索起家的，现在很强
+          </a>
+        </li>
+        <!--更改列表项默认的图标为提示符号-->        
+		<li data-icon="info">
+          <a href="http://www.baidu.com">
+          <!--为图标应用class类ui-li-icon设置缩略图样式-->          
+             <img src="images/us.png" class="ui-li-icon"> 美国硅谷 高科技公司林立
+          </a>
+        </li>
+        <!--隐藏显示默认的图标-->            
+		<li data-icon="false">
+          <a href="http://www.21cn.com">
+          <!--为图标应用class类ui-li-icon设置缩略图样式-->              
+             <img src="images/germany.png" class="ui-li-icon"> 德国SAP ERP软件中的老大
+           </a>
+         </li>
+	</ul>
+   </div>
+	<div data-role="footer" data-position="fixed">
+		<h4>世界之最</h4>
+	</div>
+</div>
+</body>
+</html>
+</body>
+</html>

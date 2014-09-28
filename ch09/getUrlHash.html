@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>更改浏览器的Hash字符</title>
+<script src="jquery/jquery-1.9.1.js"></script> 
+<script type="text/javascript">
+  $(document).ready(function(){
+	//单击按钮时，更新Url的Hash值，在进行AJAX调用时非常有用
+	$('button').click(function(){
+		var hash=this.id;                            //得到id值
+		location.hash = hash;                         //更新URL栏上的Hash值
+  	    var param = document.URL.split('#')[1];      //得到Hash字符串
+		$("#result").html("当前的Hash字符串:"+param); //显示Hash字符串			
+	}); 
+  });
+</script>
+</head>
+<body>
+<p>URL地址的Hash参数是指URL井号"#"后面的字符，作为浏览器的猫点，也被很多地方所使用。</p>
+<button id="search">搜索</button>
+<button id="list">查看</button>
+<button id="update">更新</button>
+<!--显示结果-->
+<div id="result"></div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#id-input-h2").click(function(){
+		$("#div-log").html($("#div-log").html()+"<p>标题文字标记："+$("h2#h2-caption")[0].tagName+"</p>");
+	});
+});
+</script>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+<h2 id="h2-caption">超实用的jQuery代码段 - jQuery检查特定HTML元素的方法</h2>
+<form> 
+<input type="button" id="id-input-h2" value="获取标题文字标记">
+</form>
+<div id="div-log">
+</div>
+</body>
+</html>

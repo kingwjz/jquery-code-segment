@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用最快的选择器</title>
+<script type="text/javascript" src="jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(e) {
+	alert($("div h3").html());        //使用标签选择器
+    alert($("#div1 h3").html());      //使用ID选择器
+	alert($("#div2 h3").html());
+});
+</script>
+</head>
+
+<body>
+<div id="div1">
+  <p>
+    <div id="div2">
+      <h3>这是一个示例</h3>
+    </div>
+  </p>  
+  <p>演示了在一个div中具有多个元素的例子</p>  
+</div>
+</body>
+</html>

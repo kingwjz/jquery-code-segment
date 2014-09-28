@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Email地址验证</title>
+<style type="text/css">
+   body{
+	   font-size:9pt;
+   }
+</style>
+<script src="jquery/jquery-1.9.1.js"></script> 
+<script type="text/javascript">
+  $(document).ready(function(){
+	$("#iptmail").blur(function(){                   //文本框失去焦点时，触发事件
+	var search_str = new RegExp(/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/);  //指定正则表达式
+	 var email_val = $("#iptmail").val();              //获取邮件地址
+	 if(!search_str.test(email_val)){                  //测试邮件地址是否正确
+		$("#txt").css("color","red");	               //如果不正确，则显示红色消息
+	    $("#txt").html("请输入正确的邮件地址!");      //如果不正确显示错误消息
+	    $('#iptmail').focus();                        //重新设置输入焦点
+	 }
+	 else{
+		 $("#txt").css("color","green");              //如果正确，显示绿色消息
+    	 $("#txt").html("邮件地址正确");		      //如果正确则提示正确消息
+	 }	 
+	});
+  });
+</script>
+</head>
+<body>
+请输入Email:
+<input type="text" id="iptmail" size="60" />
+<!--显示验证消息文本-->
+<span id="txt"></span>
+</body>
+</html>

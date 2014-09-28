@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>在屏幕旋转时更改显示样式</title>
+<!--指定设备的宽度-->
+<meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+</head> 
+<body> 
+<script type="text/javascript">
+$(document).on("pageinit",function(event){           //为页面关联初始化事件
+  $(window).on("orientationchange",function(){       //为窗口关联方向更改事件
+    if(window.orientation == 0)                       //0表示竖向，则更改CSS显示效果
+    {
+      $("p").text("方向已经变为竖向！").css({"background-color":"yellow","font-size":"300%"});
+    }
+    else
+    {                                                  //否则表示显示为横向，更改字体大小
+      $("p").text("方向已经变为横向！").css({"background-color":"pink","font-size":"200%"});
+    }
+  });                   
+});
+</script>
+</head>
+<body>
+<!--构建屏幕显示页面-->
+<div data-role="page">
+  <div data-role="header">
+    <h1>使用orientationchange事件</h1>
+  </div>
+   <!--在页面内容区域，简单的放置了几个段落元素-->
+  <div data-role="content">
+    <p>请试着旋转移动设备</p>
+    <p><b>注释：</b>要查看本示例的效果，必须使用移动设备</p>
+  </div>
+  <div data-role="footer">
+    <h1>页脚文本</h1>
+  </div>
+</div> 
+</body>
+</html>

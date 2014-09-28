@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>拖动进行选择</title>
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+  <style>
+  #feedback { font-size: 1.4em; }
+  #selectable .ui-selecting { background: #FECA40; }
+  #selectable .ui-selected { background: #F39814; color: white; }
+  #selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+  </style>
+  <script type="text/javascript">
+  $(function() {
+    $( "#selectable" ).selectable({                                 //进行拖动多选
+      stop: function() {                                          //触发stop事件
+        var result = $( "#select-result" ).empty();                //清空结果列表
+        $( ".ui-selected", this ).each(function() {              //循环选中的结果
+          var index = $( "#selectable li" ).index( this );        //获取选中的索引
+          result.append( " #" + ( index + 1 )+" "+$(this).html());//显示选中的索引和值
+        });
+      }
+    });
+  });
+  </script>
+</head>
+<body>
+ 
+<p id="feedback">
+<span>已经选择的结果:</span> <span id="select-result">none</span>.
+</p>
+ <ol id="selectable">
+  <li class="ui-widget-content">张小三</li>
+  <li class="ui-widget-content">李小四</li>
+  <li class="ui-widget-content">王小五</li>
+  <li class="ui-widget-content">赵小六</li>
+  <li class="ui-widget-content">胡小七</li>
+  <li class="ui-widget-content">朱小九</li>
+</ol>
+</body>
+</html>

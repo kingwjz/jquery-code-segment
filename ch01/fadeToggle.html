@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#id-button-fadetoggle").click(function(){
+		$("#id-div-fade").fadeToggle(3000);
+		$("#div-log").html($("#div-log").html()+"<p>"+"fadeToggle()函数 ：切换淡入淡出效果来操作被选页面元素"+"</p>");
+		$("#id-div-fade").fadeToggle(3000);
+		$("#div-log").html($("#div-log").html()+"<p>"+"fadeToggle()函数 ：切换淡入淡出效果来操作被选页面元素"+"</p>");
+		$("#id-div-fade").fadeTo(1500,0.5);
+		$("#div-log").html($("#div-log").html()+"<p>"+"fadeTo()函数 ：切换淡入淡出效果来操作被选页面元素"+"</p>");
+	});
+});
+</script>
+<style>
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+.h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+.h3-text {
+	font:16px "Trebuchet MS", sans-serif;
+}
+p {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+</head>
+<body>
+	<h2 class="h2-caption">超实用的jQuery代码段 - jQuery切换页面淡入淡出操作</h2>
+	<hr><br>
+	<h3 class="h3-text">页面淡入淡出 --- fadeToggle()与fadeTo()函数</h3>
+	<button id="id-button-fadetoggle">切换页面淡入淡出效果</button>
+	<div id="id-div-fade">
+		<p>这里js控制的两个数值:</p>
+		<p>1.第1个为淡入时间;</p>
+		<p>2.第2个为淡出时间;</p>
+	</div>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>实现facebook风格的预加载</title>
+<!--添加对jQuery的库引用-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+//定义所要显示的图片的Url
+var nextimage = "http://estimation.mycollect.net/201007/201007281543318064.jpg"; 
+//在页面加载时，定时预加载
+$(document).ready(function(){  
+  //使用setTimeout函数，定时的加载下一张图片
+  window.setTimeout(function(){  
+    //调用load方法，异步的加载服务器端的图片
+    var img = $("<img>").attr("src", nextimage).load(function(){  
+	//图片加载完成，追加到div元素中
+     $('div').append(img);  
+    });  
+  }, 100);  
+});
+</script>
+</head>
+
+<body>
+<div id="img"></div>
+</body>
+</html>

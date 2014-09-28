@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btn-slideup").click(function(){
+		$("#id-div-slide").slideUp("fast");
+		$("#div-log").html($("#div-log").html()+"<p>"+"slideUp()函数：通过使用滑动效果，隐藏被选元素"+"</p>");
+	});
+	$("#btn-sildedown").click(function(){
+		$("#id-div-slide").slideDown(1000);
+		$("#div-log").html($("#div-log").html()+"<p>"+"slideDown()函数：通过使用滑动效果，显示隐藏的被选元素"+"</p>");
+	});
+});
+</script>
+<style>
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+.h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+.h3-text {
+	font:16px "Trebuchet MS", sans-serif;
+}
+p {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+</head>
+<body>
+	<h2 class="h2-caption">超实用的jQuery代码段 - jQuery页面滑动操作</h2>
+	<hr><br>
+	<div id="id-div-slide">
+		<h3 class="h3-text">jQuery 效果 - 页面滑动操作</h3>
+		<h3 class="h3-text">jQuery slideUp()函数/slideDown()函数 - 通过jQuery，用户可以使用toggle()函数来切换hide()和show()函数</h3>
+	</div>
+	<button id="btn-slideup">页面滑动隐藏</button>
+	<button id="btn-sildedown">页面滑动显示</button>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

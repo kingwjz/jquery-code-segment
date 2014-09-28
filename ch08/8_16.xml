@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tabledata>
+	<row>
+		<column>使用AJAX无刷新异步提交表单</column>
+		<column>使用AJAX无刷新上传图片示例</column>
+		<column>使用AJAX无刷新验证PHP会话是否有效</column>
+	</row>
+	<row>
+		<column>在AJAX异步调用时显示加载指示器</column>
+		<column>在AJAX异步调用时处理JSON数据</column>
+		<column>解析XML数据并加载到HTML表格</column>
+	</row>
+	<row>
+		<column>加载网页文件内容并传递服务器端参数</column>
+		<column>使用AJAX无刷新删除网页记录</column>
+		<column>使用AJAX异步验证用户名和密码</column>
+	</row>
+</tabledata>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/js/jquery-1.9.1.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<script type="text/javascript">
+$(function(){
+	var availableTags=[
+			"ActionScript语言",
+			"AppleScript语言",
+			"Asp语言",
+			"BASIC语言",
+			"C语言",
+			"C++语言",
+			"Clojure语言",
+			"COBOL语言",
+			"ColdFusion语言",
+			"Erlang语言",
+			"Fortran语言",
+			"Groovy语言",
+			"Haskell语言",
+			"Java语言",
+			"JavaScript语言",
+			"Lisp语言",
+			"Perl语言",
+			"PHP语言",
+			"Python语言",
+			"Ruby语言",
+			"Scala语言",
+			"Scheme语言"
+		];
+	$( "#autocomplete").autocomplete({
+		source:availableTags
+	});
+});
+</script>
+<style>
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+<h2 id="h2-caption">超实用的jQuery代码段 - jQuery实现简单用户输入自动完成</h2>
+<!-- Autocomplete -->
+<h2 class="demoHeaders">简单用户输入自动完成</h2>
+<div>
+	<input id="autocomplete" title="type &quot;a&quot;">
+</div>
+<br/>
+<div id="div-log">
+	<p>日志记录：</p>
+</div>
+</body>
+</html>

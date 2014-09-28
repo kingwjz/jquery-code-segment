@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>具有调整宽度和可选择的表格</title>
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+<style type='text/css'>
+    .selectable .ui-selecting { background: #FECA40; }
+    .selectable .ui-selected { background: #F39814; color: white; }
+    .NCList table { table-layout:fixed; }
+    .nc-cell { overflow: hidden; white-space:nowrap; }
+    .NCList .ui-resizable-e { background: gray; }
+    .NCList .y-scroll { overflow-y:auto; overflow-x:hidden; }
+</style>
+
+<script type="text/javascript">
+    $(function() {
+    	var element = $('#MyParentDiv');                          //获取容器的div元素
+    	$(".selectable", element).selectable({filter: 'tr'});     //设置表体的tbody区可以多选
+    	$(".th0", element).resizable({                            //设置表头的单元格可以调整大小
+    		alsoResize: '#MyParentDiv .header-container',          //当调整该大小时级联调整表体大小
+    		stop: function(event, ui) {                          //当调整大小结束后
+    			var width1 = $(".th0", element).width();          //得到表头列的宽度
+    			$('.col0', element).width(width1);                //设置表体列的宽度
+    			width1 = $(".header-container", element).width(); //得到容器宽度
+    			$('.y-scroll', element).width(width1);            //设置滚动区域的宽度
+    		},			
+    		handles: 'e'});                                       //指定拖拽手柄
+    	$(".th1", element).resizable({                            //调整表体的宽度
+    		alsoResize: '#MyParentDiv .header-container',         //同时调整表头和容器的宽度
+    		stop: function(event, ui) {                         //当调整宽度停止时
+    			var width1 = $(".th1", element).width();         //获取表体列的宽度
+    			$('.col1', element).width(width1);               //调整表体列的宽度
+    			width1 = $(".header-container", element).width();//设置表头的宽度
+    			$('.y-scroll', element).width(width1);           //设置容器滚动条的宽度
+    		},			
+    		handles: 'e'});                                       //指定拖拽手柄
+    });
+</script>
+
+</head>
+<body>
+    <!--表格容器div，包含头部表格和内容表格-->
+    <div id="MyParentDiv" class="NCList">
+        <!--头部表格的容器div-->
+    	<div class="header-container" style="width:215px;">
+    		<table><thead><tr> 
+    		    <th><div class="nc-cell th0" style="width:100px;"> 
+    		        简单名称
+    		    </div></th>
+                <th><div class="nc-cell th1" style="width:100px;"> 
+    		        完整名称
+    		    </div></th> 
+    		</tr></thead></table>
+    	</div>
+        <!--表体表格的容器div-->        
+    	<div class="y-scroll" style="max-height:100px;width:215px;">
+    		<table class="valuefield"> 
+    			<tbody class="selectable"> 
+    				<tr><td><div class="nc-cell col0" style="width: 100px">这是测试的表格单元格</div></td>
+    					<td><div class="nc-cell col1" style="width: 100px">这是测试的表格单元格</div></td>
+    				</tr>
+    				<tr><td><div class="nc-cell col0" style="width: 100px">这是测试的表格单元格</div></td>
+    					<td><div class="nc-cell col1" style="width: 100px">这是测试的表格单元格</div></td>
+    				</tr>
+    				<tr><td><div class="nc-cell col0" style="width: 100px">这是测试的表格单元格</div></td>
+    					<td><div class="nc-cell col1" style="width: 100px">这是测试的表格单元格</div></td>
+    				</tr>
+    				<tr><td><div class="nc-cell col0" style="width: 100px">这是测试的表格单元格</div></td>
+    					<td><div class="nc-cell col1" style="width: 100px">这是测试的表格单元格</div></td>
+    				</tr>
+    				<tr><td><div class="nc-cell col0" style="width: 100px">这是测试的表格单元格</div></td>
+    					<td><div class="nc-cell col1" style="width: 100px">这是测试的表格单元格</div></td>
+    				</tr>
+    				<tr><td><div class="nc-cell col0" style="width: 100px">这是测试的表格单元格</div></td>
+    					<td><div class="nc-cell col1" style="width: 100px">这是测试的表格单元格</div></td>
+    				</tr>
+    				<tr><td><div class="nc-cell col0" style="width: 100px">这是测试的表格单元格</div></td>
+    					<td><div class="nc-cell col1" style="width: 100px">这是测试的表格单元格</div></td>
+    				</tr>
+    				<tr><td><div class="nc-cell col0" style="width: 100px">这是测试的表格单元格</div></td>
+    					<td><div class="nc-cell col1" style="width: 100px">这是测试的表格单元格</div></td>
+    				</tr>
+    			</tbody> 
+    		</table>
+    	</div>
+    </div>
+</body>
+</html>

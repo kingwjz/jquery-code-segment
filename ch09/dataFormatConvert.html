@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用jQuery正则表达式</title>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var delimiter = '.';
+	//使用正则表达式来替换标准字符串
+	var fmtdata=$('#result').html().toString().replace
+	(new RegExp("(^\\d{"+($('#result').html().toString().length%3||-1)+"})(?=\\d{3})"),"$1"+delimiter).replace(/(\d{3})(?=\d)/g,"$1"+ delimiter);	
+    $("#fmtresult").html(fmtdata);	
+});
+</script>
+</head>
+<body>
+ <div id="result">12343778</div>
+ <div id="fmtresult"></div> 
+</body>
+</html>

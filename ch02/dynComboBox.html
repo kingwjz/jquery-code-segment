@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script src="js/jquery.dyncombobox.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#id-dyncombobox").dynComboBox({
+		'allowNewElements':true,		// default : true
+		'editableElements':true		// default : true
+	});
+	$("#disableNewElements").click(function(){
+		$("#id-dyncombobox").eComboBox("disableAddingNewElements");
+		$("#div-log").html($("#div-log").html()+"<p>"+"禁止添加新列表项"+"</p>");
+	});
+	$("#enableNewElements").click(function(){
+		$("#id-dyncombobox").eComboBox("enableAddingNewElements");
+		$("#div-log").html($("#div-log").html()+"<p>"+"允许添加新列表项"+"</p>");
+	});
+	$("#disableEditingElements").click(function(){
+		$("#id-dyncombobox").eComboBox("disableEditingElements");
+		$("#div-log").html($("#div-log").html()+"<p>"+"禁止修改列表项"+"</p>");
+	});
+	$("#enableEditingElements").click(function(){
+		$("#id-dyncombobox").eComboBox("enableEditingElements");
+		$("#div-log").html($("#div-log").html()+"<p>"+"允许编辑新列表项"+"</p>");
+	});
+});
+</script>
+<style type="text/css">
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:16px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery实现动态组合列表框</h2>
+	<hr><br>
+	<select id="id-dyncombobox">
+	<option>list1</option>
+	<option>list2</option>
+	<option>list3</option>
+	<option>list4</option>
+	<option>list5</option>
+	<option>list6</option>
+	</select><br/>
+	<input id="disableNewElements" type="button" value="禁止添加新列表项"/>
+	<input id="enableNewElements" type="button" value="允许添加新列表项"/>
+	<input id="disableEditingElements" type="button" value="禁止修改列表项"/>
+	<input id="enableEditingElements" type="button" value="允许编辑新列表项"/>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>级联数据加载</title>
+<script src="jquery/jquery-1.9.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+$("document").ready(function(){
+    $(".geo").on("change", function() {        //当div内部的select的change事件触发时执行如下代码
+        var currElement =  $(this);             //当前的div元素
+		//当前的div元素指向的load-data-container元素
+        var loadDataContainer = $(currElement.attr("load-data-container"));
+        loadDataContainer.empty();               //清除目标容器元素值
+        loadDataContainer.trigger("change");     //需要一个trigger来清除所有
+        var url = currElement.attr("url");       //得到url
+		//得到div中的第1个元素，即第1个select元素
+        var firstSelectElement = currElement.find("select:first");
+		//得到选中的元素值
+        var geoId = $(firstSelectElement).find(":selected").attr("value");         
+        if(geoId) {                             //如果元素值存在，则调用loaddata异步加载
+            loadData(url, "get", geoId).done(function(data) {
+                loadDataContainer.html(data);   //加载的数据显示到子元素中
+            });
+        }
+    });
+    /**
+     *调用$.ajax异步加载数据，并返回成功加载的数据
+     * */
+    function loadData(url, type, geoId) {
+        return $.ajax(
+            {
+                url : url,           //加载路径
+                type : type,         //类型
+                data : {id : geoId}  //查询字符串参数
+            }
+        );
+    }
+});
+</script>
+</head>
+
+<body>
+ <!-- 行为div ，需要有一个url指示要加载的服务器路径，load-data-container指示要将数据加载到的目标div的id值-->
+<div id="parentDivId" class="geo" url="/loadGeoDistrict" load-data-container="#childDivId" >
+       <!--select一般用来给出url的查询字符串参数-->
+      <select>
+        <option value="1" selected="selected">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+  </div>
+  <!-- 下面是要级联加载的目标div -->
+  <div id ="childDivId">
+  </div>
+</body>
+</html>

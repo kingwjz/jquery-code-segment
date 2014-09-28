@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>为页面添加转场效果</title>
+<!--指定设备的宽度-->
+<meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+</head> 
+<body> 
+<div data-role="page" id="navpage"><!--定义导航页-->
+	<div data-role="header">       
+		<h1>第 1 页</h1>
+	</div>
+	<div data-role="content">	   <!--使用不同的转场效果来加载外部链接-->
+		<ul data-role="listview">
+			<li><a href="#page2" data-transition="fade">淡入</a></li>
+			<li><a href="#page2" data-transition="flip">翻页</a></li>
+			<li><a href="#page2" data-transition="flow">抛转</a></li>
+			<li><a href="#page2" data-transition="pop">弹出</a></li>
+			<li><a href="#page2" data-transition="slide">滑动</a></li>
+			<li><a href="#page2" data-transition="slidefade">左滑动淡入</a></li>
+			<li><a href="#page2" data-transition="slideup">上滑动</a></li>      
+			<li><a href="#page2" data-transition="slidedown">下滑动</a></li>   
+			<li><a href="#page2" data-transition="turn">翻转</a></li>                                                                                             
+			<li><a href="#page2" data-transition="none">无转场效果</a></li>                                                                                                         
+		</ul>	    
+	</div>                         <!--页脚，data-position指示在页面的底部-->
+	<div data-role="footer" data-position="fixed">
+		<h4>页面脚注</h4>   
+	</div>
+</div>
+
+<div data-role="page" id="page2"> <!--定义第2个页面，id值为page2-->
+	<div data-role="header">
+		<h1>第 2 页</h1>          
+	</div>
+	<div data-role="content">  	  <!--定义第2个页面的内容-->
+		这是第2页，单击下面的链接回到导航页<br/>	
+        <a href="#navpage">转到导航页面</a><!--返回到导航页面-->          	           
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h4>页面脚注</h4>
+	</div>
+</div>
+
+</div>
+</body>
+</html>

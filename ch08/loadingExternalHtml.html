@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>动态加载外部网页内容</title>
+<style type="text/css">
+   #logscontent{
+	   font-size:12px;
+   }
+</style>
+
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	  $("#btn1").click(function(){                      //按钮事件处理代码
+	    //使用load方法，异步的加载服务器端的HTML页面，并整合到当前的DOM内容中
+		$('#logscontent').load("http://localhost/Chp08/jquery/files/htmldemo.html",
+		//加载回调函数， statusTxt表示加载状态
+		function(responseTxt,statusTxt,xhr){
+			if(statusTxt=="success")
+			  alert("外部内容加载成功！");              //显示加载成功消息
+			if(statusTxt=="error")                     //显示加载失败消息
+			  alert("加载错误: "+xhr.status+": "+xhr.statusText);
+		  });                 
+	  })
+	})
+</script>
+</head>
+<body>
+<h2>网站日志</h2>
+<button id="btn1" type="button">获得外部的内容</button>
+<!--用来放置服务器端文件的div元素-->
+<div id="logscontent"></div>
+</body>
+</html>

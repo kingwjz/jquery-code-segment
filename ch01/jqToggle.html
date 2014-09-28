@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".help h3").click(function(){
+		$(this).next("p").slideToggle("fast").siblings("p:visible").slideUp("fast");
+	});
+});
+</script>
+<style>
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+.h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+.help {
+	font:16px "Trebuchet MS", sans-serif;
+}
+.cssDiv {
+	font:16px "Trebuchet MS", sans-serif;
+	border:1px solid #000;
+}
+p {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+</head>
+<body>
+	<h2 class="h2-caption">超实用的jQuery代码段 - jQuery实现可折叠效果的方法</h2>
+	<hr><br>
+	<div class="help">
+		<div class="cssDiv">
+			<h3>单击折叠或展开</h3>
+			<p>jQuery实现可折叠效果的方法</p>
+		</div>
+		<div class="cssDiv">
+			<h3>单击展开或折叠</h3>
+			<p style="display:none;">jQuery实现可折叠效果的方法</p>
+		</div>
+	</div>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

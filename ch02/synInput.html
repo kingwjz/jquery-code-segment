@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+$(document).ready(function(){
+	$(":text").bind("keyup",function(){
+		$(":text").val($(this).val());
+		$("#div-log").html($("#div-log").html()+"<p>"+"用户输入数据:"+$(this).val()+"."+"系统同步数据:"+$(this).val()+"</p>");
+	});
+});
+</script>
+<style type="text/css">
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:16px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+form {
+	font:16px "Trebuchet MS", sans-serif;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+	<h2 id="h2-caption">超实用的jQuery代码段 - jQuery实现多个输入框同步操作</h2>
+	<hr><br>
+	<form id="id-form-syninput">
+		<b>输入框1:&nbsp;&nbsp;</b><input type="text" name="input-syninput-1"/><br/>
+		<b>输入框2:&nbsp;&nbsp;</b><input type="text" name="input-syninput-2"/><br/>
+		<b>输入框3:&nbsp;&nbsp;</b><input type="text" name="input-syninput-3"/><br/>
+		<b>输入框4:&nbsp;&nbsp;</b><input type="text" name="input-syninput-4"/><br/>
+		<b>输入框5:&nbsp;&nbsp;</b><input type="text" name="input-syninput-5"/><br/>
+		<b>输入框6:&nbsp;&nbsp;</b><input type="text" name="input-syninput-6"/><br/>
+	</form>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</html>

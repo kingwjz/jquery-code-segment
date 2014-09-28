@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<script type="text/javascript" src="js/jquery.chromatable.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#yourTableID").chromatable({
+		width: "100%", // specify 100%, auto, or a fixed pixel amount
+		height: "400px",
+		scrolling: "no" // must have the jquery-1.3.2.min.js script installed to use
+	});
+	$("#yourTableID2").chromatable({
+		width: "900px",
+		height: "400px",
+		scrolling: "yes"
+	});
+});
+</script>
+<style type="text/css">
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+#h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+p {
+	font:16px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+form {
+	font:16px "Trebuchet MS", sans-serif;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+<title>超实用的jQuery代码段</title>
+</head>
+<body>
+<h2 id="h2-caption">超实用的jQuery代码段 - jQuery实现表头固定效果</h2>
+<hr><br>
+<table id="yourTableID" width="100%" border="0" cellspacing="0" cellpadding="0">
+<thead>
+	<tr>
+		<th>Check out this header</th>
+		<th>Look here's another one</th>
+		<th>Wow, look at me!</th>
+	</tr>
+</thead>
+<tbody>	
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+</tbody>	
+</table><br /><br />
+
+<table id="yourTableID2" width="100%" border="0" cellspacing="0" cellpadding="0">
+<thead>
+	<tr>
+		<th>Check out this header</th>
+		<th>Look here's another one</th>
+		<th>Wow, look at me!</th>
+	</tr>
+</thead>
+<tbody>	
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+	<tr>
+		<td>Some content goes in here</td>
+		<td>Praesent vitae ligula nec orci pretium vestibulum</td>
+		<td>Maecenas tempus dictum libero</td>
+	</tr>
+	<tr>
+		<td>Quisque in wisi quis orci tincidunt fermentum</td>
+		<td>Mauris aliquet mattis metus</td>
+		<td>Etiam eu ante non leo egestas nonummy</td>
+	</tr>
+</tbody>	
+</table>
+<br><hr>
+<div id="div-log">
+	<p>日志记录：</p>
+</div>
+</body>
+</html>

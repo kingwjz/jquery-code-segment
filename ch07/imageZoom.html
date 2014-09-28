@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>平滑的图片放大效果</title>
+<style type="text/css">
+/*图库样式*/
+#gallery {
+	width:460px;
+	height: 270px;
+	margin: 0 auto;
+	padding: 10px;
+	background: #383131;
+}
+
+ul {
+	list-style-type: none;
+	position: absolute;
+	width: 460px;
+}
+
+#gallery ul li {
+	float: left;
+	margin: 10px;
+	background: white;
+	height: 100px;
+	width: 100px;
+}
+
+#gallery ul li:hover {
+	border: 3px solid white;
+	margin: 7px;
+	cursor: pointer;
+}
+
+#gallery ul li img{
+	height: 100px;
+	width: 100px;
+}
+</style>
+<link rel="stylesheet" href="jquery/imgzoom/css/imgzoom.css" type="text/css" media="screen" />
+<!--添加对jQuery库和imgzoom库的引用-->
+<script src="jquery/imgzoom/scripts/jquery.min.js" type="text/javascript"></script> 
+<script src="jquery/imgzoom/scripts/jquery.imgzoom.js" type="text/javascript"></script> 
+<script type="text/javascript">
+ $(function () {
+     $('#img1').imgZoom({ showOverlay: true });                               //设置第1幅图遮罩显示
+     $('#img2').imgZoom({ showOverlay: true, opacity: 0 });                   //透明显示
+     $('#img3').imgZoom({ showOverlay: true, rotate: true, duration: 1000 }); //旋转显示
+     $('#img4').imgZoom({ showOverlay: true, rotate: false, duration: 300 });	//不旋转显示
+ });
+</script>
+</head>
+
+<body>
+<!--实现简单的相册效果-->
+<div id="gallery">
+<ul>
+    <!--相册所需要的图片集-->
+    <li><a href="images/sample1.jpg"><img id="img1" src="images/sample1.jpg"/></a></li>
+    <li><a href="images/sample2.jpg"><img id="img2" src="images/sample2.jpg"/></a></li>
+    <li><a href="images/sample3.jpg"><img id="img3" src="images/sample3.jpg"/></a></li>
+    <li><a href="images/sample5.jpg"><img id="img4" src="images/sample5.jpg"/></a></li>
+</ul>		
+</div>
+</body>
+</html>
+

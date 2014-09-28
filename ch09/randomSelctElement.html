@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>随机选择一个元素</title>
+<script src="jquery/jquery-1.9.1.js"></script> 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#lnk").click(function(){
+		var mylist = $('ul');                         //获取ul对象
+		var listitems = mylist.children('li').get();  //获取ul对象中的所有li元素,使用get转换为数组
+        var num=listitems.length-1;                   //获取数组长度
+        var ele=listitems[getramdom(0,num)];	      //调用随机函数获取数组中的元素
+		$("#result").html("随机选择的元素为："+$(ele).text()); //显示随机取数结果
+		});
+	});	
+  function getramdom(min,max){         //创建一个随机函数，用于产生数组长度的随机数
+     return parseInt(Math.random()*(max-min+1));   
+  }  		
+</script>
+</head>
+<body>
+<!--用来进行随机选择的元素-->
+<ul id="ul1">
+  <li>苹果</li>
+  <li>桔子</li>
+  <li>香焦</li>
+  <li>桃子</li>      
+</ul>
+<a href="#" id="lnk">单击这里随机选择</a>
+<!--结果显示部分-->
+<div id="result"></div>
+</body>
+</html>

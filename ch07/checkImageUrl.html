@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>检测图片src</title>
+<!--加载jQuery库-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<!--设置CSS-->
+<style type="text/css">
+  body{
+	  font-size:12px;
+  }
+</style>
+</head>
+
+<body>
+  <div>
+   <!--添加示例图片-->
+  <img src="images/sample1.jpg" />
+  <img src="images/sample2.jpg" />
+  <img src="images/sample3.jpg" />
+  <img src="images/sample4.jpg" />  
+  </div>
+  <!--显示图片src检测消息-->
+  <div id="samplemsg"></div>
+  
+  <script language="javascript" type="text/javascript">
+     //定义一个匿名函数，用来执行图片src检测
+     $(function (){     
+	      //循环选中的img元素
+          $("img").each(function (i,e){
+			  //获取单一img元素的src属性值
+              var imgsrc = $(e).attr("src");
+			  //在图片加载完成后，显示图片信息
+              $(e).load(function(){
+				   //显示图片成功加载的消息
+                   $("<p> 加载图片路径"+imgsrc+" </p>").appendTo("#samplemsg");
+                }).error(function() {
+				   //编写error事件处理代码，当图片src错误时，显示错误消息
+                   $("<p> 错误的图片src "+ imgsrc  +"</p>").appendTo("#samplemsg");
+				   //同时更改错误的src链接为不存在的占位符图片链接
+                   $(e).attr("src","images/noexistspic.jpg");
+                }) ;        
+          });
+      });        
+   </script>    
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.8.3.min.js"></script>
+<script>
+$(document).ready(function(){
+	function textFlash(obj,cssName,times){
+			var i=0,t=false,o=obj.attr("class")+" ",c="",times=times||2;
+			if(t) return;
+			t=setInterval(function(){
+				i++;
+				c=i%2?o+cssName:o;
+				obj.attr("class",c);
+				if(i==2*times){
+					clearInterval(t);
+					obj.removeClass(cssName);
+					}
+				},200);
+			};
+	$(function(){
+		//domready 就闪动
+		textFlash($("#id-div-autoFlash"),"red",3);
+		//点击闪动
+		$("#id-div-clickFlash").bind({
+			click:function(){
+				textFlash($(this),"red",3);
+				return false;
+				}
+			});
+		//通不过mail校验闪动
+		$("#id-input-emailFlash").blur(
+			function(){
+				 if(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test($(this).val())){
+						textFlash($(this),"red",3);
+					}
+				}
+			);
+			
+		});
+});
+</script>
+<style> 
+	*{ margin:0; padding:0;}
+	body{ background:#fff; font-family:Arial, Helvetica, sans-serif; background:#f9f9f9; font-size:14px; color:#333;}
+	.main{ width:600px; background:#fff; margin:0 auto; padding:20px 0; border:solid #ddd; border-width:0 1px; min-height:800px;}
+	.cssFlash{ width:240px; height:26px; line-height:26px; background:#f0f0f0; border:1px solid #ddd; text-align:center; font-size:14px; margin:20px auto;}
+	input.cssFlash{ width:240px; font-weight:900; color:#999; display:block; background:#fff; text-align:left;}
+	.red{ border:1px solid #d00; background:#ffe9e8; color:#d00;}
+	input.red{background:#ffe9e8;}
+	#id-div-clickFlash{ cursor:pointer;}
+	.des{ margin:0 20px; padding:6px; line-height:20px; border:1px solid #ccc; color:#555;}
+</style>
+</head>
+<body>
+	<h2>超实用的jQuery代码段 - jQuery实现闪烁文本效果</h2>
+	<div class="main">
+		<!--<p class="des">闪动提示，可以用于错误提示或其他吸引用户注意力的场合 <br>
+			textFlash(obj,cssName,times)<br>
+			obj : jQuery Object [object]  要闪动的元素<br>
+			cssName : Class Name [string] 闪动的类<br>
+			times : Number [Number] 闪动几次<br>
+		</p>-->
+		<div id="id-div-autoFlash" class="cssFlash">文本自动闪动</div>
+		<div id="id-div-clickFlash" class="cssFlash">点击文本闪动</div>
+		<input class="cssFlash" type="email" id="id-input-emailFlash" placeholder="如果输入email地址会闪动" />
+	</div>
+</body>
+</html>

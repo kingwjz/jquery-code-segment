@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>清除表单的通用函数</title>
+<script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+   $(document).ready(function(){
+	   clearForm($("form"));                     //调用clearForm清除表单元素
+   });
+	function clearForm(form) {
+	  $(':input', form).each(function() {       //循环表单中的所有input控件
+		var type = this.type;                    //得到控件的类型
+		var tag = this.tagName.toLowerCase();   //得到tagName
+		// 清除文本框、密码输入框和多行文本框的内容
+		if (type == 'text' || type == 'password' || tag == 'textarea')
+		  this.value = "";
+		// 将复选框和单选框的checked设置为false
+		else if (type == 'checkbox' || type == 'radio')
+		  this.checked = false;
+		//将下拉列表框的selectedIndex设置为-1，表示不选中任何元素
+		else if (tag == 'select')
+		  this.selectedIndex = -1;
+	  });
+	};
+</script>
+</head>
+<body>
+<!--构建一个表单，表单提交方法为post-->
+<form method="post">
+   <!--构建2个文本域和一个隐藏域-->
+  <div><input type="text" name="a" value="1" id="a" /></div>
+  <div><input type="text" name="b" value="2" id="b" /></div>
+  <div><input type="hidden" name="c" value="3" id="c" /></div>
+  <!--多行文本域-->
+  <div><textarea name="d" rows="8" cols="40">4</textarea></div>
+  <!--下拉选择域-->
+  <div><select name="e">
+    <option value="5" selected="selected">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+  </select></div>
+  <div>
+     <!--复选框选项-->
+     <input type="checkbox" name="f" value="8" id="f" /><span>单击复选框进行选择</span>
+  </div>
+  <div>
+    <input type="submit" name="g" value="提交" id="g" />
+  </div>
+</form>
+</body>
+</html>

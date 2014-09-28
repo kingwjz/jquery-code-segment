@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用jQuery产生GUID值</title>
+<script type="text/javascript" src="jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+   alert($("body").newguid().val());  //显示随机生成的GUID值
+});
+ (function($){                      //在匿名函数中扩展jQuery库的实例方法
+    $.fn.newguid = function () {    //newguid用来产生一个新的GUID值
+        this.val('xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : r & 0x3 | 0x8; return v.toString(16); }));
+        return this;
+    };
+}(jQuery));
+</script>
+</head>
+
+<body>
+</body>
+</html>

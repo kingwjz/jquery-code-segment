@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery的祖先算法</title>
+<script src="jquery/jquery-1.9.1.js"></script> 
+<style type="text/css">
+	body{
+		font-size:9pt;
+	}
+</style>
+</head>
+
+<body>
+    <div id="div1">               <!--根节点-->
+     <div id="div2">              <!--包含子节点的父节点-->
+        <p></p>
+      </div>
+     <div id="div3" class="a">   <!--包含子节点的父节点-->
+        <p></p>
+      </div>
+     <div id="div4">             <!--包含子节点的父节点-->
+        <p></p>
+      </div>
+    </div>
+    <div id="result"></div>
+    <script type="text/javascript">
+		var ctl=$("p").parent();  			//取得的是div2、div3、div4的集合
+		$("#result").append("p元素的父元素列表：");
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});
+		$("#result").append("<br/>类为a的元素的父元素：");		
+		ctl=$('p').parent('.a');		//取得是div3单一元素
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});		
+		ctl=$('p').parent().parent();	//取得是div1，父节点的父节点，即为div1
+		$("#result").append("<br/>p元素的祖父元素：");				
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});				
+		ctl=$('p').parents();			//取得的是div1、div2、div3、div4
+		$("#result").append("<br/>p元素的父元素列表：");				
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});			
+		ctl=$('p').parents('.a');		//取得的是div3
+		$("#result").append("<br/>p元素的父元素列表中class为a的元素：");				
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});		
+        ctl=$("p").parentsUntil("p");  //取得2个p元素之间的所有祖先元素		
+		$("#result").append("<br/>2个p元素之间的所有祖先元素：");				
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});					
+    </script>
+</body>
+</html>

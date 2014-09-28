@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>动态过滤表格中的内容</title>
+<script type="text/javascript" src="jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(e) {
+		$("#filedemo > thead th").each(function(i) {  //循环表格中表头的th行
+		    //构建一个select对象，指定data-index为i，并为其关联change事件
+			$("<select />").attr("data-index", i).html($("<option />")).change(function() {
+				//过滤tbody中的tr行，过滤条件是查找表格中，与select中选中的值相同的元素
+				$("#filedemo > tbody > tr").show().filter(function() {
+					//得到 tr行的所有子元素
+					var comb = [], children = $(this).children();
+					children.each(function(i) {      //循环所有子元素
+						var value = $("select[data-index='" + i + "']").val();
+						//向数组中添加value与选中表格中的子元素匹配的值
+						if (value == $(this).text() || value == "") comb.push(1);
+					});
+					return comb.length != children.length;  
+				}).hide();                          //隐藏显示不匹配的表格行
+			}).appendTo($("#filterdiv"));           //将select清加到div中
+		});
+		//通过循环表格行，为select控件的option添加值
+		$("#filedemo > tbody tr").each(function() {
+			$(this).children().each(function(i) {  //循环表格单元格
+				var that = $(this);                  //得到当前循环的单元格
+				//获取select对象
+				var select = $("select[data-index='" + i + "']");
+				if (!select.children().filter(function() {  //调用filter过滤掉文本相同的记录
+					return $(this).text() == that.text();
+				}).length) {                                 //如果长度小于1
+				    //则向select中追加option
+					select.append($("<option />").text($(this).text()));
+				}
+			});
+		});    
+});
+</script>
+</head>
+
+<body>
+<!--放置动态添加的下拉列表框的div控件-->
+<div id="filterdiv"></div>
+<!--定义一个具有2列的表格-->
+<table id="filedemo">
+    <thead>
+        <tr>
+            <th>姓名</th>
+            <th>毕业院校</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>张三丰</td>
+            <td>华南理工</td>
+        </tr>
+        <tr>
+            <td>吕四娘</td>
+            <td>华南理工</td>
+        </tr>
+        <tr>
+            <td>张五六</td>
+            <td>中南工大</td>
+        </tr>
+        <tr>
+            <td>张翠山</td>
+            <td>西北工大</td>
+        </tr>        
+    </tbody>
+</table>
+
+</body>
+</html>

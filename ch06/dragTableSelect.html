@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>可多选的表格行</title>
+  <link rel="stylesheet" href="jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+  <script src="jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+  <script src="jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+<style>
+body{font-size:14px;}
+td { padding: 0.2em 0.4em;width:50px }
+.ui-selecting, .ui-selected { background: lightBlue }  
+#plate { background-color:#505050; height:100px;width:200px;color:white; }
+</style>
+<script type="text/javascript">
+  $(function() {
+	$('#fruits').selectable({        //为表格添加selectable插件
+	  filter:'tbody tr',             //过滤掉tbody和tr，只选择td
+	  stop: function(event, ui){   //当停止选择表格时，在结果区中添加选中的数据
+		var result = $( "#plate" ).empty().html('你选择了下面的水果: '
+		     + $( this ).find( ".ui-selected" ).map(function() {
+		  return this.id;
+		}).get().join(", "));       //循环添加选中的多行数据
+	  }
+	 });
+  });
+</script>
+</head>
+<body>
+<!--构建一个将用来进行多选的HTML表格-->
+<table id="fruits">
+  <thead>
+    <tr><th>名称</th><th>颜色</th><th>味道</th></tr>
+  </thead>
+  <tbody>
+    <tr id="苹果"><td>苹果</td><td>绿色</td><td>甜</td></tr>
+    <tr id="桔子"><td>桔子</td><td>橙色</td><td>酸</td></tr>
+    <tr id="柑橘"><td>柑橘</td><td>黄色</td><td>酸</td></tr>
+    <tr id="猕猴桃"><td>猕猴桃</td><td>褐色</td><td>甜</td></tr>
+  </tbody>
+</table>
+<!--显示表格的结果数据-->
+<div id="plate">多选的结果：</div>
+</body>
+</html>

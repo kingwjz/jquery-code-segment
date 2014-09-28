@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery过滤算法</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<style type="text/css">
+	body{
+		font-size:9pt;
+	}
+</style>
+</head>
+
+<body>
+    <div id="div1">               <!--根节点-->
+     <div id="div2">              <!--包含子节点的父节点-->
+        <p id="p1"></p>
+      </div>
+     <div id="div3" class="a">   <!--包含子节点的父节点-->
+        <p id="p2"></p>
+      </div>
+     <div id="div4">             <!--包含子节点的父节点-->
+        <p id="p3"></p>
+      </div>
+    </div>
+    <div id="result"></div>
+   <script type="text/javascript">
+		var ctl=$("#div1 div").last();  		  //div1中的最后一个div元素
+		$("#result").append("最后一个div元素：");
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});					
+		var ctl=$("#div1 div").first();  		  //div1中的第一个div元素
+		$("#result").append("<br/>第一个div元素：");
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});				
+		var ctl=$("#div1 div").eq(1);  		  //索引等于1的div元素
+		$("#result").append("<br/>索引等于1的div元素：");
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});				
+		var ctl=$("#div1 div").filter(".a");  	 //具有class为a的div元素
+		$("#result").append("<br/>具有class为a的div元素：");
+		ctl.each(function(index,domEle){
+			$("#result").append(domEle.id+" ");
+		});										
+    </script>       
+</body>
+</html>

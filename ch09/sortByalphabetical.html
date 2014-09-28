@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>按照首先字母进行元素排序</title>
+<script src="jquery/jquery-1.9.1.js"></script> 
+<script type="text/javascript">
+  $(document).ready(function(){
+	  $("#btnsort").click(function(){       //单按钮进行排序
+	  sortLocal($("ul"));                     //调用sortLocal进行排序
+	  });
+  });
+  //定义一个用于排序的函数sortLocal用于进行排序
+  function sortLocal(sort_container, sort_item) {
+	  var list_items = sort_container.children(sort_item).get();  //得到子元数数组
+	  list_items.sort(function(a, b) {                           //调用localCompare进行排序
+		 return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase());
+	  });
+	  $.each(list_items, function(index, item) {                //循环输出排序后的数组
+		sort_container.append(item);
+	  });
+  }  
+</script>
+</head>
+
+<body>
+<button id="btnsort">单击这里排序</button>
+<ul>
+  <li>我的中国心</li>
+  <li>你的中国梦</li>
+  <li>人们的中国梦</li>
+  <li>中华民族</li>
+  <li>伟大的中国</li>
+</ul>
+</body>
+</html>

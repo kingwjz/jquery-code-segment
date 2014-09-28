@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用jQuery对List排序</title>
+<script src="jquery/jquery-1.9.1.js"></script> 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#lnk").click(function(){
+			var mylist = $('ul');                         //获取ul对象
+			var listitems = mylist.children('li').get();  //获取ul对象中的所有li元素,使用get转换为数组
+			listitems.sort(function(a, b) {              //调用Array对象的sort方法进行排序
+			   var compA = $(a).text().toUpperCase();     //转换字符值为大写
+			   var compB = $(b).text().toUpperCase();
+			   //比较2个字符串，如果大于则返回1，等于返回0，于小返回-1
+			   return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
+			})
+			//通过循环js数组，在回调函数中将排序后的值添加到mylist中
+			$.each(listitems, function(idx, itm) { mylist.append(itm); });
+		});
+	});
+</script>
+</head>
+
+<body>
+<!--用来排序的无序列表元素-->
+<ul id="ul1">
+  <li>Apple</li>
+  <li>Orange</li>
+  <li>Bananas</li>
+  <li>Peach</li>      
+</ul>
+<!--单击按钮来进行排序-->
+<a href="#" id="lnk">单击这里排序</a>
+</ul>
+</body>
+</html>

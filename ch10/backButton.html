@@ -1,0 +1,46 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <meta charset="utf-8">
+    <title>定制显示回退按钮</title> 
+   <!--使用名为viewport的meta值，其content指定自适应设备的宽度--> 
+    <meta name="viewport"  content="width=device-width,  initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+    </head>  
+    <script type="text/javascript">
+        $(document).bind("pageinit", function () {            //在页面初始化事件中设置全局选项
+           $.mobile.page.prototype.options.backBtnText = "返回";//设置回退按钮文本			
+           $.mobile.page.prototype.options.addBackBtn = true;  //为每一页添加回退按钮
+       });	
+	</script>
+    
+    
+<body> 
+<div data-role="page">
+  <div data-role="header"> 
+   <h1>我的示例</h1> 
+  </div><!-- /页面头区域 -->   
+  <div data-role="content">   
+ 　<a href="#page2">显示其他页面的内容</a>  
+  </div><!-- /页面内容  --> 
+  <div data-role="footer" data-position="fixed">
+    <h4>页面脚注</h4>
+  </div><!-- /脚注 -->  
+ </div><!-- /页面标签 --> 
+ 
+ <div data-role="page" id="page2"">
+	<div data-role="header">
+		<h1>第 2 页</h1>
+	</div>
+	<div data-role="content">	
+		内容		
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h4>页面脚注</h4>
+	</div>
+</div>
+ 
+</body> 
+</html>

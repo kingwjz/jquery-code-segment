@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<link href="../jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link rel="stylesheet" href="../jquery/themes/base/jquery.ui.all.css">
+<script src="../jquery/ui/jquery.ui.core.js"></script>
+<script src="../jquery/ui/jquery.ui.widget.js"></script>
+<script src="../jquery/ui/jquery.ui.position.js"></script>
+<script src="../jquery/ui/jquery.ui.menu.js"></script>
+<script src="../jquery/ui/jquery.ui.autocomplete.js"></script>
+<link rel="stylesheet" href="css/demos.css">
+<script type="text/javascript">
+$(document).ready(function(){
+	$("button").click(function(){
+		$("h3").toggle();
+		$("#div-log").html($("#div-log").html()+"<p>"+"toggle()函数：显示/隐藏网页内容"+"</p>");
+	});
+});
+</script>
+<style>
+body {
+	font:62.5% "Trebuchet MS", sans-serif;
+	margin:64px;
+}
+.h2-caption {
+	font:20px "Trebuchet MS", sans-serif;
+}
+.h3-text {
+	font:16px "Trebuchet MS", sans-serif;
+}
+p {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+.demoHeaders {
+	margin-top:2em;
+}
+#div-log {
+	font:13.5px "Trebuchet MS", sans-serif;
+}
+</style>
+</head>
+<body>
+	<h2 class="h2-caption">超实用的jQuery代码段 - jQuery切换显示和隐藏功能的方法</h2>
+	<hr><br>
+	<button type="button">显示/隐藏</button>
+	<h3 class="h3-text">jQuery 效果 - 隐藏和显示</h3>
+	<h3 class="h3-text">jQuery toggle()函数 - 通过jQuery，用户可以使用toggle()函数来切换hide()和show()函数</h3>
+	<br><hr>
+	<div id="div-log">
+		<p>日志记录：</p>
+	</div>
+</body>
+</html>

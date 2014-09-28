@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>获取图片尺寸</title>
+<!--添加对jQuery库的引用-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript"> 
+   	$(document).ready(function(){
+		//使用width和height获取当前显示的图片的高度
+    	$("#picinfo").append("宽度:"+($("img:first").width()));
+    	$("#picinfo").append("高度:"+($("img:first").height()));		
+		$("#picinfo").append("<br/>");
+		//获取图片的原生尺寸
+		var imgWidth, imgHeight;
+		// 这里创建一个图像保存到内存，并没有添加到 HTML 中，只是个参考
+		$("<img/>").attr("src", "images/sample2.jpg").load(function() {
+		imgWidth = this.width;
+		imgHeight = this.height;
+		//显示图片的原生宽度和高度
+    	$("#picinfo").append("图片原生宽度:"+imgWidth);
+    	$("#picinfo").append("图片原生高度:"+imgHeight);			
+		});		
+		
+	});
+</script>
+</head>
+<body>
+  <!--该HTML中的图片已经被调整了大小-->
+  <img src="images/sample2.jpg" width="50" height="50"/> 
+  <div id="picinfo"></div>
+</body>
+</html>

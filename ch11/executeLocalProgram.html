@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在网页上运行本地程序的方法</title>
+<script type="text/javascript" src="jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+   function exec(command)
+   {
+		window.oldOnError = window.onerror;  //保存window错误信息
+		window._command = command;           //保存传入的command命令
+		window.onerror = function (err)    //定义错误函数
+		{
+		  if (err.indexOf('utomation') != -1)
+		  {
+			 //显示错误消息
+			alert('命令' + window._command + ' 已经被用户禁止！');
+			return true;
+		  }
+		  else
+		   return false;
+    };
+	//创建WScript.Shell脚本执行环境
+	var wsh = new ActiveXObject('WScript.Shell');
+	//运行传入的命令
+	if (wsh)  wsh.Run(command);
+	wsh = null;
+	//恢复错误处理
+	window.onerror = window.oldOnError;
+ }
+</script>
+</head>
+<body>
+<!--下面的2个按钮在单击时，将会调用exec函数执行notepad.exe和cmd.exe函数-->
+<input onclick="exec('notepad.exe')" value="执行noteppad.exe" type="button">
+<input onclick="exec('cmd.exe')" value="执行cmd.exe" type="button">
+</body>
+</html>

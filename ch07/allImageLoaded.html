@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图片是否被完全加载</title>
+<style type="text/css">
+   body{
+	   font-size:9pt;
+   }
+</style>
+<!--加载jQuery库-->
+<script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+    //在页就绪事件中，检测当图片加载完成时，图片的大小和路径
+   	$(document).ready(function(){
+		  var imgWidth, imgHeight;		
+	      //循环选中的img元素
+          $("img").each(function (i,e){
+			  //在图片加载完成后，显示图片信息
+              $(e).load(function(){
+	   		   //获取单一img元素的src属性值
+                var imgsrc = $(e).attr("src");	
+				imgWidth = this.width;
+				imgHeight = this.height;							  
+				   //显示图片的路径和大小
+                   $("<p> 加载图片路径"+imgsrc+" </p>").appendTo("#samplemsg");
+                   $("<p> 图片的大小:宽度 "+imgWidth+" 高度:"+imgHeight+" </p>").appendTo("#samplemsg");				   
+                }) ;
+          });		
+	});
+</script>
+</head>
+<body>
+  <div>
+   <!--添加示例图片-->
+  <img src="images/sample1.jpg" />
+  <img src="images/sample2.jpg" />
+  <img src="images/sample3.jpg" />
+  <img src="images/sample5.jpg" />  
+  </div>
+  <!--显示图片src检测消息-->
+  <div id="samplemsg"></div>
+</body>
+</html>

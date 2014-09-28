@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>加载XML内容到HTML表格</title>
+<script src="jquery/jquery-1.9.1.js" type="text/javascript"></script>
+<style type="text/css">
+   #ajaxTable td{
+	   border:1px solid #F00;
+	   font-size:9pt;
+	   }   
+</style>
+</head>
+<body>
+<div id="tableWrapper">
+<button id="loadTable">加载XML文件</button>
+<script type="text/javascript">
+$('#loadTable').click(function() {              //为按钮关联单击事件处理代码
+    $.get('8_16.xml', function(data) {           //使用$.get获取服务器端数据
+	    //在HTML页面上创建一个新的HTML表格
+        $('div#tableWrapper').append('<table id="ajaxTable"></table>');
+        $(document).ready(function() {          //页加载就绪时
+		    //寻环子节点中的行
+			$(data).children('tabledata').children('row').each(function() {
+				var thisRow = this;
+				$('table#ajaxTable').append('<tr></tr>');                 //添加tr标签
+					$(thisRow).children('column').each(function() {     //循环XML中的列
+						var thisColumn = $(this).text();                 //添加td标签
+						$('table#ajaxTable').children('tbody').children('tr').last().append('<td>' + thisColumn + '</td>');
+                  
+				});            
+			});
+		});
+	});
+});
+</script>
+</body>
+</html>
